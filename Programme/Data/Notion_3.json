@@ -1,0 +1,251 @@
+{
+  "numero": 3,
+  "notion": "Conflit de fusion lors du pull automatique",
+  "niveau": 1,
+  "exercices": [
+    {
+      "numero": 1,
+      "texte": "Mini cours : Lorsqu’on travaille à plusieurs sur la même branche, un conflit de fusion peut survenir si Git ne parvient pas à combiner automatiquement les modifications. Cela se produit souvent lorsque deux personnes modifient des parties proches ou identiques d’un fichier. Pour résoudre ce conflit, il faut récupérer les modifications, identifier les sections conflictuelles marquées par Git (avec <<<<<<<, =======, >>>>>>>), corriger manuellement ces conflits, puis finaliser la fusion avec un commit.\nSituation : Vous travaillez sur la branche « feature-login ». Vous avez modifié le fichier `login_form.html`. Pendant ce temps, un collègue a poussé des modifications dans ce même fichier. Lorsque vous tentez de faire un `git pull`, un conflit survient.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande devez-vous exécuter pour récupérer les dernières modifications de la branche distante et tenter de fusionner ?",
+          "choix": {
+            "a": "git fetch origin feature-login",
+            "b": "git pull origin feature-login",
+            "c": "git push origin feature-login",
+            "d": "git merge origin/feature-login"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 2,
+          "intitule": "Suite à la commande précédente, Git vous signale un conflit dans `login_form.html`. Quelle est la prochaine étape ?",
+          "choix": {
+            "a": "Modifier manuellement `login_form.html` pour résoudre le conflit",
+            "b": "Annuler la fusion avec `git merge --abort`",
+            "c": "Supprimer le fichier `login_form.html`",
+            "d": "Faire un `git push` directement"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Comment sont indiquées les zones en conflit dans `login_form.html` ?",
+          "choix": {
+            "a": "Elles sont surlignées en rouge par Git automatiquement",
+            "b": "Par des balises `<<<<<<<`, `=======`, `>>>>>>>` dans le fichier",
+            "c": "Par des commentaires HTML standards",
+            "d": "Elles ne sont pas indiquées dans le fichier, Git refuse le merge"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 4,
+          "intitule": "Une fois les conflits corrigés dans `login_form.html`, que devez-vous faire pour indiquer à Git que le conflit est résolu ?",
+          "choix": {
+            "a": "git commit -m \"Résolution conflit login_form.html\"",
+            "b": "git add login_form.html puis git commit -m \"Résolution conflit\"",
+            "c": "git push origin feature-login",
+            "d": "git merge --continue"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 5,
+          "intitule": "Enfin, quelle commande permet d’envoyer vos modifications fusionnées vers le dépôt distant ?",
+          "choix": {
+            "a": "git push origin feature-login",
+            "b": "git pull origin feature-login",
+            "c": "git fetch origin",
+            "d": "git reset --hard origin/feature-login"
+          },
+          "reponse": "a"
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "texte": "Mini cours : Les conflits surviennent lorsqu’un même fichier est modifié simultanément par plusieurs contributeurs. Git tente d’automatiser la fusion, mais il faut parfois intervenir manuellement pour choisir quelle version conserver. Pour cela, il faut identifier les zones conflictuelles, modifier le fichier concerné, ajouter les fichiers modifiés, puis finaliser la fusion avec un commit avant de pouvoir pousser.\nSituation : Vous travaillez sur la branche `feature-dashboard` et modifiez le fichier `dashboard.js`. Un collègue a poussé des changements sur ce même fichier. Vous faites un `git pull` et Git vous signale un conflit.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande lancez-vous pour récupérer et fusionner les changements distants ?",
+          "choix": {
+            "a": "git pull origin feature-dashboard",
+            "b": "git fetch origin",
+            "c": "git push origin feature-dashboard",
+            "d": "git merge origin/feature-dashboard"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 2,
+          "intitule": "Git indique un conflit dans `dashboard.js`. Quelle est la bonne démarche ?",
+          "choix": {
+            "a": "Modifier `dashboard.js` manuellement pour résoudre le conflit",
+            "b": "Supprimer `dashboard.js`",
+            "c": "Exécuter `git push`",
+            "d": "Faire un `git reset --hard`"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Après modification, comment indiquez-vous à Git que le conflit est résolu ?",
+          "choix": {
+            "a": "git add dashboard.js",
+            "b": "git commit -m \"Résolution conflit\"",
+            "c": "Les deux A puis B",
+            "d": "git merge --abort"
+          },
+          "reponse": "c"
+        },
+        {
+          "numero": 4,
+          "intitule": "Quelle commande permet de finaliser le commit de fusion ?",
+          "choix": {
+            "a": "git commit -m \"Fusion avec résolution de conflit\"",
+            "b": "git push origin feature-dashboard",
+            "c": "git reset --hard",
+            "d": "git fetch origin"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Quel est le dernier geste pour partager vos modifications résolues ?",
+          "choix": {
+            "a": "git push origin feature-dashboard",
+            "b": "git pull origin feature-dashboard",
+            "c": "git merge origin/feature-dashboard",
+            "d": "git reset --hard origin/feature-dashboard"
+          },
+          "reponse": "a"
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "texte": "Mini cours : Un conflit de fusion survient quand Git ne peut pas fusionner automatiquement des modifications concurrentes. Pour régler cela, il faut identifier les fichiers en conflit, ouvrir chaque fichier pour modifier les parties conflictuelles, puis valider ces corrections par un ajout (`git add`) et un commit. Ce processus garantit que l’historique reste cohérent et partageable.\nSituation : Sur la branche `feature-api`, vous avez modifié `api_handler.py`. Un collègue a aussi modifié ce fichier et poussé ses changements. Vous faites un `git pull` et vous obtenez un conflit.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande effectuez-vous pour récupérer les dernières modifications et fusionner ?",
+          "choix": {
+            "a": "git pull origin feature-api",
+            "b": "git fetch origin feature-api",
+            "c": "git merge origin/feature-api",
+            "d": "git push origin feature-api"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 2,
+          "intitule": "Git vous indique un conflit dans `api_handler.py`. Que faites-vous ensuite ?",
+          "choix": {
+            "a": "Ouvrir `api_handler.py` et éditer les zones marquées avec `<<<<<<<` et `>>>>>>>`",
+            "b": "Supprimer `api_handler.py`",
+            "c": "Ignorer le conflit et faire un `git push`",
+            "d": "Faire un `git reset --hard`"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Après avoir modifié `api_handler.py` pour résoudre le conflit, quelle commande permet d’indiquer à Git que le fichier est prêt ?",
+          "choix": {
+            "a": "git add api_handler.py",
+            "b": "git commit -m \"Fix conflit api_handler.py\"",
+            "c": "git push origin feature-api",
+            "d": "git merge --abort"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Comment terminez-vous la fusion avec un commit ?",
+          "choix": {
+            "a": "git commit -m \"Résolution conflit api_handler.py\"",
+            "b": "git push origin feature-api",
+            "c": "git fetch origin",
+            "d": "git reset --hard origin/feature-api"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Quelle commande permet d’envoyer vos modifications corrigées sur le dépôt distant ?",
+          "choix": {
+            "a": "git push origin feature-api",
+            "b": "git pull origin feature-api",
+            "c": "git merge origin/feature-api",
+            "d": "git reset --hard origin/feature-api"
+          },
+          "reponse": "a"
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "texte": "Mini cours : Lorsqu’un conflit survient, il faut impérativement résoudre toutes les zones conflictuelles avant de poursuivre. Git bloque la fusion tant que des fichiers restent en conflit. Le processus est : pull, modifier les conflits, ajouter les fichiers corrigés, puis committer et pousser. Un commit intermédiaire lors de la résolution assure une traçabilité claire.\nSituation : Vous travaillez sur la branche `feature-payment`. Vous modifiez le fichier `payment_processor.rb`. Après un `git pull`, un conflit survient dans ce fichier.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande exécutez-vous pour récupérer et fusionner les modifications distantes ?",
+          "choix": {
+            "a": "git pull origin feature-payment",
+            "b": "git fetch origin",
+            "c": "git push origin feature-payment",
+            "d": "git merge origin/feature-payment"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 2,
+          "intitule": "Git vous signale un conflit dans `payment_processor.rb`. Quelle est la prochaine étape ?",
+          "choix": {
+            "a": "Modifier manuellement les sections conflictuelles dans `payment_processor.rb`",
+            "b": "Supprimer `payment_processor.rb`",
+            "c": "Faire un `git reset --hard`",
+            "d": "Pousser directement vos modifications"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Après avoir corrigé les conflits dans `payment_processor.rb`, que devez-vous faire ?",
+          "choix": {
+            "a": "git add payment_processor.rb",
+            "b": "git commit -m \"Résolution conflit\"",
+            "c": "Faire un push direct",
+            "d": "Faire un reset"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Quelle commande permet de finaliser la fusion par un commit ?",
+          "choix": {
+            "a": "git commit -m \"Fusion avec résolution de conflit\"",
+            "b": "git push origin feature-payment",
+            "c": "git fetch origin",
+            "d": "git reset --hard"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Quelle commande envoie les modifications fusionnées vers le dépôt distant ?",
+          "choix": {
+            "a": "git push origin feature-payment",
+            "b": "git pull origin feature-payment",
+            "c": "git merge origin/feature-payment",
+            "d": "git reset --hard origin/feature-payment"
+          },
+          "reponse": "a"
+        }
+      ]
+    }
+  ]
+}

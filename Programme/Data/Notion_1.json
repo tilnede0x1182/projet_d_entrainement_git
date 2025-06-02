@@ -1,0 +1,251 @@
+{
+  "numero": 1,
+  "notion": "Bases pull/push et merge automatique",
+  "niveau": 1,
+  "exercices": [
+    {
+      "numero": 1,
+      "texte": "Mini cours : Lorsque plusieurs utilisateurs modifient des parties différentes d’un même fichier, Git fusionne automatiquement ces modifications lors d’un `git pull`. Il n’y a pas de conflit à résoudre, ce qui facilite la collaboration. Cependant, il faut toujours garder à jour sa branche locale avant de pousser ses propres modifications pour éviter des erreurs.\nSituation : Vous travaillez sur la branche `feature` avec un collègue. Vous avez tous les deux modifié des lignes différentes dans le fichier `app.txt`. Votre collègue a poussé ses changements avant vous.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande permet de récupérer les dernières modifications de la branche `feature` avant de pousser ?",
+          "choix": {
+            "a": "git push origin feature",
+            "b": "git fetch origin",
+            "c": "git pull origin feature",
+            "d": "git clone origin feature"
+          },
+          "reponse": "c"
+        },
+        {
+          "numero": 2,
+          "intitule": "Après le pull, Git indique que la fusion s’est faite automatiquement. Que devez-vous faire ensuite ?",
+          "choix": {
+            "a": "Modifier à nouveau les fichiers",
+            "b": "Faire un commit des modifications fusionnées",
+            "c": "Rien, la fusion est déjà enregistrée",
+            "d": "Supprimer les fichiers fusionnés"
+          },
+          "reponse": "c"
+        },
+        {
+          "numero": 3,
+          "intitule": "Vous souhaitez maintenant envoyer vos modifications locales. Quelle commande utilisez-vous ?",
+          "choix": {
+            "a": "git commit -m \"Mes changements\"",
+            "b": "git push origin feature",
+            "c": "git pull origin feature",
+            "d": "git merge origin/feature"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 4,
+          "intitule": "Vous avez oublié d’ajouter vos modifications avant le commit. Quelle commande permet d’ajouter tous les fichiers modifiés ?",
+          "choix": {
+            "a": "git add .",
+            "b": "git commit --amend",
+            "c": "git push --force",
+            "d": "git status"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Quelle commande permet de vérifier l’état de vos fichiers avant d’envoyer vos modifications ?",
+          "choix": {
+            "a": "git status",
+            "b": "git log",
+            "c": "git branch",
+            "d": "git reset"
+          },
+          "reponse": "a"
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "texte": "Mini cours : Quand plusieurs utilisateurs travaillent sur la même branche, il faut toujours mettre à jour sa copie locale avant de pousser ses changements. Si quelqu’un a déjà poussé des modifications que vous n’avez pas, votre `git push` sera rejeté. Il faudra alors faire un `git pull`, résoudre d’éventuels conflits, puis recommencer le push.\nSituation : Vous travaillez sur la branche `develop`. Votre collègue a poussé des modifications avant vous. Vous avez commis localement, mais votre push est rejeté.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande permet de pousser vos modifications vers la branche `develop` ?",
+          "choix": {
+            "a": "git push origin develop",
+            "b": "Votre push sera rejeté, il faut d’abord faire un pull",
+            "c": "git fetch origin develop",
+            "d": "git commit -m \"Mes changements\""
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 2,
+          "intitule": "Quelle commande permet de récupérer les dernières modifications de la branche `develop` ?",
+          "choix": {
+            "a": "git clone origin develop",
+            "b": "git push origin develop",
+            "c": "git pull origin develop",
+            "d": "git fetch origin develop"
+          },
+          "reponse": "c"
+        },
+        {
+          "numero": 3,
+          "intitule": "Que faire si, lors du pull, Git indique un conflit à résoudre ?",
+          "choix": {
+            "a": "Ignorer le conflit et refaire un push",
+            "b": "Ouvrir les fichiers en conflit, corriger les sections, puis ajouter et committer",
+            "c": "Supprimer les fichiers en conflit",
+            "d": "Rebase obligatoire"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 4,
+          "intitule": "Quelle commande permet d’ajouter les fichiers corrigés après résolution du conflit ?",
+          "choix": {
+            "a": "git reset",
+            "b": "git add .",
+            "c": "git commit --amend",
+            "d": "git merge"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 5,
+          "intitule": "Après avoir ajouté les fichiers corrigés, quelle commande permet d’enregistrer les corrections ?",
+          "choix": {
+            "a": "git push",
+            "b": "git commit -m \"Résolution des conflits\"",
+            "c": "git pull",
+            "d": "git status"
+          },
+          "reponse": "b"
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "texte": "Mini cours : Quand un collègue pousse des modifications avant vous, et que vos changements concernent des lignes différentes dans les mêmes fichiers, un `git pull` fusionne automatiquement sans conflit. Il faut ensuite continuer votre travail normalement et pousser vos changements.\nSituation : Vous travaillez sur la branche `main`. Votre collègue a poussé des modifications sur des lignes différentes dans un fichier que vous modifiez aussi. Vous devez synchroniser votre travail.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande permet de récupérer les dernières modifications de la branche `main` ?",
+          "choix": {
+            "a": "git push origin main",
+            "b": "git fetch origin main",
+            "c": "git pull origin main",
+            "d": "git merge origin/main"
+          },
+          "reponse": "c"
+        },
+        {
+          "numero": 2,
+          "intitule": "Que se passe-t-il si les modifications portent sur des lignes différentes ?",
+          "choix": {
+            "a": "Git refuse le pull",
+            "b": "Git fusionne automatiquement sans conflit",
+            "c": "Il faut résoudre manuellement les conflits",
+            "d": "Il faut rebaser"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 3,
+          "intitule": "Après un pull réussi sans conflit, quelle est la prochaine étape ?",
+          "choix": {
+            "a": "Faire un `git pull` à nouveau",
+            "b": "Continuer à modifier les fichiers et committer",
+            "c": "Faire un `git reset`",
+            "d": "Supprimer les fichiers modifiés"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 4,
+          "intitule": "Vous avez fini vos modifications, quelle commande permet de les préparer au commit ?",
+          "choix": {
+            "a": "git add .",
+            "b": "git commit -m \"Modifications\"",
+            "c": "git push origin main",
+            "d": "git merge origin/main"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Quelle commande permet d’envoyer vos modifications sur le dépôt distant ?",
+          "choix": {
+            "a": "git fetch origin main",
+            "b": "git pull origin main",
+            "c": "git push origin main",
+            "d": "git merge origin/main"
+          },
+          "reponse": "c"
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "texte": "Mini cours : Avant de pousser vos modifications, il est important d’ajouter les fichiers modifiés à l’index avec `git add` puis de vérifier l’état de votre dépôt avec `git status`. Cela permet d’éviter d’oublier des fichiers et de s’assurer que la branche locale est prête à être envoyée sur le dépôt distant.\nSituation : Vous avez modifié plusieurs fichiers sur la branche `release`. Vous souhaitez préparer votre commit et vérifier que tout est correct avant de pousser.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande permet d’ajouter tous les fichiers modifiés à l’index ?",
+          "choix": {
+            "a": "git commit -m \"Mes changements\"",
+            "b": "git add .",
+            "c": "git push origin release",
+            "d": "git status"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 2,
+          "intitule": "Après avoir ajouté les fichiers, quelle commande permet de vérifier l’état du dépôt ?",
+          "choix": {
+            "a": "git status",
+            "b": "git log",
+            "c": "git fetch",
+            "d": "git reset"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Quelle commande permet de sauvegarder vos modifications dans un commit ?",
+          "choix": {
+            "a": "git push origin release",
+            "b": "git commit -m \"Préparation release\"",
+            "c": "git add .",
+            "d": "git pull origin release"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 4,
+          "intitule": "Quelle commande permet d’envoyer vos commits sur la branche distante `release` ?",
+          "choix": {
+            "a": "git fetch origin release",
+            "b": "git merge origin/release",
+            "c": "git push origin release",
+            "d": "git reset --hard"
+          },
+          "reponse": "c"
+        },
+        {
+          "numero": 5,
+          "intitule": "Vous voulez voir les derniers commits de la branche `release` avant de pousser, quelle commande utilisez-vous ?",
+          "choix": {
+            "a": "git log",
+            "b": "git status",
+            "c": "git branch",
+            "d": "git diff"
+          },
+          "reponse": "a"
+        }
+      ]
+    }
+  ]
+}
