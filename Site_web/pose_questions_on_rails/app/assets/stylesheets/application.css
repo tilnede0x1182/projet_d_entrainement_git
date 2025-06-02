@@ -1,28 +1,33 @@
 /* ===========================
    🌐 Import de polices
    =========================== */
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@600&family=Orbitron:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Roboto+Mono:wght@400&display=swap');
 
 /* ===========================
    🖋️ Typographie et fond global
+   Style imprimé : fond blanc, texte sombre, interlignage aéré
    =========================== */
-body, .title {
-    font-family: 'Archivo','Orbitron',Arial,sans-serif;
-}
 body {
-    background: linear-gradient(120deg,#d1cfff 0%,#e8ffd1 100%);
-    margin: 0; padding: 0; min-height: 100vh;
+    background: #fafafa; /* fond très clair */
+    color: #333;          /* texte principal sombre */
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0; padding: 0;
+    line-height: 1.6;
 }
 .title {
-    font-size: 2.5em; letter-spacing: 1px; color: #412387;
-    text-shadow: 0 2px 12px #fff,0 1px 0 #ccc;
-    margin-bottom: 1.5em;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 2em;
+    font-weight: 500;
+    color: #222;
+    margin-bottom: 1em;
+    border-bottom: 1px solid #ddd; /* séparation discrète */
+    padding-bottom: 0.2em;
 }
 
 /* ===========================
    📦 Conteneurs & cartes
+   Style épuré : fond blanc, bord gris clair, coins légèrement arrondis
    =========================== */
-/* Regroupement des cartes (menus, notions, exercices, questions, résultats, sauvegardes, scores) */
 .main-menu,
 .notions-list,
 .exercice-card,
@@ -30,21 +35,12 @@ body {
 .resultat-card,
 .sauvegardes-list,
 .scores-list {
-    max-width: 650px; margin: 2em auto;
-    background: rgba(255,255,255,.95); /* nuance blanche semi-transparente */
-    border-radius: 20px;
-    padding: 2.5em 2em; /* espace interne uniforme */
-    box-shadow: 0 6px 40px #adaeff66;
-}
-/* Ajustement spécifique pour les cartes "question", "résultat" (ombre plus légère) */
-.question-card,
-.resultat-card,
-.sauvegardes-list,
-.scores-list {
-    box-shadow: 0 4px 24px #adaeff77;
-    max-width: 650px; /* pour harmoniser avec groupement précédent */
-    margin: 2em auto; /* marge verticale */
-    padding: 2em 2em 2.5em;
+    max-width: 650px;
+    margin: 2em auto;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 2em 1.5em;
 }
 
 /* ===========================
@@ -52,93 +48,164 @@ body {
    =========================== */
 .menu-btns,
 .notions-list ul {
-    display: flex; flex-direction: column; gap: 1.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
 }
-.choix-list { margin-bottom: 1.2em; }
-.choix-item { margin-bottom: .5em; }
+.choix-list {
+    margin-bottom: 1em;
+}
+.choix-item {
+    margin-bottom: 0.5em;
+}
 .sauvegardes-list ul {
-    list-style: none; padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 /* ===========================
    🔘 Boutons principaux
+   Style académique : fond gris clair, bord fin, transition douce
    =========================== */
 .btn-main {
-    font-size: 1.3em; padding: .8em 1.5em;
-    background: linear-gradient(90deg,#fd37ff 0%,#37ffd6 100%);
-    border: none; border-radius: 10px; color: #1e1e1e; font-weight: bold;
-    cursor: pointer; transition: transform .1s, box-shadow .1s;
-    box-shadow: 0 4px 18px #b6b7ff55; text-shadow: 0 1px 0 #fff;
+    font-size: 1em;
+    padding: 0.6em 1.2em;
+    background: #e8e8e8;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #222;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
     text-align: center;
 }
 .btn-main:hover {
-    transform: scale(1.05);
-    background: linear-gradient(90deg,#37ffd6 0%,#fd37ff 100%);
+    background: #ddd;
+    border-color: #bbb;
 }
 
 /* ===========================
    📑 Cartes "notion"
+   Style sobre : liste simplifiée, séparateurs discrets
    =========================== */
 .notion-card {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 1em; padding: 1em;
-    border-bottom: 1px solid #b6b7ff66;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+    padding: 0.8em 0;
+    border-bottom: 1px solid #eee;
 }
 .notion-title {
-    font-size: 1.1em; font-weight: bold; color: #26269c;
+    font-size: 1em;
+    font-weight: 500;
+    color: #222;
 }
 .notion-niveau {
-    background: #fd37ff44; border-radius: 5px;
-    padding: 2px 8px; font-size: .9em; margin-left: .6em;
+    background: #f0f0f0;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 0.85em;
+    color: #555;
 }
-.notion-nbex { color: #37b8ff; margin-left: .7em; }
+.notion-nbex {
+    color: #007acc;
+    margin-left: 0.5em;
+}
 
 /* ===========================
    ✍️ Texte "mini-court"
    =========================== */
 .mini-court {
-    font-size: 1.15em; color: #1a3d2e; margin-bottom: 1.5em;
+    font-size: 1em;
+    color: #444;
+    margin-bottom: 1.2em;
 }
 
 /* ===========================
    📖 Bloc "situation"
    =========================== */
 .situation-block {
-    background: #f7e8ff55; border-radius: 10px;
-    padding: 1em; margin-bottom: 1em;
+    background: #fdfdfd;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 1em;
+    margin-bottom: 1em;
 }
-.situation { font-size: 1em; color: #7a2dd0; }
+.situation {
+    font-size: 0.95em;
+    color: #555;
+}
 
 /* ===========================
    🏆 Tableau des scores
+   Style de tableau académique : bord fin, fond clair
    =========================== */
 .scores-list table {
-    width: 100%; margin: 2em 0 1em; border-collapse: collapse;
-    background: #fffefa; border-radius: 10px; overflow: hidden;
-    box-shadow: 0 2px 10px #e2e0e0;
+    width: 100%;
+    margin: 1.5em 0 1em;
+    border-collapse: collapse;
+    background: #fff;
 }
 .scores-list th,
 .scores-list td {
-    border-bottom: 1px solid #c7e2ff; padding: 1em .5em;
+    border-bottom: 1px solid #eee;
+    padding: 0.8em 0.5em;
+    text-align: left;
+    font-size: 0.95em;
 }
-.scores-list th { background: #e0d9ff; color: #2d237e; }
-.scores-list tr:last-child td { border-bottom: none; }
+.scores-list th {
+    background: #f5f5f5;
+    color: #222;
+    font-weight: 500;
+}
+.scores-list tr:last-child td {
+    border-bottom: none;
+}
 
 /* ===========================
    💾 Liste des sauvegardes
    =========================== */
 .sauvegardes-list li {
-    display: flex; align-items: center;
-    justify-content: space-between; margin-bottom: 1.1em;
-    background: #e8f7ffcc; padding: 1em; border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.8em;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 0.8em;
+    border-radius: 6px;
 }
-.sauvegardes-list span { margin-right: 1.2em; }
+.sauvegardes-list span {
+    margin-right: 1em;
+    color: #333;
+}
 
 /* ===========================
    🎨 Correction & résultats
+   Mise en évidence subtile sans rupture visuelle
    =========================== */
 .resultat-card .correction-item {
-    margin: 1.5em 0 2em; padding: 1em 1em .5em;
-    border-left: 5px solid #9a4cff; background: #f9f6ff;
-    border-radius: 10px;
+    margin: 1.2em 0 1.5em;
+    padding: 0.8em;
+    border-left: 4px solid #007acc;
+    background: #f9f9f9;
+    border-radius: 4px;
+    font-size: 0.95em;
+    color: #333;
+}
+
+/* ===========================
+   🖥️ Code (pour rendus type "Code Academy")
+   Utilisation de police monospace pour les blocs de code
+   =========================== */
+pre, code {
+    font-family: 'Roboto Mono', monospace;
+    background: #f5f5f5;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 0.5em;
+    overflow-x: auto;
+    font-size: 0.9em;
+    line-height: 1.4;
 }
