@@ -1,0 +1,251 @@
+{
+  "numero": 7,
+  "notion": "Renommage concurrent",
+  "niveau": 1,
+  "exercices": [
+    {
+      "numero": 1,
+      "texte": "Mini cours : Le renommage concurrent survient lorsque deux développeurs modifient le nom d’un même fichier différemment ou qu’un modifie un fichier que l’autre renomme. Git peut alors générer un conflit, car il ne sait pas quelle version garder. Ce type de conflit nécessite souvent une intervention manuelle pour choisir ou fusionner les noms et contenus. La résolution passe par un pull, une identification des conflits, une correction manuelle puis un commit avant le push final. Maîtriser cette notion est clé pour éviter la perte de données et maintenir un historique propre.\nSituation : Alice a renommé le fichier `rapport.txt` en `rapport_final.txt` et a pushé sur la branche principale. Bob, qui avait modifié le contenu de `rapport.txt` sans le renommer, tente maintenant de synchroniser sa branche locale.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Bob souhaite d’abord récupérer les dernières modifications de la branche principale. Quelle commande doit-il utiliser ?",
+          "choix": {
+            "a": "git push origin main",
+            "b": "git fetch origin main",
+            "c": "git pull origin main",
+            "d": "git merge origin/main"
+          },
+          "reponse": "c"
+        },
+        {
+          "numero": 2,
+          "intitule": "Après le pull, Git signale un conflit sur les fichiers `rapport.txt` et `rapport_final.txt`. Quelle commande Bob doit-il utiliser pour voir les fichiers en conflit ?",
+          "choix": {
+            "a": "git status",
+            "b": "git diff",
+            "c": "git log",
+            "d": "git branch"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Bob édite les fichiers en conflit pour choisir la version finale. Une fois cela fait, quelle commande doit-il utiliser pour indiquer que le conflit est résolu ?",
+          "choix": {
+            "a": "git add rapport_final.txt",
+            "b": "git commit -m \"fix conflict\"",
+            "c": "git reset rapport_final.txt",
+            "d": "git checkout -- rapport_final.txt"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Pour enregistrer définitivement la résolution du conflit, quelle commande doit être utilisée ensuite ?",
+          "choix": {
+            "a": "git commit -m \"Résolution conflit renommage rapport\"",
+            "b": "git push origin main",
+            "c": "git merge --continue",
+            "d": "git rebase --continue"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Enfin, Bob veut envoyer ses modifications résolues sur le dépôt distant. Quelle est la commande correcte ?",
+          "choix": {
+            "a": "git push origin main",
+            "b": "git pull origin main",
+            "c": "git fetch origin main",
+            "d": "git merge origin/main"
+          },
+          "reponse": "a"
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "texte": "Mini cours : Lorsqu’un fichier est renommé par un développeur et modifié ou renommé différemment par un autre, Git génère un conflit car il ne peut pas fusionner automatiquement les changements sur les chemins. La résolution demande de comparer les versions, choisir la bonne arborescence et confirmer manuellement les choix via `git add` et `git commit`. Bien comprendre la gestion des conflits de chemins est indispensable pour collaborer efficacement.\nSituation : Claire a renommé le fichier `presentation.ppt` en `final_presentation.ppt` et poussé sur la branche principale. David a renommé ce même fichier en `presentation_v2.ppt` et a modifié son contenu localement.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "David veut récupérer les dernières modifications de la branche principale pour commencer la résolution. Quelle commande doit-il utiliser ?",
+          "choix": {
+            "a": "git pull origin main",
+            "b": "git fetch origin main",
+            "c": "git checkout main",
+            "d": "git clone <url>"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 2,
+          "intitule": "Git indique un conflit sur le fichier renommé. Quelle commande permet à David d’afficher la liste des fichiers en conflit ?",
+          "choix": {
+            "a": "git diff --name-only --diff-filter=U",
+            "b": "git status",
+            "c": "git log --conflicts",
+            "d": "git show"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "David décide de garder la version de Claire (`final_presentation.ppt`) et supprimer la sienne. Quelle commande doit-il exécuter pour valider ce choix ?",
+          "choix": {
+            "a": "git rm presentation_v2.ppt",
+            "b": "git add final_presentation.ppt",
+            "c": "git checkout -- final_presentation.ppt",
+            "d": "git reset presentation_v2.ppt"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Après avoir résolu le conflit, David doit enregistrer ses modifications dans l’index. Quelle commande réalise cette étape ?",
+          "choix": {
+            "a": "git add final_presentation.ppt",
+            "b": "git commit -m \"fix conflit renommage\"",
+            "c": "git merge --continue",
+            "d": "git reset HEAD"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Enfin, quelle commande David doit-il utiliser pour envoyer ses corrections vers le dépôt distant ?",
+          "choix": {
+            "a": "git push origin main",
+            "b": "git pull origin main",
+            "c": "git fetch origin main",
+            "d": "git merge origin/main"
+          },
+          "reponse": "a"
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "texte": "Mini cours : Les conflits de renommage peuvent aussi se compliquer si les deux contributeurs ont modifié simultanément le contenu des fichiers renommés. Dans ce cas, après avoir choisi quel fichier garder ou fusionner, il est souvent nécessaire d’éditer le contenu pour intégrer les changements. La résolution combine donc gestion des chemins et résolution classique de conflits dans le contenu.\nSituation : Émilie a renommé le fichier `guide_utilisateur.md` en `guide_final.md` et a poussé ses changements. François a modifié `guide_utilisateur.md` localement sans le renommer.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "François commence par récupérer les dernières modifications de la branche principale. Quelle commande doit-il taper ?",
+          "choix": {
+            "a": "git fetch origin main",
+            "b": "git pull origin main",
+            "c": "git merge origin/main",
+            "d": "git rebase origin/main"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 2,
+          "intitule": "Git signale un conflit de renommage et contenu sur le fichier. Quelle commande permet de visualiser précisément les conflits dans le contenu ?",
+          "choix": {
+            "a": "git status",
+            "b": "git diff",
+            "c": "git log",
+            "d": "git branch"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 3,
+          "intitule": "François ouvre `guide_final.md`, résout les conflits manuellement dans le contenu. Quelle commande doit-il utiliser ensuite pour indiquer que le fichier est prêt ?",
+          "choix": {
+            "a": "git reset guide_final.md",
+            "b": "git add guide_final.md",
+            "c": "git commit -m \"résolution\"",
+            "d": "git checkout -- guide_final.md"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 4,
+          "intitule": "Après avoir ajouté le fichier, quelle commande permet de valider la résolution des conflits dans l’historique local ?",
+          "choix": {
+            "a": "git commit -m \"Résolution conflit renommage et contenu guide\"",
+            "b": "git push origin main",
+            "c": "git merge --continue",
+            "d": "git rebase --continue"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Enfin, François veut synchroniser son travail avec le dépôt distant. Quelle commande doit-il utiliser ?",
+          "choix": {
+            "a": "git fetch origin main",
+            "b": "git push origin main",
+            "c": "git pull origin main",
+            "d": "git merge origin/main"
+          },
+          "reponse": "b"
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "texte": "Mini cours : Résolution des conflits complexes de renommage avec suppression. Lorsqu’un fichier est renommé par un contributeur et supprimé par un autre, Git rencontre un conflit difficile à résoudre automatiquement. Il faut choisir soit de conserver la suppression, soit d’accepter le renommage et les modifications. Cette situation demande une analyse précise des intentions et un usage rigoureux des commandes `git rm`, `git add` et `git commit` pour finaliser la résolution.\nSituation : Sophie a renommé le fichier `rapport_financier.csv` en `rapport_2025.csv` et a poussé. Thomas a supprimé ce fichier localement sans le renommer.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Thomas veut récupérer les dernières modifications. Quelle commande doit-il utiliser ?",
+          "choix": {
+            "a": "git pull origin main",
+            "b": "git fetch origin main",
+            "c": "git merge origin/main",
+            "d": "git reset --hard origin/main"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 2,
+          "intitule": "Git signale un conflit sur `rapport_financier.csv` et `rapport_2025.csv`. Quelle commande permet de voir les fichiers en conflit ?",
+          "choix": {
+            "a": "git status",
+            "b": "git diff",
+            "c": "git log",
+            "d": "git branch"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Thomas choisit de conserver la suppression (donc garder le fichier supprimé). Quelle commande doit-il utiliser pour valider ce choix ?",
+          "choix": {
+            "a": "git rm rapport_2025.csv",
+            "b": "git add rapport_2025.csv",
+            "c": "git checkout -- rapport_2025.csv",
+            "d": "git reset rapport_2025.csv"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Pour enregistrer la résolution, quelle commande doit être utilisée ensuite ?",
+          "choix": {
+            "a": "git commit -m \"Résolution conflit : suppression conservée\"",
+            "b": "git push origin main",
+            "c": "git merge --continue",
+            "d": "git rebase --continue"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Pour envoyer les modifications vers le dépôt distant, quelle commande Thomas doit-il exécuter ?",
+          "choix": {
+            "a": "git push origin main",
+            "b": "git pull origin main",
+            "c": "git fetch origin main",
+            "d": "git merge origin/main"
+          },
+          "reponse": "a"
+        }
+      ]
+    }
+  ]
+}

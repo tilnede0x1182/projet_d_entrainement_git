@@ -1,0 +1,251 @@
+{
+  "numero": 5,
+  "notion": "Suppression/modification conflictuelle",
+  "niveau": 1,
+  "exercices": [
+    {
+      "numero": 1,
+      "texte": "Mini cours : Lorsqu’un collaborateur supprime un fichier sur une branche et qu’un autre a modifié ce même fichier localement, un conflit apparaît au moment du pull. Git ne peut pas fusionner automatiquement car il doit choisir entre suppression et modification. La résolution manuelle implique de décider si l’on conserve la suppression, les modifications ou une fusion des deux. Pour régler cela, il faut puller, gérer le conflit dans le fichier, ajouter la résolution, puis commit et push.\nSituation : Votre collègue Alice a supprimé le fichier `rapport.txt` sur la branche `develop` et a poussé. Vous avez modifié localement ce fichier sans le savoir. En faisant un `git pull`, un conflit apparaît. Vous devez résoudre ce conflit.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande devez-vous exécuter pour récupérer les dernières modifications de la branche `develop` ?",
+          "choix": {
+            "a": "git fetch develop",
+            "b": "git pull origin develop",
+            "c": "git clone origin develop",
+            "d": "git push origin develop"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 2,
+          "intitule": "Après le pull, Git signale un conflit sur `rapport.txt`. Quelle commande permet de vérifier l’état des conflits ?",
+          "choix": {
+            "a": "git status",
+            "b": "git diff",
+            "c": "git log",
+            "d": "git merge --abort"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Vous ouvrez `rapport.txt` et voyez les marqueurs de conflit `<<<<<<<`, `=======`, `>>>>>>>`. Quelle est la prochaine étape correcte ?",
+          "choix": {
+            "a": "Supprimer manuellement les marqueurs et choisir ce qui doit rester dans le fichier",
+            "b": "Faire un git reset --hard",
+            "c": "Supprimer le fichier rapport.txt",
+            "d": "Faire un git revert"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Une fois le conflit résolu et enregistré dans `rapport.txt`, quelle commande exécuter pour marquer le conflit comme réglé ?",
+          "choix": {
+            "a": "git add rapport.txt",
+            "b": "git commit -m \"Résolution du conflit\"",
+            "c": "git push origin develop",
+            "d": "git merge --continue"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Enfin, pour sauvegarder votre résolution sur la branche distante, quelle commande est correcte ?",
+          "choix": {
+            "a": "git push origin develop",
+            "b": "git pull origin develop",
+            "c": "git fetch origin develop",
+            "d": "git rebase develop"
+          },
+          "reponse": "a"
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "texte": "Mini cours : Lorsque plusieurs collaborateurs travaillent sur un même fichier, des conflits peuvent survenir si l’un supprime le fichier pendant qu’un autre le modifie localement. Git bloque le pull et demande une résolution manuelle. Il faut analyser la situation, décider si le fichier doit être conservé, puis valider la résolution avant de pousser. Cette étape évite de perdre des données ou de supprimer un travail important par erreur.\nSituation : Votre collègue Benoît a supprimé le fichier `presentation.pptx` sur la branche `feature-x` et a poussé cette modification. Vous avez modifié ce fichier en local sans synchroniser. Vous tentez un pull et un conflit apparaît.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande permet de lancer la récupération des dernières modifications sur la branche `feature-x` ?",
+          "choix": {
+            "a": "git pull origin feature-x",
+            "b": "git push origin feature-x",
+            "c": "git merge feature-x",
+            "d": "git fetch feature-x"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 2,
+          "intitule": "Git indique un conflit sur le fichier `presentation.pptx`. Quelle commande permet de lister les fichiers en conflit ?",
+          "choix": {
+            "a": "git diff",
+            "b": "git status",
+            "c": "git log",
+            "d": "git clean -f"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 3,
+          "intitule": "Pour résoudre le conflit, que faut-il faire dans le fichier `presentation.pptx` ?",
+          "choix": {
+            "a": "Choisir entre conserver le fichier modifié ou accepter la suppression, puis sauvegarder",
+            "b": "Supprimer tous les fichiers du projet",
+            "c": "Faire un git revert sur la suppression",
+            "d": "Exécuter git reset --hard origin/feature-x"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Une fois le conflit résolu, quelle commande permet d’enregistrer la résolution ?",
+          "choix": {
+            "a": "git add presentation.pptx",
+            "b": "git merge --continue",
+            "c": "git push origin feature-x",
+            "d": "git commit -m \"conflit résolu\""
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Quelle commande finale permet d’envoyer la résolution du conflit sur la branche distante ?",
+          "choix": {
+            "a": "git push origin feature-x",
+            "b": "git pull origin feature-x",
+            "c": "git fetch origin feature-x",
+            "d": "git rebase feature-x"
+          },
+          "reponse": "a"
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "texte": "Mini cours : Les conflits entre suppression et modification nécessitent souvent une prise de décision : doit-on garder le fichier modifié localement ou accepter la suppression réalisée par un autre collaborateur ? Git marque le fichier comme en conflit et bloque la fusion jusqu’à résolution. La résolution passe par la modification ou suppression manuelle du fichier, suivi de l’ajout, du commit, puis du push des changements.\nSituation : Votre collègue Clara a supprimé le fichier `budget.xlsx` sur la branche `release`, et a poussé cette modification. Vous avez apporté des modifications locales sur ce fichier. En lançant un `git pull`, vous obtenez un conflit.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande lance le pull des dernières modifications sur la branche `release` ?",
+          "choix": {
+            "a": "git fetch origin release",
+            "b": "git pull origin release",
+            "c": "git push origin release",
+            "d": "git merge origin release"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 2,
+          "intitule": "Git indique un conflit sur `budget.xlsx`. Quelle commande permet de vérifier quels fichiers posent problème ?",
+          "choix": {
+            "a": "git status",
+            "b": "git log",
+            "c": "git diff",
+            "d": "git reset --hard"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Vous ouvrez `budget.xlsx` et voyez les conflits. Quelle action correspond à la bonne résolution ?",
+          "choix": {
+            "a": "Garder le fichier modifié ou supprimer le fichier selon la décision prise, puis enregistrer",
+            "b": "Supprimer tout le dossier du projet",
+            "c": "Exécuter git checkout -- budget.xlsx",
+            "d": "Faire un git revert du dernier commit"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Après avoir résolu le conflit dans le fichier, quelle commande permet de marquer la résolution ?",
+          "choix": {
+            "a": "git add budget.xlsx",
+            "b": "git commit -m \"Conflit résolu\"",
+            "c": "git push origin release",
+            "d": "git merge --continue"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Pour finaliser et transmettre la résolution à la branche distante, quelle commande utilisez-vous ?",
+          "choix": {
+            "a": "git push origin release",
+            "b": "git pull origin release",
+            "c": "git fetch origin release",
+            "d": "git rebase release"
+          },
+          "reponse": "a"
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "texte": "Mini cours : Lors d’un conflit entre suppression et modification, il est crucial d’examiner soigneusement l’historique et l’état des fichiers pour décider de la bonne résolution. L’utilisation de commandes comme `git status` et `git diff` permet d’identifier les différences. La résolution passe par une modification manuelle, puis par l’ajout, le commit, et enfin le push, pour synchroniser le dépôt distant.\nSituation : Votre collègue David a supprimé le fichier `plan_projet.md` sur la branche `hotfix`. Vous avez modifié ce fichier en local sans avoir fait de pull. Vous tentez un `git pull` et un conflit survient.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande permet de récupérer les dernières modifications de la branche `hotfix` ?",
+          "choix": {
+            "a": "git fetch origin hotfix",
+            "b": "git pull origin hotfix",
+            "c": "git checkout hotfix",
+            "d": "git merge origin/hotfix"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 2,
+          "intitule": "Pour identifier les fichiers en conflit, quelle commande faut-il utiliser ?",
+          "choix": {
+            "a": "git status",
+            "b": "git log",
+            "c": "git diff",
+            "d": "git reset --hard"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Pour comparer les différences dans `plan_projet.md`, quelle commande est la plus adaptée ?",
+          "choix": {
+            "a": "git diff plan_projet.md",
+            "b": "git show plan_projet.md",
+            "c": "git checkout plan_projet.md",
+            "d": "git revert plan_projet.md"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Après avoir modifié manuellement `plan_projet.md` pour résoudre le conflit, quelle commande faut-il exécuter ?",
+          "choix": {
+            "a": "git add plan_projet.md",
+            "b": "git commit -m \"Résolution conflit\"",
+            "c": "git push origin hotfix",
+            "d": "git merge --continue"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Quelle commande finalise la résolution en mettant à jour la branche distante ?",
+          "choix": {
+            "a": "git push origin hotfix",
+            "b": "git pull origin hotfix",
+            "c": "git fetch origin hotfix",
+            "d": "git rebase hotfix"
+          },
+          "reponse": "a"
+        }
+      ]
+    }
+  ]
+}

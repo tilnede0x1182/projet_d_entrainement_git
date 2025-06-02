@@ -1,0 +1,251 @@
+{
+  "numero": 4,
+  "notion": "Modification concurrente du même fichier, même ligne",
+  "niveau": 1,
+  "exercices": [
+    {
+      "numero": 1,
+      "texte": "Mini cours : Lorsqu’on travaille à plusieurs sur une même branche, modifier la même ligne dans un fichier entraîne un conflit Git lors du pull. Git ne peut pas fusionner automatiquement ces changements. Il faut alors récupérer les modifications distantes, identifier et résoudre manuellement les conflits avant de valider et pousser. La commande `git pull` déclenche le conflit, `git status` aide à repérer les fichiers affectés, et l’édition manuelle du fichier permet de choisir quelle version garder. Enfin, il faut ajouter et committer les corrections avant de pouvoir pousser.\nSituation : Vous travaillez sur la branche `main` du projet. Votre collègue a modifié et poussé une ligne dans le fichier `config/app_settings.yaml`. Vous avez modifié la même ligne localement. En tentant de pousser, Git vous bloque. Vous devez récupérer les changements distants, résoudre le conflit et pousser vos modifications.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande devez-vous lancer pour commencer à récupérer les modifications distantes et déclencher le conflit ?",
+          "choix": {
+            "a": "git fetch origin main",
+            "b": "git pull origin main",
+            "c": "git push origin main",
+            "d": "git merge origin/main"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 2,
+          "intitule": "Après le conflit, comment vérifier quels fichiers sont concernés ?",
+          "choix": {
+            "a": "git diff",
+            "b": "git status",
+            "c": "git log",
+            "d": "git commit -m \"conflict\""
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 3,
+          "intitule": "Dans quel fichier devez-vous ouvrir et corriger le conflit en éditant manuellement la partie marquée par `<<<<<<<`, `=======`, `>>>>>>>` ?",
+          "choix": {
+            "a": "config/app_settings.yaml",
+            "b": "README.md",
+            "c": ".gitignore",
+            "d": "main"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Une fois le conflit résolu et sauvegardé, quelle commande doit-on exécuter pour valider la résolution auprès de Git ?",
+          "choix": {
+            "a": "git add config/app_settings.yaml",
+            "b": "git reset config/app_settings.yaml",
+            "c": "git merge --continue",
+            "d": "git revert HEAD"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Quelle commande finale permet d’envoyer vos modifications corrigées sur le dépôt distant ?",
+          "choix": {
+            "a": "git pull origin main",
+            "b": "git push origin main",
+            "c": "git fetch origin main",
+            "d": "git commit --amend"
+          },
+          "reponse": "b"
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "texte": "Mini cours : Un conflit sur la même ligne se produit lorsque deux développeurs modifient simultanément le même endroit d’un fichier. Après un `git pull` qui provoque ce conflit, il faut examiner les différences, choisir la bonne version ou fusionner manuellement, puis confirmer la résolution. Utiliser `git diff` permet de visualiser précisément les différences. Le bon usage de `git add` et `git commit` est indispensable pour finaliser la correction.\nSituation : Vous travaillez sur la branche `develop`. Vous avez modifié la ligne d’un fichier de configuration `src/database/connection.conf`. Un collègue a poussé une modification sur cette même ligne. Après un `git pull`, un conflit est signalé. Il faut examiner les différences, résoudre le conflit et pousser les modifications.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande permet de visualiser précisément les différences dans le fichier en conflit ?",
+          "choix": {
+            "a": "git diff src/database/connection.conf",
+            "b": "git status",
+            "c": "git log",
+            "d": "git reset"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 2,
+          "intitule": "Pour éditer et résoudre le conflit dans `src/database/connection.conf`, quelle est la bonne pratique ?",
+          "choix": {
+            "a": "Supprimer le fichier et en recréer un nouveau",
+            "b": "Ouvrir `src/database/connection.conf` dans un éditeur et modifier la section délimitée par `<<<<<<<`, `=======`, `>>>>>>>`",
+            "c": "Faire un `git revert`",
+            "d": "Laisser le conflit sans rien faire"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 3,
+          "intitule": "Après avoir corrigé le conflit dans le fichier, quelle commande permet d’indiquer à Git que le fichier est prêt pour la validation ?",
+          "choix": {
+            "a": "git add src/database/connection.conf",
+            "b": "git commit -m \"conflict resolved\"",
+            "c": "git push origin develop",
+            "d": "git merge --abort"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Comment valider la résolution des conflits ?",
+          "choix": {
+            "a": "git commit -m \"Résolution du conflit sur connection.conf\"",
+            "b": "git commit --amend",
+            "c": "git reset HEAD",
+            "d": "git push --force"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Enfin, quelle commande doit être utilisée pour mettre à jour le dépôt distant avec vos modifications ?",
+          "choix": {
+            "a": "git push origin develop",
+            "b": "git pull origin develop",
+            "c": "git fetch origin develop",
+            "d": "git clone"
+          },
+          "reponse": "a"
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "texte": "Mini cours : Quand un conflit survient sur une même ligne modifiée par deux développeurs, il est essentiel d’utiliser les outils Git pour faciliter la résolution. `git mergetool` peut lancer un outil graphique ou en ligne de commande pour comparer et fusionner les changements. Après résolution, les étapes classiques `git add`, `git commit` et `git push` restent indispensables.\nSituation : Vous travaillez sur la branche `feature/ui-improvements`. Vous et un collègue avez modifié la même ligne du fichier `ui/styles/theme.css`. Après un `git pull origin feature/ui-improvements`, un conflit apparaît. Vous souhaitez utiliser un outil de fusion Git pour faciliter la résolution.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande permet de lancer l’outil de fusion interactif Git ?",
+          "choix": {
+            "a": "git merge --abort",
+            "b": "git mergetool",
+            "c": "git diff --tool",
+            "d": "git revert HEAD"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 2,
+          "intitule": "Une fois le conflit résolu dans l’outil de fusion, quelle commande doit être utilisée pour marquer le fichier comme corrigé ?",
+          "choix": {
+            "a": "git add ui/styles/theme.css",
+            "b": "git reset ui/styles/theme.css",
+            "c": "git commit --amend",
+            "d": "git merge --continue"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Pour valider la résolution du conflit, quelle commande doit-on exécuter ?",
+          "choix": {
+            "a": "git commit -m \"Résolution du conflit sur theme.css\"",
+            "b": "git merge --abort",
+            "c": "git push origin feature/ui-improvements",
+            "d": "git fetch origin feature/ui-improvements"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Après avoir validé, quelle commande permet d’envoyer les modifications sur le dépôt distant ?",
+          "choix": {
+            "a": "git push origin feature/ui-improvements",
+            "b": "git pull origin feature/ui-improvements",
+            "c": "git fetch origin feature/ui-improvements",
+            "d": "git clone"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Pour vérifier l’état du dépôt et s’assurer qu’aucun conflit ne subsiste, quelle commande doit-on utiliser ?",
+          "choix": {
+            "a": "git status",
+            "b": "git log",
+            "c": "git branch",
+            "d": "git diff"
+          },
+          "reponse": "a"
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "texte": "Mini cours : La résolution de conflits Git sur la même ligne nécessite parfois de rebaser ses commits locaux sur la branche distante. Le rebase permet d’intégrer proprement les modifications distantes avant de pousser. Après un `git fetch`, `git rebase origin/branche` est utilisé. En cas de conflit durant le rebase, la résolution suit les étapes classiques : édition, `git add`, puis `git rebase --continue`. Le rebase évite les commits de merge inutiles.\nSituation : Vous travaillez sur la branche `feature/api-update`. Votre collègue a poussé des modifications sur le même fichier `api/endpoints/v1/routes.json` que vous avez modifié sur la même ligne. Vous souhaitez rebaser vos commits sur la version distante pour intégrer les changements sans merge commit.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande permet d’aller chercher les dernières modifications sans fusion automatique ?",
+          "choix": {
+            "a": "git pull origin feature/api-update",
+            "b": "git fetch origin",
+            "c": "git push origin feature/api-update",
+            "d": "git clone"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 2,
+          "intitule": "Quelle commande permet de rebaser vos commits locaux sur la branche distante `feature/api-update` ?",
+          "choix": {
+            "a": "git rebase origin/feature/api-update",
+            "b": "git merge origin/feature/api-update",
+            "c": "git reset --hard origin/feature/api-update",
+            "d": "git commit --amend"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "En cas de conflit durant le rebase, quelle étape doit être faite après modification manuelle du fichier `api/endpoints/v1/routes.json` ?",
+          "choix": {
+            "a": "git add api/endpoints/v1/routes.json",
+            "b": "git revert HEAD",
+            "c": "git push origin feature/api-update",
+            "d": "git rebase --abort"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Après avoir ajouté le fichier corrigé, quelle commande permet de continuer le rebase ?",
+          "choix": {
+            "a": "git rebase --continue",
+            "b": "git commit -m \"conflict resolved\"",
+            "c": "git push origin feature/api-update",
+            "d": "git reset --hard origin/feature/api-update"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Une fois le rebase terminé sans conflit, quelle commande permet d’envoyer vos commits sur le dépôt distant ?",
+          "choix": {
+            "a": "git push origin feature/api-update",
+            "b": "git pull origin feature/api-update",
+            "c": "git fetch origin feature/api-update",
+            "d": "git merge origin/feature/api-update"
+          },
+          "reponse": "a"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,251 @@
+{
+  "numero": 10,
+  "notion": "Push force (force push)",
+  "niveau": 1,
+  "exercices": [
+    {
+      "numero": 1,
+      "texte": "Mini cours : Le `push --force` (force push) permet de réécrire l’historique sur une branche distante, en remplaçant ses commits. Cette opération est risquée car elle peut écraser les modifications des autres contributeurs. Lorsqu’un collègue a fait un push forcé, votre copie locale peut être en conflit avec la branche distante. Pour synchroniser votre dépôt sans risquer d’écraser le travail distant, il faut généralement faire un reset dur (`git reset --hard origin/branche`). Cela efface vos commits locaux et place votre branche au même état que la branche distante. Soyez très prudent avec cette commande, elle supprime tout travail local non commité. Apprenez à reconnaître quand l’utiliser et dans quel ordre appliquer les commandes pour une récupération sécurisée.\nSituation : Votre collègue a fait un `git push --force` sur la branche `feature/login`, ce qui a réécrit l’historique et rendu votre copie locale incompatible. Vous avez des modifications non commitées dans `auth.js` que vous souhaitez d’abord sauvegarder avant de resynchroniser votre branche locale.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande permet de sauvegarder temporairement vos modifications non commitées dans `auth.js` ?",
+          "choix": {
+            "a": "git stash save \"Sauvegarde auth.js\"",
+            "b": "git reset --hard origin/feature/login",
+            "c": "git commit -m \"backup auth.js\"",
+            "d": "git pull origin feature/login"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 2,
+          "intitule": "Quelle commande récupère la dernière version de la branche distante sans tenter de fusion ?",
+          "choix": {
+            "a": "git pull origin feature/login",
+            "b": "git fetch origin feature/login",
+            "c": "git merge origin/feature/login",
+            "d": "git reset --hard origin/feature/login"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 3,
+          "intitule": "Quelle commande met votre branche locale exactement à la même version que la branche distante `feature/login` ?",
+          "choix": {
+            "a": "git reset --hard origin/feature/login",
+            "b": "git checkout origin/feature/login",
+            "c": "git merge origin/feature/login",
+            "d": "git stash pop"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Après le reset dur, comment récupérer vos modifications temporairement sauvegardées dans le stash ?",
+          "choix": {
+            "a": "git stash apply",
+            "b": "git stash pop",
+            "c": "git stash drop",
+            "d": "git commit --amend"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Enfin, quelle commande permet de pousser vos modifications vers la branche distante, en évitant d’écraser les autres contributions ?",
+          "choix": {
+            "a": "git push origin feature/login",
+            "b": "git push --force origin feature/login",
+            "c": "git pull origin feature/login",
+            "d": "git fetch origin feature/login"
+          },
+          "reponse": "a"
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "texte": "Mini cours : Un push forcé modifie l’historique partagé et peut rendre votre branche locale obsolète ou incohérente. Dans ce cas, la meilleure pratique est souvent de remplacer totalement votre historique local par celui du dépôt distant. Cette opération s’effectue via un `git fetch` suivi d’un `git reset --hard`, qui écrase tout travail local. Avant de faire cela, il faut s’assurer que toutes modifications locales non sauvegardées sont soit commit, soit stashed. Cette méthode garantit la synchronisation complète avec la branche distante après un push force.\nSituation : Après un push forcé de votre collègue sur la branche `feature/payment`, votre historique local est devenu incompatible. Vous avez déjà commité des modifications dans `payment.js` mais vous voulez repartir proprement de l’état distant sans perdre votre travail.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande permet d’enregistrer temporairement vos modifications non pushées dans `payment.js` ?",
+          "choix": {
+            "a": "git stash",
+            "b": "git reset --hard origin/feature/payment",
+            "c": "git commit -m \"backup payment.js\"",
+            "d": "git pull origin feature/payment"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 2,
+          "intitule": "Quelle commande permet de récupérer toutes les mises à jour du dépôt distant sans modifier la branche locale ?",
+          "choix": {
+            "a": "git fetch origin",
+            "b": "git pull origin feature/payment",
+            "c": "git reset --hard origin/feature/payment",
+            "d": "git merge origin/feature/payment"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Quelle commande supprime toutes vos modifications locales et place votre branche `feature/payment` à l’état du dépôt distant ?",
+          "choix": {
+            "a": "git reset --hard origin/feature/payment",
+            "b": "git checkout origin/feature/payment",
+            "c": "git merge origin/feature/payment",
+            "d": "git stash pop"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Comment réappliquer vos modifications temporaires sauvegardées dans le stash ?",
+          "choix": {
+            "a": "git stash apply",
+            "b": "git stash drop",
+            "c": "git commit --amend",
+            "d": "git stash clear"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Après avoir réappliqué vos modifications, quelle commande permet de pousser vos changements sans écraser l’historique distant ?",
+          "choix": {
+            "a": "git push origin feature/payment",
+            "b": "git push --force origin feature/payment",
+            "c": "git pull origin feature/payment",
+            "d": "git fetch origin"
+          },
+          "reponse": "a"
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "texte": "Mini cours : Lorsqu’un collègue fait un `push --force`, votre branche locale peut diverger et contenir des fichiers modifiés non committés. La commande `git reset --hard` réinitialise la branche locale mais supprime ces modifications non sauvegardées. Pour éviter cette perte, il faut d’abord sauvegarder ces changements via `git stash`. Après avoir fait un reset dur pour synchroniser avec la branche distante, vous pourrez réappliquer les modifications sauvegardées. Cette méthode protège le travail en cours tout en garantissant une branche propre.\nSituation : Votre collègue a fait un push forcé sur la branche `feature/api`. Vous avez des changements non committés dans `api_handler.js` que vous ne voulez pas perdre. Vous devez synchroniser votre branche locale sans écraser ces modifications.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande sauvegarde temporairement les changements non committés dans `api_handler.js` ?",
+          "choix": {
+            "a": "git stash push -m \"Sauvegarde api_handler.js\"",
+            "b": "git commit -am \"backup api_handler.js\"",
+            "c": "git reset --hard origin/feature/api",
+            "d": "git pull origin feature/api"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 2,
+          "intitule": "Quelle commande récupère la dernière version de la branche distante sans la fusionner ?",
+          "choix": {
+            "a": "git fetch origin feature/api",
+            "b": "git pull origin feature/api",
+            "c": "git merge origin/feature/api",
+            "d": "git reset --hard origin/feature/api"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Quelle commande synchronise la branche locale avec la branche distante, effaçant l’historique local ?",
+          "choix": {
+            "a": "git reset --hard origin/feature/api",
+            "b": "git checkout origin/feature/api",
+            "c": "git stash pop",
+            "d": "git merge origin/feature/api"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Quelle commande applique les modifications sauvegardées dans le stash ?",
+          "choix": {
+            "a": "git stash pop",
+            "b": "git stash apply",
+            "c": "git stash drop",
+            "d": "git commit -m \"récupération stash\""
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Après récupération, quelle commande permet de pousser vos changements sans forcer l’écrasement ?",
+          "choix": {
+            "a": "git push origin feature/api",
+            "b": "git push --force origin feature/api",
+            "c": "git pull origin feature/api",
+            "d": "git fetch origin"
+          },
+          "reponse": "a"
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "texte": "Mini cours : Un push forcé peut provoquer des conflits si vous avez des commits locaux non synchronisés. Pour résoudre ce problème, il faut d’abord sauvegarder vos changements locaux non poussés. Ensuite, récupérer l’état distant, forcer la remise à jour locale, puis réintégrer vos changements. Enfin, il faut s’assurer que le push final n’écrase pas les contributions d’autres développeurs. La maîtrise de cette procédure garantit une collaboration fluide malgré un push forcé.\nSituation : Votre collègue a forcé un push sur la branche `feature/ui`. Vous avez des commits locaux dans `ui_component.jsx` que vous n’avez pas encore poussés. Vous devez synchroniser proprement sans perdre vos commits.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande permet de sauvegarder vos commits locaux non poussés dans une branche temporaire ?",
+          "choix": {
+            "a": "git stash  # ne sauvegarde pas les commits",
+            "b": "git branch backup/ui",
+            "c": "git reset --hard origin/feature/ui",
+            "d": "git checkout -b temp_backup"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 2,
+          "intitule": "Quelle commande récupère les dernières modifications distantes ?",
+          "choix": {
+            "a": "git pull origin feature/ui",
+            "b": "git fetch origin feature/ui",
+            "c": "git merge origin/feature/ui",
+            "d": "git reset --hard origin/feature/ui"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 3,
+          "intitule": "Quelle commande replace la branche locale à l’état distant, effaçant l’historique local ?",
+          "choix": {
+            "a": "git reset --hard origin/feature/ui",
+            "b": "git checkout origin/feature/ui",
+            "c": "git merge origin/feature/ui",
+            "d": "git stash pop"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Quelle commande permet de réintégrer vos commits sauvegardés dans `backup/ui` sur la branche remise à jour ?",
+          "choix": {
+            "a": "git cherry-pick backup/ui  # mauvaise commande",
+            "b": "git merge backup/ui",
+            "c": "git stash apply",
+            "d": "git rebase backup/ui"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 5,
+          "intitule": "Quelle commande permet de pousser vos modifications synchronisées sans forcer l’écrasement ?",
+          "choix": {
+            "a": "git push origin feature/ui",
+            "b": "git push --force origin feature/ui",
+            "c": "git fetch origin",
+            "d": "git pull origin feature/ui"
+          },
+          "reponse": "a"
+        }
+      ]
+    }
+  ]
+}

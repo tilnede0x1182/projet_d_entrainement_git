@@ -1,0 +1,251 @@
+{
+  "numero": 8,
+  "notion": "Branches divergentes (merge avec historique différent)",
+  "niveau": 1,
+  "exercices": [
+    {
+      "numero": 1,
+      "texte": "Cours : Lorsqu’on travaille en équipe sur une même branche, il arrive que deux développeurs fassent des commits différents sans synchroniser leurs dépôts. Cela crée des branches divergentes avec des historiques différents. Pour intégrer ces modifications, Git exige un merge ou un rebase qui peut générer des conflits. La bonne pratique est de toujours puller avant de push pour éviter ce cas. La résolution passe par un pull suivi d’une fusion manuelle des conflits, puis un commit final.\nSituation : Vous travaillez sur la branche `feature-auth`. Vous avez fait des commits locaux sur le fichier `auth_service.py`. Entre-temps, votre collègue a poussé des commits sur la même branche qui modifient aussi ce fichier. Vous tentez de push, mais Git rejette car vos branches ont divergé.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande devez-vous utiliser en premier pour récupérer les dernières modifications distantes ?",
+          "choix": {
+            "a": "git push origin feature-auth",
+            "b": "git fetch origin feature-auth",
+            "c": "git pull origin feature-auth",
+            "d": "git merge origin/feature-auth"
+          },
+          "reponse": "c"
+        },
+        {
+          "numero": 2,
+          "intitule": "Après la commande précédente, Git détecte un conflit dans `auth_service.py`. Quelle commande permet d’ouvrir l’éditeur par défaut pour résoudre ce conflit ?",
+          "choix": {
+            "a": "git conflict auth_service.py",
+            "b": "ouvrir manuellement le fichier `auth_service.py`",
+            "c": "git merge auth_service.py",
+            "d": "git resolve auth_service.py"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 3,
+          "intitule": "Une fois les conflits dans `auth_service.py` corrigés, quelle commande devez-vous exécuter pour indiquer à Git que le conflit est résolu ?",
+          "choix": {
+            "a": "git commit -m \"résolution conflit\"",
+            "b": "git add auth_service.py",
+            "c": "git merge --continue",
+            "d": "git push"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 4,
+          "intitule": "Après avoir ajouté le fichier corrigé, que devez-vous faire pour enregistrer la résolution des conflits dans l’historique Git ?",
+          "choix": {
+            "a": "git commit -m \"Résolution des conflits sur auth_service.py\"",
+            "b": "git push origin feature-auth",
+            "c": "git rebase --continue",
+            "d": "git reset"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Enfin, quelle commande permet de synchroniser vos modifications locales corrigées avec le dépôt distant ?",
+          "choix": {
+            "a": "git push origin feature-auth",
+            "b": "git pull origin feature-auth",
+            "c": "git fetch origin feature-auth",
+            "d": "git merge origin/feature-auth"
+          },
+          "reponse": "a"
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "texte": "Cours : Quand deux développeurs modifient la même branche sans synchronisation, leurs historiques divergent. Git bloque le push pour éviter d’écraser les changements distants. La résolution passe par un pull suivi d’une fusion manuelle, en traitant les conflits dans les fichiers concernés. Il est important de bien valider chaque étape : récupérer, résoudre, ajouter, committer, et enfin pousser.\nSituation : Vous travaillez sur la branche `feature-api`. Vous avez modifié le fichier `api_routes.js` et fait plusieurs commits locaux. Votre collègue a poussé des modifications sur cette même branche, aussi dans `api_routes.js`. Votre push est refusé.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande devez-vous lancer en premier pour synchroniser votre branche locale avec la branche distante ?",
+          "choix": {
+            "a": "git push origin feature-api",
+            "b": "git pull origin feature-api",
+            "c": "git fetch origin feature-api",
+            "d": "git reset --hard origin/feature-api"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 2,
+          "intitule": "Git vous informe d’un conflit sur `api_routes.js` après le pull. Quelle est la meilleure action pour débuter la résolution ?",
+          "choix": {
+            "a": "Modifier directement `api_routes.js` en supprimant les marqueurs de conflit (`<<<<<<`, `======`, `>>>>>>`)",
+            "b": "Refaire un commit sans modifications",
+            "c": "Lancer `git merge --abort`",
+            "d": "Supprimer `api_routes.js` et récupérer une nouvelle version"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Une fois le conflit corrigé dans `api_routes.js`, quelle commande sert à enregistrer ce changement pour le merge ?",
+          "choix": {
+            "a": "git commit -m \"corrigé conflit\"",
+            "b": "git add api_routes.js",
+            "c": "git push origin feature-api",
+            "d": "git merge --continue"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 4,
+          "intitule": "Quelle commande faut-il utiliser pour finaliser le merge après avoir ajouté le fichier corrigé ?",
+          "choix": {
+            "a": "git commit -m \"Résolution des conflits sur api_routes.js\"",
+            "b": "git reset HEAD~1",
+            "c": "git push origin feature-api",
+            "d": "git rebase --continue"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Pour terminer, comment pousser vos modifications fusionnées sur le dépôt distant ?",
+          "choix": {
+            "a": "git pull origin feature-api",
+            "b": "git push origin feature-api",
+            "c": "git fetch origin feature-api",
+            "d": "git merge origin/feature-api"
+          },
+          "reponse": "b"
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "texte": "Cours : Lors d’une divergence de branches, il est crucial de bien comprendre les étapes de synchronisation : pull, résolution des conflits, ajout des fichiers, commit et push. Chaque étape permet à Git de suivre précisément les modifications et d’intégrer correctement l’historique de chacun. La patience et la rigueur dans la résolution des conflits évitent la perte de données.\nSituation : Vous travaillez sur la branche `feature-ui`. Vous avez modifié le fichier `dashboard.html` et effectué plusieurs commits. Entretemps, votre collègue a poussé des modifications sur la même branche, touchant aussi `dashboard.html`. Votre push est rejeté.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Pour commencer la synchronisation avec la branche distante, quelle commande exécutez-vous ?",
+          "choix": {
+            "a": "git push origin feature-ui",
+            "b": "git fetch origin feature-ui",
+            "c": "git pull origin feature-ui",
+            "d": "git reset --hard origin/feature-ui"
+          },
+          "reponse": "c"
+        },
+        {
+          "numero": 2,
+          "intitule": "Le pull provoque un conflit sur `dashboard.html`. Quelle est la prochaine étape ?",
+          "choix": {
+            "a": "Modifier `dashboard.html` pour supprimer les marqueurs de conflits et choisir la bonne version",
+            "b": "Faire un commit immédiatement",
+            "c": "Lancer `git merge --abort`",
+            "d": "Ignorer le conflit et refaire un push"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Une fois le conflit résolu dans `dashboard.html`, quelle commande indique à Git que le fichier est prêt ?",
+          "choix": {
+            "a": "git add dashboard.html",
+            "b": "git commit -m \"conflit résolu\"",
+            "c": "git push origin feature-ui",
+            "d": "git merge --continue"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Quelle commande permet de finaliser la résolution du conflit en enregistrant un commit de merge ?",
+          "choix": {
+            "a": "git commit -m \"Résolution conflit dashboard.html\"",
+            "b": "git reset HEAD~1",
+            "c": "git push origin feature-ui",
+            "d": "git rebase --continue"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Pour terminer, quelle commande permet de mettre à jour le dépôt distant avec les modifications fusionnées ?",
+          "choix": {
+            "a": "git pull origin feature-ui",
+            "b": "git push origin feature-ui",
+            "c": "git fetch origin feature-ui",
+            "d": "git merge origin/feature-ui"
+          },
+          "reponse": "b"
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "texte": "Cours : Lorsque les branches locales et distantes divergent, Git bloque le push pour éviter d’écraser les modifications. La résolution passe par un pull, souvent générant des conflits à résoudre manuellement. Il faut alors corriger les fichiers concernés, marquer leur résolution, committer la fusion, puis pousser les modifications. Cette procédure garantit la cohérence de l’historique partagé.\nSituation : Vous travaillez sur la branche `feature-payment`. Vous avez modifié `payment_processor.rb` et fait plusieurs commits. Votre collègue a poussé des modifications sur la même branche, également dans `payment_processor.rb`. Votre tentative de push est rejetée.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Quelle commande devez-vous exécuter pour récupérer les dernières modifications distantes ?",
+          "choix": {
+            "a": "git fetch origin feature-payment",
+            "b": "git push origin feature-payment",
+            "c": "git pull origin feature-payment",
+            "d": "git reset --hard origin/feature-payment"
+          },
+          "reponse": "c"
+        },
+        {
+          "numero": 2,
+          "intitule": "Après le pull, Git vous signale un conflit dans `payment_processor.rb`. Quelle est la bonne action suivante ?",
+          "choix": {
+            "a": "Modifier `payment_processor.rb` pour résoudre les conflits en supprimant les marqueurs Git",
+            "b": "Exécuter `git merge --abort`",
+            "c": "Faire un nouveau commit sans modifier le fichier",
+            "d": "Supprimer `payment_processor.rb` localement"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Après correction du conflit dans `payment_processor.rb`, quelle commande permet d’indiquer à Git que la résolution est terminée ?",
+          "choix": {
+            "a": "git add payment_processor.rb",
+            "b": "git commit -m \"Résolution conflit\"",
+            "c": "git push origin feature-payment",
+            "d": "git merge --continue"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Quelle commande permet d’enregistrer la résolution des conflits dans l’historique Git ?",
+          "choix": {
+            "a": "git commit -m \"Résolution conflit payment_processor.rb\"",
+            "b": "git reset HEAD~1",
+            "c": "git push origin feature-payment",
+            "d": "git rebase --continue"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Quelle commande finalise la synchronisation avec le dépôt distant en envoyant vos modifications ?",
+          "choix": {
+            "a": "git pull origin feature-payment",
+            "b": "git push origin feature-payment",
+            "c": "git fetch origin feature-payment",
+            "d": "git merge origin/feature-payment"
+          },
+          "reponse": "b"
+        }
+      ]
+    }
+  ]
+}

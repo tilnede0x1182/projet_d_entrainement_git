@@ -1,0 +1,251 @@
+{
+  "numero": 6,
+  "notion": "Résolution manuelle sans merge automatique",
+  "niveau": 1,
+  "exercices": [
+    {
+      "numero": 1,
+      "texte": "Mini cours : Les fichiers binaires (images, vidéos, fichiers compilés, etc.) ne peuvent pas être fusionnés automatiquement par Git en cas de conflit. Lorsqu’un conflit survient, Git marque le fichier en conflit, mais il ne peut pas créer une version fusionnée. Il faut donc choisir manuellement quelle version garder (celle locale ou celle distante), ou remplacer par une version corrigée. La résolution se fait en général en ouvrant le fichier avec un outil externe, puis en validant la version choisie via un commit. Cette gestion demande prudence, car les conflits binaires ne sont pas visibles dans un éditeur de texte.\nSituation : Deux développeurs ont modifié simultanément une image `logo.png` sur la branche `main`. Le premier a poussé sa modification, le second tente un `git pull` qui provoque un conflit sur ce fichier binaire. L’objectif est de résoudre ce conflit en conservant la version distante.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Vous êtes le second développeur, vous tentez de récupérer les dernières modifications sur `main` : Quelle commande utilisez-vous ?",
+          "choix": {
+            "a": "git fetch origin main",
+            "b": "git pull origin main",
+            "c": "git push origin main",
+            "d": "git merge origin/main"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 2,
+          "intitule": "Après le pull, Git vous indique un conflit sur `logo.png`. Que devez-vous faire en premier lieu ?",
+          "choix": {
+            "a": "Ouvrir `logo.png` avec un éditeur de texte et corriger le conflit",
+            "b": "Choisir quelle version garder, locale ou distante",
+            "c": "Faire un git reset --hard",
+            "d": "Supprimer le fichier `logo.png`"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 3,
+          "intitule": "Pour conserver la version distante de `logo.png` et annuler votre modification locale, quelle commande utilisez-vous ?",
+          "choix": {
+            "a": "git checkout --ours logo.png",
+            "b": "git checkout --theirs logo.png",
+            "c": "git reset logo.png",
+            "d": "git add logo.png"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 4,
+          "intitule": "Après avoir choisi la version distante, quelle commande permet de valider la résolution du conflit ?",
+          "choix": {
+            "a": "git commit -m \"Résolution conflit logo.png\"",
+            "b": "git add logo.png",
+            "c": "git push origin main",
+            "d": "git merge --continue"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Finalement, quelle commande permet de pousser votre résolution sur le dépôt distant ?",
+          "choix": {
+            "a": "git commit",
+            "b": "git push origin main",
+            "c": "git pull",
+            "d": "git fetch origin main"
+          },
+          "reponse": "b"
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "texte": "Mini cours : Lors d’un conflit sur un fichier binaire, Git ne permet pas de fusion automatique. Il faut choisir manuellement si on garde la version locale (`--ours`), la version distante (`--theirs`) ou une version corrigée externe. Après résolution, on doit marquer le conflit comme résolu en ajoutant le fichier, puis valider par un commit. La bonne pratique est de vérifier le contenu du fichier avec un outil externe avant de confirmer la résolution.\nSituation : Sur la branche `feature/design`, vous avez modifié un fichier PDF `specs.pdf`. Un collègue a poussé une version différente en amont. Après un `git pull`, vous avez un conflit binaire sur `specs.pdf`. Cette fois, vous souhaitez conserver votre version locale.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Vous récupérez les dernières modifications de la branche `feature/design` : Quelle commande lancez-vous ?",
+          "choix": {
+            "a": "git push origin feature/design",
+            "b": "git pull origin feature/design",
+            "c": "git fetch origin feature/design",
+            "d": "git merge origin/feature/design"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 2,
+          "intitule": "Git détecte un conflit sur `specs.pdf`. Vous souhaitez conserver votre version locale. Quelle commande utilisez-vous ?",
+          "choix": {
+            "a": "git checkout --ours specs.pdf",
+            "b": "git checkout --theirs specs.pdf",
+            "c": "git reset specs.pdf",
+            "d": "git add specs.pdf"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Après avoir choisi votre version locale, quelle commande permet d’indiquer que le conflit est résolu ?",
+          "choix": {
+            "a": "git commit -m \"Résolution conflit specs.pdf\"",
+            "b": "git add specs.pdf",
+            "c": "git merge --continue",
+            "d": "git status"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 4,
+          "intitule": "Quelle commande finalise la résolution par un commit ?",
+          "choix": {
+            "a": "git commit -m \"Résolution conflit specs.pdf\"",
+            "b": "git add specs.pdf",
+            "c": "git push origin feature/design",
+            "d": "git pull origin feature/design"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Quelle commande permet de partager votre résolution sur le dépôt distant ?",
+          "choix": {
+            "a": "git fetch origin",
+            "b": "git push origin feature/design",
+            "c": "git commit",
+            "d": "git merge --continue"
+          },
+          "reponse": "b"
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "texte": "Mini cours : Pour résoudre un conflit sur un fichier binaire, il est important d’évaluer les deux versions du fichier (locale et distante) à l’aide d’un outil externe (visionneuse image, lecteur PDF, etc.). Ensuite, on choisit la version la plus pertinente ou on remplace par une version corrigée manuellement. La commande `git checkout --ours` récupère la version locale, `--theirs` la version distante. Après résolution, il faut ajouter le fichier et valider la résolution par commit.\nSituation : Vous travaillez sur la branche `release/v1.2`. Un fichier vidéo `demo.mp4` a été modifié à la fois par vous et un collègue. Après un `git pull`, un conflit survient sur ce fichier. Vous souhaitez remplacer la version conflictuelle par une version corrigée externe que vous avez dans `demo_fixed.mp4`.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Vous commencez par récupérer les dernières modifications de la branche `release/v1.2`. Quelle commande utilisez-vous ?",
+          "choix": {
+            "a": "git pull origin release/v1.2",
+            "b": "git fetch origin release/v1.2",
+            "c": "git push origin release/v1.2",
+            "d": "git merge origin/release/v1.2"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 2,
+          "intitule": "Le conflit sur `demo.mp4` apparaît. Vous avez une version corrigée externe `demo_fixed.mp4`. Quelle est la première étape pour remplacer la version conflictuelle ?",
+          "choix": {
+            "a": "Copier manuellement `demo_fixed.mp4` en écrasant `demo.mp4` dans votre dossier de travail",
+            "b": "Faire git checkout --theirs demo.mp4",
+            "c": "Supprimer demo.mp4 avec git rm demo.mp4",
+            "d": "Faire git reset demo.mp4"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Après avoir remplacé manuellement le fichier, que faites-vous pour indiquer la résolution du conflit ?",
+          "choix": {
+            "a": "git add demo.mp4",
+            "b": "git commit -m \"Résolution conflit demo.mp4\"",
+            "c": "git push origin release/v1.2",
+            "d": "git checkout --ours demo.mp4"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Quelle commande permet de valider officiellement la résolution du conflit ?",
+          "choix": {
+            "a": "git commit -m \"Résolution conflit demo.mp4\"",
+            "b": "git add demo.mp4",
+            "c": "git pull origin release/v1.2",
+            "d": "git merge --continue"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Pour finir, quelle commande pousse les modifications sur le dépôt distant ?",
+          "choix": {
+            "a": "git push origin release/v1.2",
+            "b": "git fetch origin",
+            "c": "git commit",
+            "d": "git reset --hard origin/release/v1.2"
+          },
+          "reponse": "a"
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "texte": "Mini cours : Un conflit sur un fichier binaire peut être difficile à détecter dans l’interface Git seule. Il est recommandé d’utiliser un outil externe pour comparer les versions locales et distantes, puis d’opter pour la version la plus appropriée. Après résolution, on marque le conflit comme résolu via `git add` puis on effectue un commit et un push. La commande `git status` aide à vérifier l’état des fichiers après résolution.\nSituation : Vous travaillez sur la branche `hotfix/ui`. Un fichier binaire `background.jpg` a été modifié par deux développeurs. Après un `git pull`, un conflit survient. Vous décidez finalement de garder la version locale.",
+      "questions": [
+        {
+          "numero": 1,
+          "intitule": "Pour commencer, quelle commande permet de récupérer les dernières modifications de la branche `hotfix/ui` ?",
+          "choix": {
+            "a": "git push origin hotfix/ui",
+            "b": "git pull origin hotfix/ui",
+            "c": "git fetch origin hotfix/ui",
+            "d": "git merge origin/hotfix/ui"
+          },
+          "reponse": "b"
+        },
+        {
+          "numero": 2,
+          "intitule": "Après le conflit sur `background.jpg`, quelle commande affiche l’état des fichiers et des conflits ?",
+          "choix": {
+            "a": "git status",
+            "b": "git log",
+            "c": "git diff",
+            "d": "git checkout --ours background.jpg"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 3,
+          "intitule": "Vous décidez de conserver votre version locale. Quelle commande permet de choisir la version locale ?",
+          "choix": {
+            "a": "git checkout --ours background.jpg",
+            "b": "git checkout --theirs background.jpg",
+            "c": "git reset background.jpg",
+            "d": "git rm background.jpg"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 4,
+          "intitule": "Pour indiquer que le conflit est résolu, quelle commande utilisez-vous ?",
+          "choix": {
+            "a": "git add background.jpg",
+            "b": "git commit -m \"Résolution conflit background.jpg\"",
+            "c": "git push origin hotfix/ui",
+            "d": "git merge --continue"
+          },
+          "reponse": "a"
+        },
+        {
+          "numero": 5,
+          "intitule": "Quelle commande permet de valider la résolution par un commit ?",
+          "choix": {
+            "a": "git commit -m \"Résolution conflit background.jpg\"",
+            "b": "git add background.jpg",
+            "c": "git pull origin hotfix/ui",
+            "d": "git fetch origin"
+          },
+          "reponse": "a"
+        }
+      ]
+    }
+  ]
+}
