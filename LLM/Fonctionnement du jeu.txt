@@ -1,4 +1,4 @@
-Excellent, maintenant, il faut un programme ruby qui fait la chose suivant :
+Il faut un programme ruby qui fait la chose suivant :
 
 il va afficher un menu principal qui dit :
 
