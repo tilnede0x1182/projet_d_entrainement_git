@@ -1,0 +1,24 @@
+<div class="resultat-card">
+	<h2>Correction Exercice <%= @exercice.numero %></h2>
+	<% @corrections.each do |corr| %>
+		<div class="correction-item">
+			<div><b>Question :</b> <%= corr[:question].intitule %></div>
+			<div>
+				<b>Votre réponse :</b> <%= corr[:reponse_utilisateur]&.upcase %> - <%= corr[:texte_reponse_utilisateur] %><br>
+				<b>Bonne réponse :</b> <%= corr[:reponse_attendue].upcase %> - <%= corr[:texte_bonne_reponse] %>
+			</div>
+			<div>
+				<% if corr[:correct] %>
+					<span style="color:#0c0;">✔ Bonne réponse</span>
+				<% else %>
+					<span style="color:#e00;">✘ Mauvaise réponse</span>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+	<% if @exercice_suivant %>
+		<%= link_to "Exercice suivant", partie_exercice_path(@partie), class: "btn-main" %>
+	<% else %>
+		<%= link_to "Résultat final", resultat_partie_path(@partie), class: "btn-main" %>
+	<% end %>
+</div>

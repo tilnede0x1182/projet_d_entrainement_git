@@ -1,9 +1,28 @@
 <div class="exercice-card">
-	<h2>Mini-cours</h2>
-	<p class="mini-court"><%= @exercice.mini_court %></p>
+	<h2>Exercice <%= @exercice.numero %></h2>
+	<div class="mini-court"><%= @exercice.mini_court %></div>
 	<div class="situation-block">
-		<h3>Situation</h3>
+		<b>Situation :</b>
 		<p class="situation"><%= @exercice.situation %></p>
 	</div>
-	<%= link_to "Commencer les questions", partie_question_path(@partie, question_id: @exercice.questions.order(:numero).first.id), class: "btn-main" %>
+
+	<%= form_with url: soumettre_exercice_partie_path(@partie), method: :post, local: true do %>
+		<% @questions.each do |question| %>
+			<div class="question-block">
+				<h3>Question <%= question.numero %> : <%= question.intitule %></h3>
+				<div class="choix-list">
+					<% question.choix.each do |cle, val| %>
+						<div class="choix-item">
+							<%= radio_button_tag "reponses[#{question.id}]", cle, false, id: "q#{question.id}_#{cle}" %>
+							<label for="q<%= question.id %>_<%= cle %>"><%= "#{cle.upcase} : #{val}" %></label>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+		<div>
+			<%= hidden_field_tag :exercice_id, @exercice.id %>
+			<%= submit_tag "Valider toutes les réponses", class: "btn-main" %>
+		</div>
+	<% end %>
 </div>

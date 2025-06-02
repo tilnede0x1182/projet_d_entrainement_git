@@ -13,13 +13,57 @@ class PartiesController < ApplicationController
 	def exercice
 		@partie = Partie.find(params[:id])
 		@notion = @partie.notion
-		@exercice = @notion.exercices.order(:numero).first
-		if @exercice.nil?
-			redirect_to notions_path, alert: "Aucun exercice trouvé."
-		else
-			first_question = @exercice.questions.order(:numero).first
-			redirect_to partie_question_path(@partie, question_id: first_question.id)
+		# Trouve le premier exercice non terminé (sans toutes les réponses)
+		@exercice = @notion.exercices.order(:numero).detect do |ex|
+			nb_reponses = @partie.reponses.where(ex_num: ex.numero).count
+			nb_reponses < ex.questions.count
 		end
+		if @exercice.nil?
+			redirect_to resultat_partie_path(@partie)
+		else
+			@questions = @exercice.questions.order(:numero)
+		end
+	end
+
+	def soumettre_exercice
+		@partie = Partie.find(params[:id])
+		@exercice = Exercice.find(params[:exercice_id])
+		@questions = @exercice.questions.order(:numero)
+		@questions.each do |question|
+			valeur = params.dig(:reponses, question.id.to_s)
+			# Empêcher doublons
+			@partie.reponses.where(ex_num: @exercice.numero, q_num: question.numero).delete_all
+			@partie.reponses.create!(
+				ex_num: @exercice.numero,
+				q_num: question.numero,
+				rep: valeur
+			)
+		end
+		# Affichage correction exercice ou passage exercice suivant
+		redirect_to exercice_correction_partie_path(@partie, exercice_id: @exercice.id)
+	end
+
+	def exercice_correction
+		@partie = Partie.find(params[:id])
+		@exercice = Exercice.find(params[:exercice_id])
+		@questions = @exercice.questions.order(:numero)
+		@corrections = @questions.map do |q|
+			user_rep = @partie.reponses.find_by(ex_num: @exercice.numero, q_num: q.numero)
+			rep_utilisateur = user_rep&.rep || "-"
+			correct = (rep_utilisateur == q.reponse)
+			{
+				question: q,
+				reponse_utilisateur: rep_utilisateur,
+				texte_reponse_utilisateur: q.choix[rep_utilisateur],
+				reponse_attendue: q.reponse,
+				texte_bonne_reponse: q.choix[q.reponse],
+				correct: correct
+			}
+		end
+		# Lien vers exercice suivant ou résultat global
+		exercices = @partie.notion.exercices.order(:numero)
+		index = exercices.index(@exercice)
+		@exercice_suivant = exercices[index + 1]
 	end
 
 	def question
@@ -107,7 +151,7 @@ class PartiesController < ApplicationController
 
 		@score = "#{score}/#{corrections.size}"
 		@corrections = corrections
-		@partie.update(score: @score)
+		@partie.update(score: @score, finished: true)
 	end
 
 	def sauvegardes

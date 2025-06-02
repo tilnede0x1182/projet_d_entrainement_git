@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
 	# Jeu : affichage exercice
 	get "/parties/:id/exercice", to: "parties#exercice", as: :partie_exercice
+	post "/parties/:id/exercice", to: "parties#soumettre_exercice", as: :soumettre_exercice_partie
+	get "/parties/:id/exercice/:exercice_id/correction", to: "parties#exercice_correction", as: :exercice_correction_partie
 
 	# Jeu : affichage question
 	get "/parties/:id/exercice/question/:question_id", to: "parties#question", as: :partie_question
