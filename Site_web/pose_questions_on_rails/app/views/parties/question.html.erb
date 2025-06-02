@@ -1,0 +1,19 @@
+<div class="question-card">
+	<h2>Situation</h2>
+	<p class="situation"><%= @exercice.situation %></p>
+	<div class="mini-court"><%= @exercice.mini_court %></div>
+	<h3 class="question-intitule"><%= @question.intitule %></h3>
+	<%= form_with url: repondre_partie_question_path(@partie, question_id: @question.id), method: :post, local: true do |f| %>
+		<div class="choix-list">
+			<% @question.choix.each do |cle, val| %>
+				<div class="choix-item">
+					<%= radio_button_tag :reponse, cle, false, id: "choix_#{cle}" %>
+					<label for="choix_<%= cle %>"><%= "#{cle.upcase} : #{val}" %></label>
+				</div>
+			<% end %>
+		</div>
+		<div>
+			<%= f.submit "Valider", class: "btn-main" %>
+		</div>
+	<% end %>
+</div>

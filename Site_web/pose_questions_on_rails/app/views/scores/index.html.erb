@@ -1,0 +1,22 @@
+<div class="scores-list">
+	<h2>Scores</h2>
+	<% if @parties.any? %>
+		<table>
+			<tr>
+				<th>Date</th>
+				<th>Notion</th>
+				<th>Score</th>
+			</tr>
+			<% @parties.each do |partie| %>
+				<tr>
+					<td><%= partie.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+					<td><%= partie.notion.notion %></td>
+					<td><%= partie.score %></td>
+				</tr>
+			<% end %>
+		</table>
+	<% else %>
+		<p>Aucun score enregistré.</p>
+	<% end %>
+	<%= link_to "Accueil", root_path, class: "btn-main" %>
+</div>

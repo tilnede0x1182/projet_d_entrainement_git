@@ -1,0 +1,17 @@
+<div class="sauvegardes-list">
+	<h2>Parties sauvegardées</h2>
+	<% if @sauvegardes.any? %>
+		<ul>
+			<% @sauvegardes.each do |partie| %>
+				<li>
+					<span><b>Notion :</b> <%= partie.notion.notion %></span>
+					<span><b>Créée le :</b> <%= partie.created_at.strftime("%d/%m/%Y %H:%M") %></span>
+					<%= link_to "Reprendre", partie_exercice_path(partie), class: "btn-main" %>
+				</li>
+			<% end %>
+		</ul>
+	<% else %>
+		<p>Aucune partie sauvegardée.</p>
+	<% end %>
+	<%= link_to "Accueil", root_path, class: "btn-main" %>
+</div>

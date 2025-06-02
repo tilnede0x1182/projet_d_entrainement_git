@@ -10,8 +10,12 @@
 │   │   └── stylesheets
 │   │       └── application.css
 │   ├── controllers
+│   │   ├── accueil_controller.rb
 │   │   ├── application_controller.rb
-│   │   └── concerns
+│   │   ├── concerns
+│   │   ├── notions_controller.rb
+│   │   ├── parties_controller.rb
+│   │   └── scores_controller.rb
 │   ├── helpers
 │   │   └── application_helper.rb
 │   ├── jobs
@@ -21,11 +25,23 @@
 │   │   ├── concerns
 │   │   ├── exercice.rb
 │   │   ├── notion.rb
+│   │   ├── partie.rb
 │   │   ├── question.rb
 │   │   └── reponse.rb
 │   └── views
-│       └── layouts
-│           └── application.html.erb
+│       ├── accueil
+│       │   └── index.html.erb
+│       ├── layouts
+│       │   └── application.html.erb
+│       ├── notions
+│       │   └── index.html.erb
+│       ├── parties
+│       │   ├── exercice.html.erb
+│       │   ├── question.html.erb
+│       │   ├── resultat.html.erb
+│       │   └── sauvegardes.html.erb
+│       └── scores
+│           └── index.html.erb
 ├── bin
 │   ├── bundle
 │   ├── docker-entrypoint
@@ -59,7 +75,8 @@
 │   │   ├── 20250602084126_create_notions.rb
 │   │   ├── 20250602084127_create_exercices.rb
 │   │   ├── 20250602084128_create_questions.rb
-│   │   └── 20250602084129_create_reponses.rb
+│   │   ├── 20250602084129_create_reponses.rb
+│   │   └── 20250602090617_create_parties.rb
 │   ├── schema.rb
 │   └── seeds.rb
 ├── Gemfile
@@ -79,7 +96,7 @@
 ├── Rakefile
 └── README.md
 
-25 directories, 52 files
+29 directories, 65 files
 
 # CONFIG
 #
@@ -436,12 +453,86 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+	# Accueil
+	root "accueil#index"
+
+	# Notions, affichage unique (tout sur /notions)
+	get "/notions", to: "notions#index", as: :notions
+
+	# Démarrage nouvelle partie (création à partir d'une notion)
+	post "/parties", to: "parties#create", as: :parties
+
+	# Reprise de partie (liste des sauvegardes)
+	get "/parties/sauvegardes", to: "parties#sauvegardes", as: :sauvegardes_parties
+
+	# Jeu : affichage exercice
+	get "/parties/:id/exercice", to: "parties#exercice", as: :partie_exercice
+
+	# Jeu : affichage question
+	get "/parties/:id/exercice/question/:question_id", to: "parties#question", as: :partie_question
+	post "/parties/:id/exercice/question/:question_id", to: "parties#repondre", as: :repondre_partie_question
+
+	# Résultat
+	get "/parties/:id/resultat", to: "parties#resultat", as: :resultat_partie
+
+	# Scores (parties finies)
+	get "/scores", to: "scores#index", as: :scores
 end
 
 
 
 # CONTROLEURS
 #
+## app/controllers/notions_controller.rb
+
+class NotionsController < ApplicationController
+	def index
+		@notions = Notion.includes(:exercices)
+	end
+end
+
+
+## app/controllers/parties_controller.rb
+
+class PartiesController < ApplicationController
+	def create
+		notion = Notion.find(params[:notion_id])
+		partie = Partie.create!(
+			notion: notion,
+			timestamp: Time.now.strftime('%Y-%m-%d_%H-%M-%S'),
+			score: nil,
+			finished: false
+		)
+		redirect_to partie_exercice_path(partie)
+	end
+
+	def exercice
+		@partie = Partie.find(params[:id])
+		@notion = @partie.notion
+		@exercice = @notion.exercices.order(:numero).first
+		redirect_to partie_question_path(@partie, question_id: @exercice.questions.order(:numero).first.id) unless @exercice
+	end
+end
+
+
+## app/controllers/scores_controller.rb
+
+class ScoresController < ApplicationController
+	def index
+		@parties = Partie.where(finished: true).order(created_at: :desc)
+	end
+end
+
+
+## app/controllers/accueil_controller.rb
+
+class AccueilController < ApplicationController
+	def index
+	end
+end
+
+
 ## app/controllers/application_controller.rb
 
 class ApplicationController < ActionController::Base
@@ -455,6 +546,13 @@ end
 
 class Notion < ApplicationRecord
 	has_many :exercices, class_name: 'Exercice'
+end
+
+
+## app/models/partie.rb
+
+class Partie < ApplicationRecord
+  belongs_to :notion
 end
 
 
@@ -490,6 +588,32 @@ end
 
 # VUES
 #
+## app/views/scores/index.html.erb
+
+<div class="scores-list">
+	<h2>Scores</h2>
+	<% if @parties.any? %>
+		<table>
+			<tr>
+				<th>Date</th>
+				<th>Notion</th>
+				<th>Score</th>
+			</tr>
+			<% @parties.each do |partie| %>
+				<tr>
+					<td><%= partie.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+					<td><%= partie.notion.notion %></td>
+					<td><%= partie.score %></td>
+				</tr>
+			<% end %>
+		</table>
+	<% else %>
+		<p>Aucun score enregistré.</p>
+	<% end %>
+	<%= link_to "Accueil", root_path, class: "btn-main" %>
+</div>
+
+
 ## app/views/layouts/application.html.erb
 
 <!DOCTYPE html>
@@ -509,6 +633,120 @@ end
 </html>
 
 
+## app/views/parties/question.html.erb
+
+<div class="question-card">
+	<h2>Situation</h2>
+	<p class="situation"><%= @exercice.situation %></p>
+	<div class="mini-court"><%= @exercice.mini_court %></div>
+	<h3 class="question-intitule"><%= @question.intitule %></h3>
+	<%= form_with url: repondre_partie_question_path(@partie, question_id: @question.id), method: :post, local: true do |f| %>
+		<div class="choix-list">
+			<% @question.choix.each do |cle, val| %>
+				<div class="choix-item">
+					<%= radio_button_tag :reponse, cle, false, id: "choix_#{cle}" %>
+					<label for="choix_<%= cle %>"><%= "#{cle.upcase} : #{val}" %></label>
+				</div>
+			<% end %>
+		</div>
+		<div>
+			<%= f.submit "Valider", class: "btn-main" %>
+		</div>
+	<% end %>
+</div>
+
+
+## app/views/parties/sauvegardes.html.erb
+
+<div class="sauvegardes-list">
+	<h2>Parties sauvegardées</h2>
+	<% if @sauvegardes.any? %>
+		<ul>
+			<% @sauvegardes.each do |partie| %>
+				<li>
+					<span><b>Notion :</b> <%= partie.notion.notion %></span>
+					<span><b>Créée le :</b> <%= partie.created_at.strftime("%d/%m/%Y %H:%M") %></span>
+					<%= link_to "Reprendre", partie_exercice_path(partie), class: "btn-main" %>
+				</li>
+			<% end %>
+		</ul>
+	<% else %>
+		<p>Aucune partie sauvegardée.</p>
+	<% end %>
+	<%= link_to "Accueil", root_path, class: "btn-main" %>
+</div>
+
+
+## app/views/parties/exercice.html.erb
+
+<div class="exercice-card">
+	<h2>Mini-cours</h2>
+	<p class="mini-court"><%= @exercice.mini_court %></p>
+	<div class="situation-block">
+		<h3>Situation</h3>
+		<p class="situation"><%= @exercice.situation %></p>
+	</div>
+	<%= link_to "Commencer les questions", partie_question_path(@partie, question_id: @exercice.questions.order(:numero).first.id), class: "btn-main" %>
+</div>
+
+
+## app/views/parties/resultat.html.erb
+
+<div class="resultat-card">
+	<h2>Votre score : <%= @score %></h2>
+	<h3>Correction détaillée</h3>
+	<% @corrections.each do |corr| %>
+		<div class="correction-item">
+			<div class="situation"><b>Situation :</b> <%= corr[:situation] %></div>
+			<div class="question"><b>Question :</b> <%= corr[:intitule] %></div>
+			<div>
+				<b>Votre réponse :</b> <%= corr[:reponse_utilisateur].upcase %> - <%= corr[:texte_reponse_utilisateur] %><br>
+				<b>Bonne réponse :</b> <%= corr[:reponse_attendue].upcase %> - <%= corr[:texte_bonne_reponse] %>
+			</div>
+			<div>
+				<% if corr[:correct] %>
+					<span style="color:#0c0;">✔ Bonne réponse</span>
+				<% else %>
+					<span style="color:#e00;">✘ Mauvaise réponse</span>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+	<%= link_to "Accueil", root_path, class: "btn-main" %>
+</div>
+
+
+## app/views/notions/index.html.erb
+
+<div class="notions-list">
+	<h2 class="title">Choisissez une notion</h2>
+	<ul>
+		<% @notions.each do |notion| %>
+			<li class="notion-card">
+				<div>
+					<span class="notion-title"><%= notion.notion %></span>
+					<span class="notion-niveau">Niveau <%= notion.niveau %></span>
+					<span class="notion-nbex"><%= pluralize(notion.exercices.size, "exercice") %></span>
+				</div>
+				<%= button_to "Démarrer", parties_path(notion_id: notion.id), method: :post, class: "btn-main" %>
+			</li>
+		<% end %>
+	</ul>
+</div>
+
+
+## app/views/accueil/index.html.erb
+
+<div class="main-menu">
+	<h1 class="title">Entraînement Git</h1>
+	<div class="menu-btns">
+		<%= link_to "▶ Jouer", notions_path, class: "btn-main" %>
+		<%= link_to "⏸ Parties sauvegardées", sauvegardes_parties_path, class: "btn-main" %>
+		<%= link_to "🏆 Scores", scores_path, class: "btn-main" %>
+	</div>
+</div>
+
+
 
 # ROUTES
 #
@@ -523,6 +761,31 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+	# Accueil
+	root "accueil#index"
+
+	# Notions, affichage unique (tout sur /notions)
+	get "/notions", to: "notions#index", as: :notions
+
+	# Démarrage nouvelle partie (création à partir d'une notion)
+	post "/parties", to: "parties#create", as: :parties
+
+	# Reprise de partie (liste des sauvegardes)
+	get "/parties/sauvegardes", to: "parties#sauvegardes", as: :sauvegardes_parties
+
+	# Jeu : affichage exercice
+	get "/parties/:id/exercice", to: "parties#exercice", as: :partie_exercice
+
+	# Jeu : affichage question
+	get "/parties/:id/exercice/question/:question_id", to: "parties#question", as: :partie_question
+	post "/parties/:id/exercice/question/:question_id", to: "parties#repondre", as: :repondre_partie_question
+
+	# Résultat
+	get "/parties/:id/resultat", to: "parties#resultat", as: :resultat_partie
+
+	# Scores (parties finies)
+	get "/scores", to: "scores#index", as: :scores
 end
 
 
@@ -537,6 +800,22 @@ class CreateNotions < ActiveRecord::Migration[7.1]
       t.integer :numero
       t.string :notion
       t.integer :niveau
+
+      t.timestamps
+    end
+  end
+end
+
+
+## db/migrate/20250602090617_create_parties.rb
+
+class CreateParties < ActiveRecord::Migration[7.1]
+  def change
+    create_table :parties do |t|
+      t.string :timestamp
+      t.string :score
+      t.boolean :finished
+      t.references :notion, null: false, foreign_key: true
 
       t.timestamps
     end
@@ -612,28 +891,100 @@ end
 #
 ## app/assets/stylesheets/application.css
 
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@600&family=Orbitron:wght@700&display=swap');
+
+body {
+	background: linear-gradient(120deg, #d1cfff 0%, #e8ffd1 100%);
+	font-family: 'Archivo', 'Orbitron', Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+}
+.title {
+	font-family: 'Orbitron', 'Archivo', Arial, sans-serif;
+	font-size: 2.5em;
+	letter-spacing: 1px;
+	color: #412387;
+	text-shadow: 0 2px 12px #fff, 0 1px 0 #ccc;
+	margin-bottom: 1.5em;
+}
+.main-menu, .notions-list, .exercice-card {
+	margin: 3em auto;
+	max-width: 600px;
+	background: rgba(255,255,255,0.95);
+	border-radius: 20px;
+	box-shadow: 0 6px 40px #adaeff66;
+	padding: 2.5em 2em;
+}
+.menu-btns, .notions-list ul {
+	display: flex;
+	flex-direction: column;
+	gap: 1.2em;
+}
+.btn-main {
+	font-size: 1.3em;
+	padding: 0.8em 1.5em;
+	background: linear-gradient(90deg, #fd37ff 0%, #37ffd6 100%);
+	border: none;
+	border-radius: 10px;
+	color: #1e1e1e;
+	font-weight: bold;
+	cursor: pointer;
+	transition: transform 0.1s, box-shadow 0.1s;
+	box-shadow: 0 4px 18px #b6b7ff55;
+	text-shadow: 0 1px 0 #fff;
+	text-align: center;
+}
+.btn-main:hover {
+	transform: scale(1.05);
+	background: linear-gradient(90deg, #37ffd6 0%, #fd37ff 100%);
+}
+.notion-card {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1em;
+	padding: 1em;
+	border-bottom: 1px solid #b6b7ff66;
+}
+.notion-title {
+	font-size: 1.1em;
+	font-weight: bold;
+	color: #26269c;
+}
+.notion-niveau {
+	background: #fd37ff44;
+	border-radius: 5px;
+	padding: 2px 8px;
+	font-size: 0.9em;
+	margin-left: 0.6em;
+}
+.notion-nbex {
+	color: #37b8ff;
+	margin-left: 0.7em;
+}
+.mini-court {
+	font-size: 1.15em;
+	color: #1a3d2e;
+	margin-bottom: 1.5em;
+}
+.situation-block {
+	background: #f7e8ff55;
+	border-radius: 10px;
+	padding: 1em;
+	margin-bottom: 1em;
+}
+.situation {
+	font-size: 1em;
+	color: #7a2dd0;
+}
 
 
 
 # STATISTIQUES
 #
-      9 ## app
+     21 ## app
       3 ## config
-      4 ## db
+      5 ## db
       1 ## Gemfile
       1 ## Gemfile.lock

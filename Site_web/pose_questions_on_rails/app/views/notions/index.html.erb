@@ -1,0 +1,15 @@
+<div class="notions-list">
+	<h2 class="title">Choisissez une notion</h2>
+	<ul>
+		<% @notions.each do |notion| %>
+			<li class="notion-card">
+				<div>
+					<span class="notion-title"><%= notion.notion %></span>
+					<span class="notion-niveau">Niveau <%= notion.niveau %></span>
+					<span class="notion-nbex"><%= pluralize(notion.exercices.size, "exercice") %></span>
+				</div>
+				<%= button_to "Démarrer", parties_path(notion_id: notion.id), method: :post, class: "btn-main" %>
+			</li>
+		<% end %>
+	</ul>
+</div>

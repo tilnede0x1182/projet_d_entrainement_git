@@ -1,0 +1,9 @@
+<div class="exercice-card">
+	<h2>Mini-cours</h2>
+	<p class="mini-court"><%= @exercice.mini_court %></p>
+	<div class="situation-block">
+		<h3>Situation</h3>
+		<p class="situation"><%= @exercice.situation %></p>
+	</div>
+	<%= link_to "Commencer les questions", partie_question_path(@partie, question_id: @exercice.questions.order(:numero).first.id), class: "btn-main" %>
+</div>
