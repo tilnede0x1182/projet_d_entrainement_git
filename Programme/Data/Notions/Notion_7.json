@@ -5,7 +5,7 @@
   "exercices": [
     {
       "numero": 1,
-      "texte": "Mini cours : Le renommage concurrent survient lorsque deux développeurs modifient le nom d’un même fichier différemment ou qu’un modifie un fichier que l’autre renomme. Git peut alors générer un conflit, car il ne sait pas quelle version garder. Ce type de conflit nécessite souvent une intervention manuelle pour choisir ou fusionner les noms et contenus. La résolution passe par un pull, une identification des conflits, une correction manuelle puis un commit avant le push final. Maîtriser cette notion est clé pour éviter la perte de données et maintenir un historique propre.\nSituation : Alice a renommé le fichier `rapport.txt` en `rapport_final.txt` et a pushé sur la branche principale. Bob, qui avait modifié le contenu de `rapport.txt` sans le renommer, tente maintenant de synchroniser sa branche locale.",
+      "texte": "Mini cours : Le renommage concurrent survient lorsque deux développeurs modifient le nom d’un même fichier différemment ou qu’un modifie un fichier que l’autre renomme. Git peut alors générer un conflit, car il ne sait pas quelle version garder. Ce type de conflit nécessite souvent une intervention manuelle pour choisir ou fusionner les noms et contenus. La résolution passe par un pull, une identification des conflits, une correction manuelle puis un commit avant le push final. Maîtriser cette notion est clé pour éviter la perte de données et maintenir un historique propre.\n\nSituation : Alice a renommé le fichier `rapport.txt` en `rapport_final.txt` et a pushé sur la branche principale. Bob, qui avait modifié le contenu de `rapport.txt` sans le renommer, tente maintenant de synchroniser sa branche locale.",
       "questions": [
         {
           "numero": 1,
@@ -66,7 +66,7 @@
     },
     {
       "numero": 2,
-      "texte": "Mini cours : Lorsqu’un fichier est renommé par un développeur et modifié ou renommé différemment par un autre, Git génère un conflit car il ne peut pas fusionner automatiquement les changements sur les chemins. La résolution demande de comparer les versions, choisir la bonne arborescence et confirmer manuellement les choix via `git add` et `git commit`. Bien comprendre la gestion des conflits de chemins est indispensable pour collaborer efficacement.\nSituation : Claire a renommé le fichier `presentation.ppt` en `final_presentation.ppt` et poussé sur la branche principale. David a renommé ce même fichier en `presentation_v2.ppt` et a modifié son contenu localement.",
+      "texte": "Mini cours : Lorsqu’un fichier est renommé par un développeur et modifié ou renommé différemment par un autre, Git génère un conflit car il ne peut pas fusionner automatiquement les changements sur les chemins. La résolution demande de comparer les versions, choisir la bonne arborescence et confirmer manuellement les choix via `git add` et `git commit`. Bien comprendre la gestion des conflits de chemins est indispensable pour collaborer efficacement.\n\nSituation : Claire a renommé le fichier `presentation.ppt` en `final_presentation.ppt` et poussé sur la branche principale. David a renommé ce même fichier en `presentation_v2.ppt` et a modifié son contenu localement.",
       "questions": [
         {
           "numero": 1,
@@ -127,7 +127,7 @@
     },
     {
       "numero": 3,
-      "texte": "Mini cours : Les conflits de renommage peuvent aussi se compliquer si les deux contributeurs ont modifié simultanément le contenu des fichiers renommés. Dans ce cas, après avoir choisi quel fichier garder ou fusionner, il est souvent nécessaire d’éditer le contenu pour intégrer les changements. La résolution combine donc gestion des chemins et résolution classique de conflits dans le contenu.\nSituation : Émilie a renommé le fichier `guide_utilisateur.md` en `guide_final.md` et a poussé ses changements. François a modifié `guide_utilisateur.md` localement sans le renommer.",
+      "texte": "Mini cours : Les conflits de renommage peuvent aussi se compliquer si les deux contributeurs ont modifié simultanément le contenu des fichiers renommés. Dans ce cas, après avoir choisi quel fichier garder ou fusionner, il est souvent nécessaire d’éditer le contenu pour intégrer les changements. La résolution combine donc gestion des chemins et résolution classique de conflits dans le contenu.\n\nSituation : Émilie a renommé le fichier `guide_utilisateur.md` en `guide_final.md` et a poussé ses changements. François a modifié `guide_utilisateur.md` localement sans le renommer.",
       "questions": [
         {
           "numero": 1,
@@ -188,7 +188,7 @@
     },
     {
       "numero": 4,
-      "texte": "Mini cours : Résolution des conflits complexes de renommage avec suppression. Lorsqu’un fichier est renommé par un contributeur et supprimé par un autre, Git rencontre un conflit difficile à résoudre automatiquement. Il faut choisir soit de conserver la suppression, soit d’accepter le renommage et les modifications. Cette situation demande une analyse précise des intentions et un usage rigoureux des commandes `git rm`, `git add` et `git commit` pour finaliser la résolution.\nSituation : Sophie a renommé le fichier `rapport_financier.csv` en `rapport_2025.csv` et a poussé. Thomas a supprimé ce fichier localement sans le renommer.",
+      "texte": "Mini cours : Résolution des conflits complexes de renommage avec suppression. Lorsqu’un fichier est renommé par un contributeur et supprimé par un autre, Git rencontre un conflit difficile à résoudre automatiquement. Il faut choisir soit de conserver la suppression, soit d’accepter le renommage et les modifications. Cette situation demande une analyse précise des intentions et un usage rigoureux des commandes `git rm`, `git add` et `git commit` pour finaliser la résolution.\n\nSituation : Sophie a renommé le fichier `rapport_financier.csv` en `rapport_2025.csv` et a poussé. Thomas a supprimé ce fichier localement sans le renommer.",
       "questions": [
         {
           "numero": 1,

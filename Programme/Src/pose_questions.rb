@@ -87,7 +87,7 @@ class QuizGame
 		case choice
 		when 1 then game_menu
 		when 2 then show_scores
-		when 3 then puts 'Au revoir !'; exit
+		when 3 then exit
 		end
 	end
 
@@ -110,7 +110,8 @@ class QuizGame
 		puts "\n# Menu Notions :"
 		paths.each_with_index do |p, idx|
 			data = read_json(p)
-			puts "#{idx + 1} : #{data['notion']} – #{data['exercices'].size} ex."
+			n = data['exercices'].size
+			puts "#{idx + 1} : #{data['notion']}, #{n} exercice#{'s' if n > 1}."
 		end
 	end
 
@@ -119,7 +120,7 @@ class QuizGame
 		save = resume || init_save_hash(path, notion['notion'])
 		ex_idx, q_idx = save['progress'].values_at('exercise', 'question')
 		notion['exercices'][ex_idx..].each do |ex|
-			puts "\n--- Exercice #{ex['numero']} ---\n#{ex['texte']}"
+			puts "\n--- Exercice #{ex['numero']} ---\n\n#{ex['texte']}"
 			ex['questions'][q_idx..].each { |q| q_idx = ask_question(q, save) }
 			q_idx = 0
 			save['progress']['exercise'] += 1
@@ -130,6 +131,7 @@ class QuizGame
 
 	def ask_question(question, save)
 		puts "\nQuestion #{question['numero']} : #{question['intitule']}"
+		puts ""
 		CHOICES.each_with_index { |c, i| puts "#{i + 1}. #{question['choix'][c]}" }
 		ans = CHOICES[ask_int(1, 4) - 1]
 		save['answers'] << { 'ex' => save['progress']['exercise'], 'q' => question['numero'], 'rep' => ans }
@@ -140,7 +142,7 @@ class QuizGame
 
 	def finish_game(save, notion)
 		total = save['answers'].size
-		good = save['answers'].count.with_index { |a, _| correct?(a, notion) }
+		good = save['answers'].count { |a| correct?(a, notion) }
 		save.merge!('finished' => true, 'score' => "#{good}/#{total}")
 		persist_save(save)
 		puts "\n=== Fin de la partie ===\nScore : #{save['score']}"
@@ -165,7 +167,7 @@ class QuizGame
 	def resume_game
 		saves = Dir[File.join(PARTIES_DIR, 'Partie_*.json')].map { |f| read_json(f).merge('file' => f) }
 		saves.select! { |h| !h['finished'] }
-		return puts 'Aucune partie inachevée.' if saves.empty?
+		return puts "\nAucune partie en cours." if saves.empty?
 		saves.sort_by! { |h| h['timestamp'] }.reverse!
 		puts "\n# Parties sauvegardées :"
 		saves.each_with_index { |h, i| puts "#{i + 1} : Partie #{h['timestamp']}" }
@@ -176,7 +178,11 @@ class QuizGame
 	def show_scores
 		finished = Dir[File.join(PARTIES_DIR, 'Partie_*.json')].map { |f| read_json(f) }.select { |h| h['finished'] }
 		puts "\n=== Scores des parties terminées ==="
-		finished.sort_by { |h| h['timestamp'] }.reverse_each { |h| puts "partie #{h['timestamp']} : #{h['score']}" }
+		if finished.empty?
+			puts "\nAucune partie terminée pour le moment."
+		else
+			finished.sort_by { |h| h['timestamp'] }.reverse_each { |h| puts "partie #{h['timestamp']} : #{h['score']}" }
+		end
 		puts "\nPour revenir au menu principal, taper 1 :"
 		ask_int(1, 1)
 	end

@@ -5,7 +5,7 @@
   "exercices": [
     {
       "numero": 1,
-      "texte": "Mini cours : Lorsque plusieurs utilisateurs modifient des parties différentes d’un même fichier, Git fusionne automatiquement ces modifications lors d’un `git pull`. Il n’y a pas de conflit à résoudre, ce qui facilite la collaboration. Cependant, il faut toujours garder à jour sa branche locale avant de pousser ses propres modifications pour éviter des erreurs.\nSituation : Vous travaillez sur la branche `feature` avec un collègue. Vous avez tous les deux modifié des lignes différentes dans le fichier `app.txt`. Votre collègue a poussé ses changements avant vous.",
+      "texte": "Mini cours : Lorsque plusieurs utilisateurs modifient des parties différentes d’un même fichier, Git fusionne automatiquement ces modifications lors d’un `git pull`. Il n’y a pas de conflit à résoudre, ce qui facilite la collaboration. Cependant, il faut toujours garder à jour sa branche locale avant de pousser ses propres modifications pour éviter des erreurs.\n\nSituation : Vous travaillez sur la branche `feature` avec un collègue. Vous avez tous les deux modifié des lignes différentes dans le fichier `app.txt`. Votre collègue a poussé ses changements avant vous.",
       "questions": [
         {
           "numero": 1,
@@ -66,7 +66,7 @@
     },
     {
       "numero": 2,
-      "texte": "Mini cours : Quand plusieurs utilisateurs travaillent sur la même branche, il faut toujours mettre à jour sa copie locale avant de pousser ses changements. Si quelqu’un a déjà poussé des modifications que vous n’avez pas, votre `git push` sera rejeté. Il faudra alors faire un `git pull`, résoudre d’éventuels conflits, puis recommencer le push.\nSituation : Vous travaillez sur la branche `develop`. Votre collègue a poussé des modifications avant vous. Vous avez commis localement, mais votre push est rejeté.",
+      "texte": "Mini cours : Quand plusieurs utilisateurs travaillent sur la même branche, il faut toujours mettre à jour sa copie locale avant de pousser ses changements. Si quelqu’un a déjà poussé des modifications que vous n’avez pas, votre `git push` sera rejeté. Il faudra alors faire un `git pull`, résoudre d’éventuels conflits, puis recommencer le push.\n\nSituation : Vous travaillez sur la branche `develop`. Votre collègue a poussé des modifications avant vous. Vous avez commis localement, mais votre push est rejeté.",
       "questions": [
         {
           "numero": 1,
@@ -127,7 +127,7 @@
     },
     {
       "numero": 3,
-      "texte": "Mini cours : Quand un collègue pousse des modifications avant vous, et que vos changements concernent des lignes différentes dans les mêmes fichiers, un `git pull` fusionne automatiquement sans conflit. Il faut ensuite continuer votre travail normalement et pousser vos changements.\nSituation : Vous travaillez sur la branche `main`. Votre collègue a poussé des modifications sur des lignes différentes dans un fichier que vous modifiez aussi. Vous devez synchroniser votre travail.",
+      "texte": "Mini cours : Quand un collègue pousse des modifications avant vous, et que vos changements concernent des lignes différentes dans les mêmes fichiers, un `git pull` fusionne automatiquement sans conflit. Il faut ensuite continuer votre travail normalement et pousser vos changements.\n\nSituation : Vous travaillez sur la branche `main`. Votre collègue a poussé des modifications sur des lignes différentes dans un fichier que vous modifiez aussi. Vous devez synchroniser votre travail.",
       "questions": [
         {
           "numero": 1,
@@ -188,7 +188,7 @@
     },
     {
       "numero": 4,
-      "texte": "Mini cours : Avant de pousser vos modifications, il est important d’ajouter les fichiers modifiés à l’index avec `git add` puis de vérifier l’état de votre dépôt avec `git status`. Cela permet d’éviter d’oublier des fichiers et de s’assurer que la branche locale est prête à être envoyée sur le dépôt distant.\nSituation : Vous avez modifié plusieurs fichiers sur la branche `release`. Vous souhaitez préparer votre commit et vérifier que tout est correct avant de pousser.",
+      "texte": "Mini cours : Avant de pousser vos modifications, il est important d’ajouter les fichiers modifiés à l’index avec `git add` puis de vérifier l’état de votre dépôt avec `git status`. Cela permet d’éviter d’oublier des fichiers et de s’assurer que la branche locale est prête à être envoyée sur le dépôt distant.\n\nSituation : Vous avez modifié plusieurs fichiers sur la branche `release`. Vous souhaitez préparer votre commit et vérifier que tout est correct avant de pousser.",
       "questions": [
         {
           "numero": 1,

@@ -5,7 +5,7 @@
   "exercices": [
     {
       "numero": 1,
-      "texte": "Mini cours : Lorsqu’un collaborateur supprime un fichier sur une branche et qu’un autre a modifié ce même fichier localement, un conflit apparaît au moment du pull. Git ne peut pas fusionner automatiquement car il doit choisir entre suppression et modification. La résolution manuelle implique de décider si l’on conserve la suppression, les modifications ou une fusion des deux. Pour régler cela, il faut puller, gérer le conflit dans le fichier, ajouter la résolution, puis commit et push.\nSituation : Votre collègue Alice a supprimé le fichier `rapport.txt` sur la branche `develop` et a poussé. Vous avez modifié localement ce fichier sans le savoir. En faisant un `git pull`, un conflit apparaît. Vous devez résoudre ce conflit.",
+      "texte": "Mini cours : Lorsqu’un collaborateur supprime un fichier sur une branche et qu’un autre a modifié ce même fichier localement, un conflit apparaît au moment du pull. Git ne peut pas fusionner automatiquement car il doit choisir entre suppression et modification. La résolution manuelle implique de décider si l’on conserve la suppression, les modifications ou une fusion des deux. Pour régler cela, il faut puller, gérer le conflit dans le fichier, ajouter la résolution, puis commit et push.\n\nSituation : Votre collègue Alice a supprimé le fichier `rapport.txt` sur la branche `develop` et a poussé. Vous avez modifié localement ce fichier sans le savoir. En faisant un `git pull`, un conflit apparaît. Vous devez résoudre ce conflit.",
       "questions": [
         {
           "numero": 1,
@@ -66,7 +66,7 @@
     },
     {
       "numero": 2,
-      "texte": "Mini cours : Lorsque plusieurs collaborateurs travaillent sur un même fichier, des conflits peuvent survenir si l’un supprime le fichier pendant qu’un autre le modifie localement. Git bloque le pull et demande une résolution manuelle. Il faut analyser la situation, décider si le fichier doit être conservé, puis valider la résolution avant de pousser. Cette étape évite de perdre des données ou de supprimer un travail important par erreur.\nSituation : Votre collègue Benoît a supprimé le fichier `presentation.pptx` sur la branche `feature-x` et a poussé cette modification. Vous avez modifié ce fichier en local sans synchroniser. Vous tentez un pull et un conflit apparaît.",
+      "texte": "Mini cours : Lorsque plusieurs collaborateurs travaillent sur un même fichier, des conflits peuvent survenir si l’un supprime le fichier pendant qu’un autre le modifie localement. Git bloque le pull et demande une résolution manuelle. Il faut analyser la situation, décider si le fichier doit être conservé, puis valider la résolution avant de pousser. Cette étape évite de perdre des données ou de supprimer un travail important par erreur.\n\nSituation : Votre collègue Benoît a supprimé le fichier `presentation.pptx` sur la branche `feature-x` et a poussé cette modification. Vous avez modifié ce fichier en local sans synchroniser. Vous tentez un pull et un conflit apparaît.",
       "questions": [
         {
           "numero": 1,
@@ -127,7 +127,7 @@
     },
     {
       "numero": 3,
-      "texte": "Mini cours : Les conflits entre suppression et modification nécessitent souvent une prise de décision : doit-on garder le fichier modifié localement ou accepter la suppression réalisée par un autre collaborateur ? Git marque le fichier comme en conflit et bloque la fusion jusqu’à résolution. La résolution passe par la modification ou suppression manuelle du fichier, suivi de l’ajout, du commit, puis du push des changements.\nSituation : Votre collègue Clara a supprimé le fichier `budget.xlsx` sur la branche `release`, et a poussé cette modification. Vous avez apporté des modifications locales sur ce fichier. En lançant un `git pull`, vous obtenez un conflit.",
+      "texte": "Mini cours : Les conflits entre suppression et modification nécessitent souvent une prise de décision : doit-on garder le fichier modifié localement ou accepter la suppression réalisée par un autre collaborateur ? Git marque le fichier comme en conflit et bloque la fusion jusqu’à résolution. La résolution passe par la modification ou suppression manuelle du fichier, suivi de l’ajout, du commit, puis du push des changements.\n\nSituation : Votre collègue Clara a supprimé le fichier `budget.xlsx` sur la branche `release`, et a poussé cette modification. Vous avez apporté des modifications locales sur ce fichier. En lançant un `git pull`, vous obtenez un conflit.",
       "questions": [
         {
           "numero": 1,
@@ -188,7 +188,7 @@
     },
     {
       "numero": 4,
-      "texte": "Mini cours : Lors d’un conflit entre suppression et modification, il est crucial d’examiner soigneusement l’historique et l’état des fichiers pour décider de la bonne résolution. L’utilisation de commandes comme `git status` et `git diff` permet d’identifier les différences. La résolution passe par une modification manuelle, puis par l’ajout, le commit, et enfin le push, pour synchroniser le dépôt distant.\nSituation : Votre collègue David a supprimé le fichier `plan_projet.md` sur la branche `hotfix`. Vous avez modifié ce fichier en local sans avoir fait de pull. Vous tentez un `git pull` et un conflit survient.",
+      "texte": "Mini cours : Lors d’un conflit entre suppression et modification, il est crucial d’examiner soigneusement l’historique et l’état des fichiers pour décider de la bonne résolution. L’utilisation de commandes comme `git status` et `git diff` permet d’identifier les différences. La résolution passe par une modification manuelle, puis par l’ajout, le commit, et enfin le push, pour synchroniser le dépôt distant.\n\nSituation : Votre collègue David a supprimé le fichier `plan_projet.md` sur la branche `hotfix`. Vous avez modifié ce fichier en local sans avoir fait de pull. Vous tentez un `git pull` et un conflit survient.",
       "questions": [
         {
           "numero": 1,

@@ -5,7 +5,7 @@
   "exercices": [
     {
       "numero": 1,
-      "texte": "Mini cours : Lorsqu’on travaille à plusieurs sur une même branche, modifier la même ligne dans un fichier entraîne un conflit Git lors du pull. Git ne peut pas fusionner automatiquement ces changements. Il faut alors récupérer les modifications distantes, identifier et résoudre manuellement les conflits avant de valider et pousser. La commande `git pull` déclenche le conflit, `git status` aide à repérer les fichiers affectés, et l’édition manuelle du fichier permet de choisir quelle version garder. Enfin, il faut ajouter et committer les corrections avant de pouvoir pousser.\nSituation : Vous travaillez sur la branche `main` du projet. Votre collègue a modifié et poussé une ligne dans le fichier `config/app_settings.yaml`. Vous avez modifié la même ligne localement. En tentant de pousser, Git vous bloque. Vous devez récupérer les changements distants, résoudre le conflit et pousser vos modifications.",
+      "texte": "Mini cours : Lorsqu’on travaille à plusieurs sur une même branche, modifier la même ligne dans un fichier entraîne un conflit Git lors du pull. Git ne peut pas fusionner automatiquement ces changements. Il faut alors récupérer les modifications distantes, identifier et résoudre manuellement les conflits avant de valider et pousser. La commande `git pull` déclenche le conflit, `git status` aide à repérer les fichiers affectés, et l’édition manuelle du fichier permet de choisir quelle version garder. Enfin, il faut ajouter et committer les corrections avant de pouvoir pousser.\n\nSituation : Vous travaillez sur la branche `main` du projet. Votre collègue a modifié et poussé une ligne dans le fichier `config/app_settings.yaml`. Vous avez modifié la même ligne localement. En tentant de pousser, Git vous bloque. Vous devez récupérer les changements distants, résoudre le conflit et pousser vos modifications.",
       "questions": [
         {
           "numero": 1,
@@ -66,7 +66,7 @@
     },
     {
       "numero": 2,
-      "texte": "Mini cours : Un conflit sur la même ligne se produit lorsque deux développeurs modifient simultanément le même endroit d’un fichier. Après un `git pull` qui provoque ce conflit, il faut examiner les différences, choisir la bonne version ou fusionner manuellement, puis confirmer la résolution. Utiliser `git diff` permet de visualiser précisément les différences. Le bon usage de `git add` et `git commit` est indispensable pour finaliser la correction.\nSituation : Vous travaillez sur la branche `develop`. Vous avez modifié la ligne d’un fichier de configuration `src/database/connection.conf`. Un collègue a poussé une modification sur cette même ligne. Après un `git pull`, un conflit est signalé. Il faut examiner les différences, résoudre le conflit et pousser les modifications.",
+      "texte": "Mini cours : Un conflit sur la même ligne se produit lorsque deux développeurs modifient simultanément le même endroit d’un fichier. Après un `git pull` qui provoque ce conflit, il faut examiner les différences, choisir la bonne version ou fusionner manuellement, puis confirmer la résolution. Utiliser `git diff` permet de visualiser précisément les différences. Le bon usage de `git add` et `git commit` est indispensable pour finaliser la correction.\n\nSituation : Vous travaillez sur la branche `develop`. Vous avez modifié la ligne d’un fichier de configuration `src/database/connection.conf`. Un collègue a poussé une modification sur cette même ligne. Après un `git pull`, un conflit est signalé. Il faut examiner les différences, résoudre le conflit et pousser les modifications.",
       "questions": [
         {
           "numero": 1,
@@ -127,7 +127,7 @@
     },
     {
       "numero": 3,
-      "texte": "Mini cours : Quand un conflit survient sur une même ligne modifiée par deux développeurs, il est essentiel d’utiliser les outils Git pour faciliter la résolution. `git mergetool` peut lancer un outil graphique ou en ligne de commande pour comparer et fusionner les changements. Après résolution, les étapes classiques `git add`, `git commit` et `git push` restent indispensables.\nSituation : Vous travaillez sur la branche `feature/ui-improvements`. Vous et un collègue avez modifié la même ligne du fichier `ui/styles/theme.css`. Après un `git pull origin feature/ui-improvements`, un conflit apparaît. Vous souhaitez utiliser un outil de fusion Git pour faciliter la résolution.",
+      "texte": "Mini cours : Quand un conflit survient sur une même ligne modifiée par deux développeurs, il est essentiel d’utiliser les outils Git pour faciliter la résolution. `git mergetool` peut lancer un outil graphique ou en ligne de commande pour comparer et fusionner les changements. Après résolution, les étapes classiques `git add`, `git commit` et `git push` restent indispensables.\n\nSituation : Vous travaillez sur la branche `feature/ui-improvements`. Vous et un collègue avez modifié la même ligne du fichier `ui/styles/theme.css`. Après un `git pull origin feature/ui-improvements`, un conflit apparaît. Vous souhaitez utiliser un outil de fusion Git pour faciliter la résolution.",
       "questions": [
         {
           "numero": 1,
@@ -188,7 +188,7 @@
     },
     {
       "numero": 4,
-      "texte": "Mini cours : La résolution de conflits Git sur la même ligne nécessite parfois de rebaser ses commits locaux sur la branche distante. Le rebase permet d’intégrer proprement les modifications distantes avant de pousser. Après un `git fetch`, `git rebase origin/branche` est utilisé. En cas de conflit durant le rebase, la résolution suit les étapes classiques : édition, `git add`, puis `git rebase --continue`. Le rebase évite les commits de merge inutiles.\nSituation : Vous travaillez sur la branche `feature/api-update`. Votre collègue a poussé des modifications sur le même fichier `api/endpoints/v1/routes.json` que vous avez modifié sur la même ligne. Vous souhaitez rebaser vos commits sur la version distante pour intégrer les changements sans merge commit.",
+      "texte": "Mini cours : La résolution de conflits Git sur la même ligne nécessite parfois de rebaser ses commits locaux sur la branche distante. Le rebase permet d’intégrer proprement les modifications distantes avant de pousser. Après un `git fetch`, `git rebase origin/branche` est utilisé. En cas de conflit durant le rebase, la résolution suit les étapes classiques : édition, `git add`, puis `git rebase --continue`. Le rebase évite les commits de merge inutiles.\n\nSituation : Vous travaillez sur la branche `feature/api-update`. Votre collègue a poussé des modifications sur le même fichier `api/endpoints/v1/routes.json` que vous avez modifié sur la même ligne. Vous souhaitez rebaser vos commits sur la version distante pour intégrer les changements sans merge commit.",
       "questions": [
         {
           "numero": 1,

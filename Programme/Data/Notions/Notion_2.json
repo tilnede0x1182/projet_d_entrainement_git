@@ -5,7 +5,7 @@
   "exercices": [
     {
       "numero": 1,
-      "texte": "Mini cours : Lorsque plusieurs développeurs modifient la même branche en parallèle, il est possible qu’un push soit rejeté car la branche distante a évolué depuis le dernier pull local. Dans ce cas, il faut impérativement récupérer les modifications distantes avec `git pull`, résoudre les conflits éventuels, puis refaire un push. Cette séquence garantit la cohérence de l’historique et évite d’écraser le travail des autres. Le rejet de push est indiqué par un message `non fast-forward`.\nSituation : Vous travaillez sur la branche `main` du projet. Votre collègue vient de pousser des modifications sur le fichier `config/settings.yml`. Vous avez aussi modifié ce fichier localement et vous essayez de pousser, mais votre push est rejeté.",
+      "texte": "Mini cours : Lorsque plusieurs développeurs modifient la même branche en parallèle, il est possible qu’un push soit rejeté car la branche distante a évolué depuis le dernier pull local. Dans ce cas, il faut impérativement récupérer les modifications distantes avec `git pull`, résoudre les conflits éventuels, puis refaire un push. Cette séquence garantit la cohérence de l’historique et évite d’écraser le travail des autres. Le rejet de push est indiqué par un message `non fast-forward`.\n\nSituation : Vous travaillez sur la branche `main` du projet. Votre collègue vient de pousser des modifications sur le fichier `config/settings.yml`. Vous avez aussi modifié ce fichier localement et vous essayez de pousser, mais votre push est rejeté.",
       "questions": [
         {
           "numero": 1,
@@ -66,7 +66,7 @@
     },
     {
       "numero": 2,
-      "texte": "Mini cours : Quand plusieurs développeurs modifient un même fichier source sur la même branche, un push peut être refusé si le dépôt distant a changé entretemps. Pour éviter de perdre du travail, il faut toujours récupérer les dernières modifications avec `git pull`, résoudre les conflits s’il y en a, puis pousser à nouveau. Cette méthode assure un historique propre et partagé.\nSituation : Vous travaillez sur la branche `feature/api` et avez modifié `src/api/user_controller.rb`. Votre collègue a déjà poussé des changements sur ce même fichier. Votre push est rejeté.",
+      "texte": "Mini cours : Quand plusieurs développeurs modifient un même fichier source sur la même branche, un push peut être refusé si le dépôt distant a changé entretemps. Pour éviter de perdre du travail, il faut toujours récupérer les dernières modifications avec `git pull`, résoudre les conflits s’il y en a, puis pousser à nouveau. Cette méthode assure un historique propre et partagé.\n\nSituation : Vous travaillez sur la branche `feature/api` et avez modifié `src/api/user_controller.rb`. Votre collègue a déjà poussé des changements sur ce même fichier. Votre push est rejeté.",
       "questions": [
         {
           "numero": 1,
@@ -127,7 +127,7 @@
     },
     {
       "numero": 3,
-      "texte": "Mini cours : Lorsqu’une branche évolue sur plusieurs fichiers en parallèle, un push peut être rejeté si le dépôt distant a été mis à jour avant votre push. Pour résoudre ce problème, il faut impérativement faire un `git pull` pour récupérer toutes les modifications, résoudre tous les conflits sur les fichiers concernés, puis faire un commit de résolution avant de pouvoir pousser à nouveau. Cette procédure garantit la cohérence de l’historique et évite la perte de données.\nSituation : Vous travaillez sur la branche `develop` et avez modifié les fichiers `app/models/user.rb` et `app/views/user/show.html.erb`. Votre collègue a déjà poussé des modifications sur ces deux fichiers. Votre push est rejeté.",
+      "texte": "Mini cours : Lorsqu’une branche évolue sur plusieurs fichiers en parallèle, un push peut être rejeté si le dépôt distant a été mis à jour avant votre push. Pour résoudre ce problème, il faut impérativement faire un `git pull` pour récupérer toutes les modifications, résoudre tous les conflits sur les fichiers concernés, puis faire un commit de résolution avant de pouvoir pousser à nouveau. Cette procédure garantit la cohérence de l’historique et évite la perte de données.\n\nSituation : Vous travaillez sur la branche `develop` et avez modifié les fichiers `app/models/user.rb` et `app/views/user/show.html.erb`. Votre collègue a déjà poussé des modifications sur ces deux fichiers. Votre push est rejeté.",
       "questions": [
         {
           "numero": 1,
@@ -188,7 +188,7 @@
     },
     {
       "numero": 4,
-      "texte": "Mini cours : Les fichiers de configuration sont souvent modifiés par plusieurs développeurs. Un push peut être rejeté si la branche distante a changé entre temps. La bonne pratique est de faire un `git pull` pour récupérer les changements, résoudre les conflits dans le fichier concerné, puis valider et pousser vos modifications. Cela évite d’écraser le travail des autres et maintient la cohérence du projet.\nSituation : Vous travaillez sur la branche `release` et avez modifié le fichier `config/app_config.json`. Un collègue a déjà poussé une version différente de ce fichier. Votre push est refusé.",
+      "texte": "Mini cours : Les fichiers de configuration sont souvent modifiés par plusieurs développeurs. Un push peut être rejeté si la branche distante a changé entre temps. La bonne pratique est de faire un `git pull` pour récupérer les changements, résoudre les conflits dans le fichier concerné, puis valider et pousser vos modifications. Cela évite d’écraser le travail des autres et maintient la cohérence du projet.\n\nSituation : Vous travaillez sur la branche `release` et avez modifié le fichier `config/app_config.json`. Un collègue a déjà poussé une version différente de ce fichier. Votre push est refusé.",
       "questions": [
         {
           "numero": 1,
