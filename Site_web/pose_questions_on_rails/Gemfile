@@ -1,0 +1,42 @@
+source "https://rubygems.org"
+
+ruby "3.3.5"
+
+# ------------------------------------------
+# Core Rails & Utilities
+# ------------------------------------------
+gem "rails", "~> 7.1.5", ">= 7.1.5.1"     # Framework principal Rails 7
+gem "puma", ">= 5.0"                       # Serveur web performant pour Rails
+gem "bootsnap", require: false             # Cache pour accélérer le démarrage de Rails
+
+# ------------------------------------------
+# Base de données
+# ------------------------------------------
+gem "sqlite3", ">= 1.4"                    # Base de données légère SQLite3 pour dev/test
+
+# ------------------------------------------
+# Assets & APIs
+# ------------------------------------------
+gem "sprockets-rails"                      # Pipeline d’assets Rails classique
+gem "jbuilder"                             # Génération de JSON pour APIs
+
+# ------------------------------------------
+# Compatibilité et OS spécifiques
+# ------------------------------------------
+gem "tzinfo-data", platforms: %i[ windows jruby ] # Fichiers de fuseaux horaires pour Windows/JRuby
+
+# ------------------------------------------
+# Dépendances Ruby standard
+# ------------------------------------------
+gem "ostruct"                              # Support OpenStruct requis pour Ruby >= 3.3
+
+# ------------------------------------------
+# Groupe développement & test
+# ------------------------------------------
+group :development, :test do
+  gem "debug", platforms: %i[ mri windows ] # Débogage interactif
+end
+
+group :development do
+  gem "web-console"                        # Console interactive dans le navigateur
+end
