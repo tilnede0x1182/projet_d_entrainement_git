@@ -1,0 +1,218 @@
+Exercice 1 - Notion : Suppression/modification conflictuelle
+
+---
+
+# Mini cours
+
+Lorsqu’un collaborateur supprime un fichier sur une branche et qu’un autre a modifié ce même fichier localement, un conflit apparaît au moment du pull. Git ne peut pas fusionner automatiquement car il doit choisir entre suppression et modification. La résolution manuelle implique de décider si l’on conserve la suppression, les modifications ou une fusion des deux. Pour régler cela, il faut puller, gérer le conflit dans le fichier, ajouter la résolution, puis commit et push.
+
+---
+
+# Situation
+
+Votre collègue Alice a supprimé le fichier `rapport.txt` sur la branche `develop` et a poussé. Vous avez modifié localement ce fichier sans le savoir. En faisant un `git pull`, un conflit apparaît. Vous devez résoudre ce conflit.
+
+---
+
+## Questions
+
+1. Quelle commande devez-vous exécuter pour récupérer les dernières modifications de la branche `develop` ?
+
+ `git fetch develop`
+ `git pull origin develop`  <- Bonne réponse
+ `git clone origin develop`
+ `git push origin develop`
+
+2. Après le pull, Git signale un conflit sur `rapport.txt`. Quelle commande permet de vérifier l’état des conflits ?
+
+ `git status`  <- Bonne réponse
+ `git diff`
+ `git log`
+ `git merge --abort`
+
+3. Vous ouvrez `rapport.txt` et voyez les marqueurs de conflit `<<<<<<<`, `=======`, `>>>>>>>`. Quelle est la prochaine étape correcte ?
+
+ Supprimer manuellement les marqueurs et choisir ce qui doit rester dans le fichier  <- Bonne réponse
+ Faire un `git reset --hard`
+ Supprimer le fichier `rapport.txt`
+ Faire un `git revert`
+
+4. Une fois le conflit résolu et enregistré dans `rapport.txt`, quelle commande exécuter pour marquer le conflit comme réglé ?
+
+ `git add rapport.txt`  <- Bonne réponse
+ `git commit -m "Résolution du conflit"`
+ `git push origin develop`
+ `git merge --continue`
+
+5. Enfin, pour sauvegarder votre résolution sur la branche distante, quelle commande est correcte ?
+
+ `git push origin develop`  <- Bonne réponse
+ `git pull origin develop`
+ `git fetch origin develop`
+ `git rebase develop`
+
+
+---
+
+Exercice 2 - Notion : Suppression/modification conflictuelle
+
+---
+
+# Mini cours
+
+Lorsque plusieurs collaborateurs travaillent sur un même fichier, des conflits peuvent survenir si l’un supprime le fichier pendant qu’un autre le modifie localement. Git bloque le pull et demande une résolution manuelle. Il faut analyser la situation, décider si le fichier doit être conservé, puis valider la résolution avant de pousser. Cette étape évite de perdre des données ou de supprimer un travail important par erreur.
+
+---
+
+# Situation
+
+Votre collègue Benoît a supprimé le fichier `presentation.pptx` sur la branche `feature-x` et a poussé cette modification. Vous avez modifié ce fichier en local sans synchroniser. Vous tentez un pull et un conflit apparaît.
+
+---
+
+## Questions
+
+1. Quelle commande permet de lancer la récupération des dernières modifications sur la branche `feature-x` ?
+
+ `git pull origin feature-x`  <- Bonne réponse
+ `git push origin feature-x`
+ `git merge feature-x`
+ `git fetch feature-x`
+
+2. Git indique un conflit sur le fichier `presentation.pptx`. Quelle commande permet de lister les fichiers en conflit ?
+
+ `git diff`
+ `git status`  <- Bonne réponse
+ `git log`
+ `git clean -f`
+
+3. Pour résoudre le conflit, que faut-il faire dans le fichier `presentation.pptx` ?
+
+ Choisir entre conserver le fichier modifié ou accepter la suppression, puis sauvegarder  <- Bonne réponse
+ Supprimer tous les fichiers du projet
+ Faire un `git revert` sur la suppression
+ Exécuter `git reset --hard origin/feature-x`
+
+4. Une fois le conflit résolu, quelle commande permet d’enregistrer la résolution ?
+
+ `git add presentation.pptx`  <- Bonne réponse
+ `git merge --continue`
+ `git push origin feature-x`
+ `git commit -m "conflit résolu"`
+
+5. Quelle commande finale permet d’envoyer la résolution du conflit sur la branche distante ?
+
+ `git push origin feature-x`  <- Bonne réponse
+ `git pull origin feature-x`
+ `git fetch origin feature-x`
+ `git rebase feature-x`
+
+---
+
+Exercice 3 - Notion : Suppression/modification conflictuelle
+
+---
+
+# Mini cours
+
+Les conflits entre suppression et modification nécessitent souvent une prise de décision : doit-on garder le fichier modifié localement ou accepter la suppression réalisée par un autre collaborateur ? Git marque le fichier comme en conflit et bloque la fusion jusqu’à résolution. La résolution passe par la modification ou suppression manuelle du fichier, suivi de l’ajout, du commit, puis du push des changements.
+
+---
+
+# Situation
+
+Votre collègue Clara a supprimé le fichier `budget.xlsx` sur la branche `release`, et a poussé cette modification. Vous avez apporté des modifications locales sur ce fichier. En lançant un `git pull`, vous obtenez un conflit.
+
+---
+
+## Questions
+
+1. Quelle commande lance le pull des dernières modifications sur la branche `release` ?
+
+ `git fetch origin release`
+ `git pull origin release`  <- Bonne réponse
+ `git push origin release`
+ `git merge origin release`
+
+2. Git indique un conflit sur `budget.xlsx`. Quelle commande permet de vérifier quels fichiers posent problème ?
+
+ `git status`  <- Bonne réponse
+ `git log`
+ `git diff`
+ `git reset --hard`
+
+3. Vous ouvrez `budget.xlsx` et voyez les conflits. Quelle action correspond à la bonne résolution ?
+
+ Garder le fichier modifié ou supprimer le fichier selon la décision prise, puis enregistrer  <- Bonne réponse
+ Supprimer tout le dossier du projet
+ Exécuter `git checkout -- budget.xlsx`
+ Faire un `git revert` du dernier commit
+
+4. Après avoir résolu le conflit dans le fichier, quelle commande permet de marquer la résolution ?
+
+ `git add budget.xlsx`  <- Bonne réponse
+ `git commit -m "Conflit résolu"`
+ `git push origin release`
+ `git merge --continue`
+
+5. Pour finaliser et transmettre la résolution à la branche distante, quelle commande utilisez-vous ?
+
+ `git push origin release`  <- Bonne réponse
+ `git pull origin release`
+ `git fetch origin release`
+ `git rebase release`
+
+---
+
+Exercice 4 - Notion : Suppression/modification conflictuelle
+
+---
+
+# Mini cours
+
+Lors d’un conflit entre suppression et modification, il est crucial d’examiner soigneusement l’historique et l’état des fichiers pour décider de la bonne résolution. L’utilisation de commandes comme `git status` et `git diff` permet d’identifier les différences. La résolution passe par une modification manuelle, puis par l’ajout, le commit, et enfin le push, pour synchroniser le dépôt distant.
+
+---
+
+# Situation
+
+Votre collègue David a supprimé le fichier `plan_projet.md` sur la branche `hotfix`. Vous avez modifié ce fichier en local sans avoir fait de pull. Vous tentez un `git pull` et un conflit survient.
+
+---
+
+## Questions
+
+1. Quelle commande permet de récupérer les dernières modifications de la branche `hotfix` ?
+
+ `git fetch origin hotfix`
+ `git pull origin hotfix`  <- Bonne réponse
+ `git checkout hotfix`
+ `git merge origin/hotfix`
+
+2. Pour identifier les fichiers en conflit, quelle commande faut-il utiliser ?
+
+ `git status`  <- Bonne réponse
+ `git log`
+ `git diff`
+ `git reset --hard`
+
+3. Pour comparer les différences dans `plan_projet.md`, quelle commande est la plus adaptée ?
+
+ `git diff plan_projet.md`  <- Bonne réponse
+ `git show plan_projet.md`
+ `git checkout plan_projet.md`
+ `git revert plan_projet.md`
+
+4. Après avoir modifié manuellement `plan_projet.md` pour résoudre le conflit, quelle commande faut-il exécuter ?
+
+ `git add plan_projet.md`  <- Bonne réponse
+ `git commit -m "Résolution conflit"`
+ `git push origin hotfix`
+ `git merge --continue`
+
+5. Quelle commande finalise la résolution en mettant à jour la branche distante ?
+
+ `git push origin hotfix`  <- Bonne réponse
+ `git pull origin hotfix`
+ `git fetch origin hotfix`
+ `git rebase hotfix`

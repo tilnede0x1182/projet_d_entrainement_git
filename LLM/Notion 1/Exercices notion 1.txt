@@ -1,0 +1,226 @@
+Exercice 1 :
+
+
+Exercice — Notion : Niveau 1 - Bases pull/push et merge automatique (modifications sur lignes différentes)
+
+---
+
+### Mini cours
+
+Lorsque plusieurs utilisateurs modifient des parties différentes d’un même fichier, Git fusionne automatiquement ces modifications lors d’un `git pull`. Il n’y a pas de conflit à résoudre, ce qui facilite la collaboration. Cependant, il faut toujours garder à jour sa branche locale avant de pousser ses propres modifications pour éviter des erreurs.
+
+---
+
+### Situation
+
+Vous travaillez sur la branche `feature` avec un collègue. Vous avez tous les deux modifié des lignes différentes dans le fichier `app.txt`. Votre collègue a poussé ses changements avant vous.
+
+---
+
+### Questions
+
+1. Quelle commande permet de récupérer les dernières modifications de la branche `feature` avant de pousser ?
+
+ a) `git push origin feature`
+ b) `git fetch origin`
+ c) `git pull origin feature` ← bonne réponse
+ d) `git clone origin feature`
+
+2. Après le pull, Git indique que la fusion s’est faite automatiquement. Que devez-vous faire ensuite ?
+
+ a) Modifier à nouveau les fichiers
+ b) Faire un commit des modifications fusionnées
+ c) Rien, la fusion est déjà enregistrée ← bonne réponse
+ d) Supprimer les fichiers fusionnés
+
+3. Vous souhaitez maintenant envoyer vos modifications locales. Quelle commande utilisez-vous ?
+
+ a) `git commit -m "Mes changements"`
+ b) `git push origin feature` ← bonne réponse
+ c) `git pull origin feature`
+ d) `git merge origin/feature`
+
+4. Vous avez oublié d’ajouter vos modifications avant le commit. Quelle commande permet d’ajouter tous les fichiers modifiés ?
+
+ a) `git add .` ← bonne réponse
+ b) `git commit --amend`
+ c) `git push --force`
+ d) `git status`
+
+5. Quelle commande permet de vérifier l’état de vos fichiers avant d’envoyer vos modifications ?
+
+ a) `git status` ← bonne réponse
+ b) `git log`
+ c) `git branch`
+ d) `git reset`
+
+Exercice 2 :
+
+Exercice 2 — Notion : Niveau 1 - Bases pull/push et merge automatique (push simultané sur la même branche)
+
+---
+
+### Mini cours
+
+Quand plusieurs utilisateurs travaillent sur la même branche, il faut toujours mettre à jour sa copie locale avant de pousser ses changements. Si quelqu’un a déjà poussé des modifications que vous n’avez pas, votre `git push` sera rejeté. Il faudra alors faire un `git pull`, résoudre d’éventuels conflits, puis recommencer le push.
+
+---
+
+### Situation
+
+Vous travaillez sur la branche `develop`. Votre collègue a poussé des modifications avant vous. Vous avez commis localement, mais votre push est rejeté.
+
+---
+
+### Questions
+
+1. Quelle commande permet de pousser vos modifications vers la branche `develop` ?
+
+ a) `git push origin develop`
+ b) Votre push sera rejeté, il faut d’abord faire un pull ← bonne réponse
+ c) `git fetch origin develop`
+ d) `git commit -m "Mes changements"`
+
+2. Quelle commande permet de récupérer les dernières modifications de la branche `develop` ?
+
+ a) `git clone origin develop`
+ b) `git push origin develop`
+ c) git pull origin develop ← bonne réponse
+ d) `git fetch origin develop`
+
+3. Que faire si, lors du pull, Git indique un conflit à résoudre ?
+
+ a) Ignorer le conflit et refaire un push
+ b) Ouvrir les fichiers en conflit, corriger les sections, puis ajouter et committer ← bonne réponse
+ c) Supprimer les fichiers en conflit
+ d) Rebase obligatoire
+
+4. Quelle commande permet d’ajouter les fichiers corrigés après résolution du conflit ?
+
+ a) `git reset`
+ b) git add . ← bonne réponse
+ c) `git commit --amend`
+ d) `git merge`
+
+5. Après avoir ajouté les fichiers corrigés, quelle commande permet d’enregistrer les corrections ?
+
+ a) `git push`
+ b) git commit -m "Résolution des conflits"\` ← bonne réponse
+ c) `git pull`
+ d) `git status`
+
+---
+
+Exercice 3 :
+
+Exercice 3 — Notion : Niveau 1 - Bases pull/push et merge automatique (pull après push d’un collègue, pas de conflit)
+
+---
+
+### Mini cours
+
+Quand un collègue pousse des modifications avant vous, et que vos changements concernent des lignes différentes dans les mêmes fichiers, un `git pull` fusionne automatiquement sans conflit. Il faut ensuite continuer votre travail normalement et pousser vos changements.
+
+---
+
+### Situation
+
+Vous travaillez sur la branche `main`. Votre collègue a poussé des modifications sur des lignes différentes dans un fichier que vous modifiez aussi. Vous devez synchroniser votre travail.
+
+---
+
+### Questions
+
+1. Quelle commande permet de récupérer les dernières modifications de la branche `main` ?
+
+ a) `git push origin main`
+ b) `git fetch origin main`
+ c) git pull origin main ← bonne réponse
+ d) `git merge origin/main`
+
+2. Que se passe-t-il si les modifications portent sur des lignes différentes ?
+
+ a) Git refuse le pull
+ b) Git fusionne automatiquement sans conflit ← bonne réponse
+ c) Il faut résoudre manuellement les conflits
+ d) Il faut rebaser
+
+3. Après un pull réussi sans conflit, quelle est la prochaine étape ?
+
+ a) Faire un `git pull` à nouveau
+ b) Continuer à modifier les fichiers et committer ← bonne réponse
+ c) Faire un `git reset`
+ d) Supprimer les fichiers modifiés
+
+4. Vous avez fini vos modifications, quelle commande permet de les préparer au commit ?
+
+ a) `git add .` ← bonne réponse
+ b) `git commit -m "Modifications"`
+ c) `git push origin main`
+ d) `git merge origin/main`
+
+5. Quelle commande permet d’envoyer vos modifications sur le dépôt distant ?
+
+ a) `git fetch origin main`
+ b) `git pull origin main`
+ c) git push origin main ← bonne réponse
+ d) `git merge origin/main`
+
+---
+
+
+Exercice 4 :
+
+
+Exercice 4 — Notion : Niveau 1 - Bases pull/push et merge automatique (ajout de fichiers et vérification avant push)
+
+---
+
+### Mini cours
+
+Avant de pousser vos modifications, il est important d’ajouter les fichiers modifiés à l’index avec `git add` puis de vérifier l’état de votre dépôt avec `git status`. Cela permet d’éviter d’oublier des fichiers et de s’assurer que la branche locale est prête à être envoyée sur le dépôt distant.
+
+---
+
+### Situation
+
+Vous avez modifié plusieurs fichiers sur la branche `release`. Vous souhaitez préparer votre commit et vérifier que tout est correct avant de pousser.
+
+---
+
+### Questions
+
+1. Quelle commande permet d’ajouter tous les fichiers modifiés à l’index ?
+
+ a) `git commit -m "Mes changements"`
+ b) git add . ← bonne réponse
+ c) `git push origin release`
+ d) `git status`
+
+2. Après avoir ajouté les fichiers, quelle commande permet de vérifier l’état du dépôt ?
+
+ a) git status ← bonne réponse
+ b) `git log`
+ c) `git fetch`
+ d) `git reset`
+
+3. Quelle commande permet de sauvegarder vos modifications dans un commit ?
+
+ a) `git push origin release`
+ b) git commit -m "Préparation release"\` ← bonne réponse
+ c) `git add .`
+ d) `git pull origin release`
+
+4. Quelle commande permet d’envoyer vos commits sur la branche distante `release` ?
+
+ a) `git fetch origin release`
+ b) `git merge origin/release`
+ c) git push origin release ← bonne réponse
+ d) `git reset --hard`
+
+5. Vous voulez voir les derniers commits de la branche `release` avant de pousser, quelle commande utilisez-vous ?
+
+ a) git log ← bonne réponse
+ b) `git status`
+ c) `git branch`
+ d) `git diff`

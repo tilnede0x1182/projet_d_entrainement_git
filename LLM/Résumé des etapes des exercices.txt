@@ -1,0 +1,69 @@
+---
+
+### Hiérarchisation des cas de conflits GitHub par difficulté croissante
+
+---
+
+#### Niveau 1 : Facile (bases du pull/push et merge simple)
+
+1. Modification sur lignes différentes (merge automatique)
+
+    Pull fusionne sans conflit.
+
+2. Push simultané sur la même branche (rejet push, pull obligatoire)
+
+    Gestion simple de pull + push.
+
+---
+
+#### Niveau 2 : Moyen (résolution de conflits classiques)
+
+3. Conflit de fusion lors du pull automatique
+
+    Conflit classique à résoudre manuellement.
+
+4. Modification concurrente du même fichier, même ligne
+
+    Conflit plus précis sur même ligne.
+
+5. Suppression/modification conflictuelle
+
+    Conflit entre suppression et modification.
+
+6. Conflit dans fichiers binaires
+
+    Résolution manuelle sans merge automatique.
+
+---
+
+#### Niveau 3 : Difficile (gestion avancée, réécriture d’historique)
+
+7. Renommage concurrent
+
+    Conflits sur chemins et noms, résolution complexe.
+
+8. Branches divergentes (merge avec historique différent)
+
+    Gestion des historiques séparés et fusion complexe.
+
+9. Réécriture d’historique (rebase, amend, squash) sur branche publique
+
+    Synchronisation complexe, risque perte de données.
+
+---
+
+#### Niveau 4 : Très difficile (risques majeurs)
+
+10. Push force (force push)
+
+     Risque écrasement, nécessite reset hard et gestion rigoureuse.
+
+---
+
+### Vérification pour hiérarchisation
+
+ Difficulté technique de résolution
+ Impact sur l’historique Git
+ Complexité des commandes à maîtriser
+ Risque de perte de données
+
