@@ -120,8 +120,9 @@ class QuizGame
 		save = resume || init_save_hash(path, notion['notion'])
 		ex_idx, q_idx = save['progress'].values_at('exercise', 'question')
 		notion['exercices'][ex_idx..].each do |ex|
-			puts "\n--- Exercice #{ex['numero']} ---\n\n#{ex['texte']}"
-			ex['questions'][q_idx..].each { |q| q_idx = ask_question(q, save) }
+			puts "\n--- Exercice #{ex['numero']} ---"
+			puts "\nMini cours : #{ex['mini_court']}\n"
+			ex['questions'][q_idx..].each { |q| q_idx = ask_question(q, save, ex['situation']) }
 			q_idx = 0
 			save['progress']['exercise'] += 1
 			persist_save(save)
@@ -129,7 +130,8 @@ class QuizGame
 		finish_game(save, notion)
 	end
 
-	def ask_question(question, save)
+	def ask_question(question, save, situation)
+		puts "\nSituation : #{situation}"
 		puts "\nQuestion #{question['numero']} : #{question['intitule']}"
 		puts ""
 		CHOICES.each_with_index { |c, i| puts "#{i + 1}. #{question['choix'][c]}" }
@@ -157,6 +159,7 @@ class QuizGame
 
 	def show_recap(notion)
 		notion['exercices'].each do |ex|
+			puts "\nSituation : #{ex['situation']}"
 			ex['questions'].each do |q|
 				puts "\nQuestion #{q['numero']} : #{q['intitule']}\n#{q['reponse'].upcase} : #{q['choix'][q['reponse']]}"
 			end
