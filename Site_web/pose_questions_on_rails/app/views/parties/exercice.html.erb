@@ -1,14 +1,12 @@
 <div class="exercice-card">
-	<h2 class="notion-header"><%= @notion.notion %></h2>
-	<h2>Mini-cours</h2>
+	<h2 class="notion-header"><%= @notion.numero %> - <%= @notion.notion %>, niveau <%= @notion.niveau %> :</h2>
+	<h2>Exercice  <%= @exercice.numero %> : </h2>
+	<h3>Mini-cours</h3>
 	<p class="mini-court"><%= @exercice.mini_court %></p>
 	<div class="situation-block">
 		<h3>Situation</h3>
 		<p class="situation"><%= @exercice.situation %></p>
 	</div>
-	<%= link_to "Commencer les questions", partie_question_path(@partie, question_id: @exercice.questions.order(:numero).first.id), class: "btn-main" %>
-</div>
-
 
 	<%= form_with url: soumettre_exercice_partie_path(@partie), method: :post, local: true do %>
 		<% @questions.each do |question| %>
