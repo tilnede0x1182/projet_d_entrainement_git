@@ -4,7 +4,7 @@ require 'json'
 
 # Données (variables globales)
 SCRIPT_DIR             = File.dirname(__FILE__)    # Répertoire du script courant
-NOTIONS_DIR            = File.expand_path('../Data', SCRIPT_DIR).freeze
+NOTIONS_DIR            = File.expand_path('../Data/Notions', SCRIPT_DIR).freeze
 REQUIRED_QUESTION_KEYS = %w[intitule choix reponse].freeze
 REQUIRED_CHOICES       = %w[a b c d].freeze
 
