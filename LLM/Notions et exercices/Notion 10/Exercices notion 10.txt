@@ -1,0 +1,229 @@
+---
+
+### Exercice 1 — Push force (force push) : Récupérer après un push forcé mal maîtrisé
+
+---
+
+#### Mini cours
+
+Le `push --force` (force push) permet de réécrire l’historique sur une branche distante, en remplaçant ses commits.
+Cette opération est risquée car elle peut écraser les modifications des autres contributeurs.
+Lorsqu’un collègue a fait un push forcé, votre copie locale peut être en conflit avec la branche distante.
+Pour synchroniser votre dépôt sans risquer d’écraser le travail distant, il faut généralement faire un reset dur (`git reset --hard origin/branche`).
+Cela efface vos commits locaux et place votre branche au même état que la branche distante.
+Soyez très prudent avec cette commande, elle supprime tout travail local non commité.
+Apprenez à reconnaître quand l’utiliser et dans quel ordre appliquer les commandes pour une récupération sécurisée.
+
+---
+
+#### Situation
+
+Votre collègue a fait un `git push --force` sur la branche `feature/login`, ce qui a réécrit l’historique et rendu votre copie locale incompatible.
+Vous avez des modifications non commitées dans `auth.js` que vous souhaitez d’abord sauvegarder avant de resynchroniser votre branche locale.
+
+---
+
+### Questions
+
+1. Quelle commande permet de sauvegarder temporairement vos modifications non commitées dans `auth.js` ?
+   a) git stash save "Sauvegarde auth.js"  <- Bonne réponse
+   b) git reset --hard origin/feature/login
+   c) git commit -m "backup auth.js"
+   d) git pull origin feature/login
+
+2. Quelle commande récupère la dernière version de la branche distante sans tenter de fusion ?
+   a) git pull origin feature/login
+   b) git fetch origin feature/login  <- Bonne réponse
+   c) git merge origin/feature/login
+   d) git reset --hard origin/feature/login
+
+3. Quelle commande met votre branche locale exactement à la même version que la branche distante `feature/login` ?
+   a) git reset --hard origin/feature/login  <- Bonne réponse
+   b) git checkout origin/feature/login
+   c) git merge origin/feature/login
+   d) git stash pop
+
+4. Après le reset dur, comment récupérer vos modifications temporairement sauvegardées dans le stash ?
+   a) git stash apply  <- Bonne réponse
+   b) git stash pop
+   c) git stash drop
+   d) git commit --amend
+
+5. Enfin, quelle commande permet de pousser vos modifications vers la branche distante, en évitant d’écraser les autres contributions ?
+   a) git push origin feature/login  <- Bonne réponse
+   b) git push --force origin feature/login
+   c) git pull origin feature/login
+   d) git fetch origin feature/login
+
+---
+
+---
+
+### Exercice 2 — Push force (force push) : Corriger un historique local corrompu après un push forcé distant
+
+---
+
+#### Mini cours
+
+Un push forcé modifie l’historique partagé et peut rendre votre branche locale obsolète ou incohérente.
+Dans ce cas, la meilleure pratique est souvent de remplacer totalement votre historique local par celui du dépôt distant.
+Cette opération s’effectue via un `git fetch` suivi d’un `git reset --hard`, qui écrase tout travail local.
+Avant de faire cela, il faut s’assurer que toutes modifications locales non sauvegardées sont soit commit, soit stashed.
+Cette méthode garantit la synchronisation complète avec la branche distante après un push force.
+
+---
+
+#### Situation
+
+Après un push forcé de votre collègue sur la branche `feature/payment`, votre historique local est devenu incompatible.
+Vous avez déjà commité des modifications dans `payment.js` mais vous voulez repartir proprement de l’état distant sans perdre votre travail.
+
+---
+
+### Questions
+
+1. Quelle commande permet d’enregistrer temporairement vos modifications non pushées dans `payment.js` ?
+   a) git stash  <- Bonne réponse
+   b) git reset --hard origin/feature/payment
+   c) git commit -m "backup payment.js"
+   d) git pull origin feature/payment
+
+2. Quelle commande permet de récupérer toutes les mises à jour du dépôt distant sans modifier la branche locale ?
+   a) git fetch origin  <- Bonne réponse
+   b) git pull origin feature/payment
+   c) git reset --hard origin/feature/payment
+   d) git merge origin/feature/payment
+
+3. Quelle commande supprime toutes vos modifications locales et place votre branche `feature/payment` à l’état du dépôt distant ?
+   a) git reset --hard origin/feature/payment  <- Bonne réponse
+   b) git checkout origin/feature/payment
+   c) git merge origin/feature/payment
+   d) git stash pop
+
+4. Comment réappliquer vos modifications temporaires sauvegardées dans le stash ?
+   a) git stash apply  <- Bonne réponse
+   b) git stash drop
+   c) git commit --amend
+   d) git stash clear
+
+5. Après avoir réappliqué vos modifications, quelle commande permet de pousser vos changements sans écraser l’historique distant ?
+   a) git push origin feature/payment  <- Bonne réponse
+   b) git push --force origin feature/payment
+   c) git pull origin feature/payment
+   d) git fetch origin
+
+---
+
+---
+
+### Exercice 3 — Push force (force push) : Restaurer une branche locale corrompue sans perdre de fichiers non committés
+
+---
+
+#### Mini cours
+
+Lorsqu’un collègue fait un `push --force`, votre branche locale peut diverger et contenir des fichiers modifiés non committés.
+La commande `git reset --hard` réinitialise la branche locale mais supprime ces modifications non sauvegardées.
+Pour éviter cette perte, il faut d’abord sauvegarder ces changements via `git stash`.
+Après avoir fait un reset dur pour synchroniser avec la branche distante, vous pourrez réappliquer les modifications sauvegardées.
+Cette méthode protège le travail en cours tout en garantissant une branche propre.
+
+---
+
+#### Situation
+
+Votre collègue a fait un push forcé sur la branche `feature/api`.
+Vous avez des changements non committés dans `api_handler.js` que vous ne voulez pas perdre.
+Vous devez synchroniser votre branche locale sans écraser ces modifications.
+
+---
+
+### Questions
+
+1. Quelle commande sauvegarde temporairement les changements non committés dans `api_handler.js` ?
+   a) git stash push -m "Sauvegarde api\_handler.js"  <- Bonne réponse
+   b) git commit -am "backup api\_handler.js"
+   c) git reset --hard origin/feature/api
+   d) git pull origin feature/api
+
+2. Quelle commande récupère la dernière version de la branche distante sans la fusionner ?
+   a) git fetch origin feature/api  <- Bonne réponse
+   b) git pull origin feature/api
+   c) git merge origin/feature/api
+   d) git reset --hard origin/feature/api
+
+3. Quelle commande synchronise la branche locale avec la branche distante, effaçant l’historique local ?
+   a) git reset --hard origin/feature/api  <- Bonne réponse
+   b) git checkout origin/feature/api
+   c) git stash pop
+   d) git merge origin/feature/api
+
+4. Quelle commande applique les modifications sauvegardées dans le stash ?
+   a) git stash pop  <- Bonne réponse
+   b) git stash apply
+   c) git stash drop
+   d) git commit -m "récupération stash"
+
+5. Après récupération, quelle commande permet de pousser vos changements sans forcer l’écrasement ?
+   a) git push origin feature/api  <- Bonne réponse
+   b) git push --force origin feature/api
+   c) git pull origin feature/api
+   d) git fetch origin
+
+---
+
+---
+
+### Exercice 4 — Push force (force push) : Résoudre un conflit après un push forcé sur une branche partagée
+
+---
+
+#### Mini cours
+
+Un push forcé peut provoquer des conflits si vous avez des commits locaux non synchronisés.
+Pour résoudre ce problème, il faut d’abord sauvegarder vos changements locaux non poussés.
+Ensuite, récupérer l’état distant, forcer la remise à jour locale, puis réintégrer vos changements.
+Enfin, il faut s’assurer que le push final n’écrase pas les contributions d’autres développeurs.
+La maîtrise de cette procédure garantit une collaboration fluide malgré un push forcé.
+
+---
+
+#### Situation
+
+Votre collègue a forcé un push sur la branche `feature/ui`.
+Vous avez des commits locaux dans `ui_component.jsx` que vous n’avez pas encore poussés.
+Vous devez synchroniser proprement sans perdre vos commits.
+
+---
+
+### Questions
+
+1. Quelle commande permet de sauvegarder vos commits locaux non poussés dans une branche temporaire ?
+   a) git stash  # ne sauvegarde pas les commits
+   b) git branch backup/ui  <- Bonne réponse
+   c) git reset --hard origin/feature/ui
+   d) git checkout -b temp\_backup
+
+2. Quelle commande récupère les dernières modifications distantes ?
+   a) git pull origin feature/ui
+   b) git fetch origin feature/ui  <- Bonne réponse
+   c) git merge origin/feature/ui
+   d) git reset --hard origin/feature/ui
+
+3. Quelle commande replace la branche locale à l’état distant, effaçant l’historique local ?
+   a) git reset --hard origin/feature/ui  <- Bonne réponse
+   b) git checkout origin/feature/ui
+   c) git merge origin/feature/ui
+   d) git stash pop
+
+4. Quelle commande permet de réintégrer vos commits sauvegardés dans `backup/ui` sur la branche remise à jour ?
+   a) git cherry-pick backup/ui  # mauvaise commande
+   b) git merge backup/ui  <- Bonne réponse
+   c) git stash apply
+   d) git rebase backup/ui
+
+5. Quelle commande permet de pousser vos modifications synchronisées sans forcer l’écrasement ?
+   a) git push origin feature/ui  <- Bonne réponse
+   b) git push --force origin feature/ui
+   c) git fetch origin
+   d) git pull origin feature/ui

@@ -1,0 +1,291 @@
+Exercice « Conflit de fusion lors du pull automatique »
+
+Exercice 1 :
+
+---
+
+# Cours
+
+Lorsqu’on travaille à plusieurs sur la même branche, un conflit de fusion peut survenir si Git ne parvient pas à combiner automatiquement les modifications. Cela se produit souvent lorsque deux personnes modifient des parties proches ou identiques d’un fichier. Pour résoudre ce conflit, il faut récupérer les modifications, identifier les sections conflictuelles marquées par Git (avec <<<<<<<, =======, >>>>>>>), corriger manuellement ces conflits, puis finaliser la fusion avec un commit.
+
+---
+
+# Situation
+
+Vous travaillez sur la branche « feature-login ». Vous avez modifié le fichier `login_form.html`. Pendant ce temps, un collègue a poussé des modifications dans ce même fichier. Lorsque vous tentez de faire un `git pull`, un conflit survient.
+
+---
+
+### Question 1
+
+Quelle commande devez-vous exécuter pour récupérer les dernières modifications de la branche distante et tenter de fusionner ?
+
+ A) `git fetch origin feature-login`
+ B) `git pull origin feature-login` <- Bonne réponse
+ C) `git push origin feature-login`
+ D) `git merge origin/feature-login`
+
+---
+
+### Question 2
+
+Suite à la commande précédente, Git vous signale un conflit dans `login_form.html`. Quelle est la prochaine étape ?
+
+ A) Modifier manuellement `login_form.html` pour résoudre le conflit <- Bonne réponse
+ B) Annuler la fusion avec `git merge --abort`
+ C) Supprimer le fichier `login_form.html`
+ D) Faire un `git push` directement
+
+---
+
+### Question 3
+
+Comment sont indiquées les zones en conflit dans `login_form.html` ?
+
+ A) Elles sont surlignées en rouge par Git automatiquement
+ B) Par des balises `<<<<<<<`, `=======`, `>>>>>>>` dans le fichier <- Bonne réponse
+ C) Par des commentaires HTML standards
+ D) Elles ne sont pas indiquées dans le fichier, Git refuse le merge
+
+---
+
+### Question 4
+
+Une fois les conflits corrigés dans `login_form.html`, que devez-vous faire pour indiquer à Git que le conflit est résolu ?
+
+ A) `git commit -m "Résolution conflit login_form.html"`
+ B) `git add login_form.html` puis `git commit -m "Résolution conflit"` <- Bonne réponse
+ C) `git push origin feature-login`
+ D) `git merge --continue`
+
+---
+
+### Question 5
+
+Enfin, quelle commande permet d’envoyer vos modifications fusionnées vers le dépôt distant ?
+
+ A) `git push origin feature-login` <- Bonne réponse
+ B) `git pull origin feature-login`
+ C) `git fetch origin`
+ D) `git reset --hard origin/feature-login`
+
+---
+
+Exercice « Conflit de fusion lors du pull automatique » – Exercice 2
+
+---
+
+Exercice 2 :
+
+# Cours
+
+Les conflits surviennent lorsqu’un même fichier est modifié simultanément par plusieurs contributeurs. Git tente d’automatiser la fusion, mais il faut parfois intervenir manuellement pour choisir quelle version conserver. Pour cela, il faut identifier les zones conflictuelles, modifier le fichier concerné, ajouter les fichiers modifiés, puis finaliser la fusion avec un commit avant de pouvoir pousser.
+
+---
+
+# Situation
+
+Vous travaillez sur la branche `feature-dashboard` et modifiez le fichier `dashboard.js`. Un collègue a poussé des changements sur ce même fichier. Vous faites un `git pull` et Git vous signale un conflit.
+
+---
+
+### Question 1
+
+Quelle commande lancez-vous pour récupérer et fusionner les changements distants ?
+
+ A) `git pull origin feature-dashboard` <- Bonne réponse
+ B) `git fetch origin`
+ C) `git push origin feature-dashboard`
+ D) `git merge origin/feature-dashboard`
+
+---
+
+### Question 2
+
+Git indique un conflit dans `dashboard.js`. Quelle est la bonne démarche ?
+
+ A) Modifier `dashboard.js` manuellement pour résoudre le conflit <- Bonne réponse
+ B) Supprimer `dashboard.js`
+ C) Exécuter `git push`
+ D) Faire un `git reset --hard`
+
+---
+
+### Question 3
+
+Après modification, comment indiquez-vous à Git que le conflit est résolu ?
+
+ A) `git add dashboard.js`
+ B) `git commit -m "Résolution conflit"`
+ C) Les deux A puis B <- Bonne réponse
+ D) `git merge --abort`
+
+---
+
+### Question 4
+
+Quelle commande permet de finaliser le commit de fusion ?
+
+ A) `git commit -m "Fusion avec résolution de conflit"` <- Bonne réponse
+ B) `git push origin feature-dashboard`
+ C) `git reset --hard`
+ D) `git fetch origin`
+
+---
+
+### Question 5
+
+Quel est le dernier geste pour partager vos modifications résolues ?
+
+ A) `git push origin feature-dashboard` <- Bonne réponse
+ B) `git pull origin feature-dashboard`
+ C) `git merge origin/feature-dashboard`
+ D) `git reset --hard origin/feature-dashboard`
+
+---
+
+Exercice « Conflit de fusion lors du pull automatique » – Exercice 3
+
+---
+
+Exercice 3 :
+
+# Cours
+
+Un conflit de fusion survient quand Git ne peut pas fusionner automatiquement des modifications concurrentes. Pour régler cela, il faut identifier les fichiers en conflit, ouvrir chaque fichier pour modifier les parties conflictuelles, puis valider ces corrections par un ajout (`git add`) et un commit. Ce processus garantit que l’historique reste cohérent et partageable.
+
+---
+
+# Situation
+
+Sur la branche `feature-api`, vous avez modifié `api_handler.py`. Un collègue a aussi modifié ce fichier et poussé ses changements. Vous faites un `git pull` et vous obtenez un conflit.
+
+---
+
+### Question 1
+
+Quelle commande effectuez-vous pour récupérer les dernières modifications et fusionner ?
+
+ A) `git pull origin feature-api` <- Bonne réponse
+ B) `git fetch origin feature-api`
+ C) `git merge origin/feature-api`
+ D) `git push origin feature-api`
+
+---
+
+### Question 2
+
+Git vous indique un conflit dans `api_handler.py`. Que faites-vous ensuite ?
+
+ A) Ouvrir `api_handler.py` et éditer les zones marquées avec `<<<<<<<` et `>>>>>>>` <- Bonne réponse
+ B) Supprimer `api_handler.py`
+ C) Ignorer le conflit et faire un `git push`
+ D) Faire un `git reset --hard`
+
+---
+
+### Question 3
+
+Après avoir modifié `api_handler.py` pour résoudre le conflit, quelle commande permet d’indiquer à Git que le fichier est prêt ?
+
+ A) `git add api_handler.py` <- Bonne réponse
+ B) `git commit -m "Fix conflit api_handler.py"`
+ C) `git push origin feature-api`
+ D) `git merge --abort`
+
+---
+
+### Question 4
+
+Comment terminez-vous la fusion avec un commit ?
+
+ A) `git commit -m "Résolution conflit api_handler.py"` <- Bonne réponse
+ B) `git push origin feature-api`
+ C) `git fetch origin`
+ D) `git reset --hard origin/feature-api`
+
+---
+
+### Question 5
+
+Quelle commande permet d’envoyer vos modifications corrigées sur le dépôt distant ?
+
+ A) `git push origin feature-api` <- Bonne réponse
+ B) `git pull origin feature-api`
+ C) `git merge origin/feature-api`
+ D) `git reset --hard origin/feature-api`
+
+---
+
+Exercice « Conflit de fusion lors du pull automatique » – Exercice 4
+
+---
+
+Exercice 4 :
+
+# Cours
+
+Lorsqu’un conflit survient, il faut impérativement résoudre toutes les zones conflictuelles avant de poursuivre. Git bloque la fusion tant que des fichiers restent en conflit. Le processus est : pull, modifier les conflits, ajouter les fichiers corrigés, puis committer et pousser. Un commit intermédiaire lors de la résolution assure une traçabilité claire.
+
+---
+
+# Situation
+
+Vous travaillez sur la branche `feature-payment`. Vous modifiez le fichier `payment_processor.rb`. Après un `git pull`, un conflit survient dans ce fichier.
+
+---
+
+### Question 1
+
+Quelle commande exécutez-vous pour récupérer et fusionner les modifications distantes ?
+
+ A) `git pull origin feature-payment` <- Bonne réponse
+ B) `git fetch origin`
+ C) `git push origin feature-payment`
+ D) `git merge origin/feature-payment`
+
+---
+
+### Question 2
+
+Git vous signale un conflit dans `payment_processor.rb`. Quelle est la prochaine étape ?
+
+ A) Modifier manuellement les sections conflictuelles dans `payment_processor.rb` <- Bonne réponse
+ B) Supprimer `payment_processor.rb`
+ C) Faire un `git reset --hard`
+ D) Pousser directement vos modifications
+
+---
+
+### Question 3
+
+Après avoir corrigé les conflits dans `payment_processor.rb`, que devez-vous faire ?
+
+ A) `git add payment_processor.rb` <- Bonne réponse
+ B) `git commit -m "Résolution conflit"`
+ C) Faire un push direct
+ D) Faire un reset
+
+---
+
+### Question 4
+
+Quelle commande permet de finaliser la fusion par un commit ?
+
+ A) `git commit -m "Fusion avec résolution de conflit"` <- Bonne réponse
+ B) `git push origin feature-payment`
+ C) `git fetch origin`
+ D) `git reset --hard`
+
+---
+
+### Question 5
+
+Quelle commande envoie les modifications fusionnées vers le dépôt distant ?
+
+ A) `git push origin feature-payment` <- Bonne réponse
+ B) `git pull origin feature-payment`
+ C) `git merge origin/feature-payment`
+ D) `git reset --hard origin/feature-payment`
+
+---

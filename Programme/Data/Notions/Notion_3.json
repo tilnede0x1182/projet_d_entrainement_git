@@ -5,7 +5,8 @@
   "exercices": [
     {
       "numero": 1,
-      "texte": "Mini cours : Lorsqu’on travaille à plusieurs sur la même branche, un conflit de fusion peut survenir si Git ne parvient pas à combiner automatiquement les modifications. Cela se produit souvent lorsque deux personnes modifient des parties proches ou identiques d’un fichier. Pour résoudre ce conflit, il faut récupérer les modifications, identifier les sections conflictuelles marquées par Git (avec <<<<<<<, =======, >>>>>>>), corriger manuellement ces conflits, puis finaliser la fusion avec un commit.\nSituation : Vous travaillez sur la branche « feature-login ». Vous avez modifié le fichier `login_form.html`. Pendant ce temps, un collègue a poussé des modifications dans ce même fichier. Lorsque vous tentez de faire un `git pull`, un conflit survient.",
+      "mini_court": "Lorsqu’on travaille à plusieurs sur la même branche, un conflit de fusion peut survenir si Git ne parvient pas à combiner automatiquement les modifications. Cela se produit souvent lorsque deux personnes modifient des parties proches ou identiques d’un fichier. Pour résoudre ce conflit, il faut récupérer les modifications, identifier les sections conflictuelles marquées par Git (avec <<<<<<<, =======, >>>>>>>), corriger manuellement ces conflits, puis finaliser la fusion avec un commit.",
+      "situation": "Vous travaillez sur la branche « feature-login ». Vous avez modifié le fichier `login_form.html`. Pendant ce temps, un collègue a poussé des modifications dans ce même fichier. Lorsque vous tentez de faire un `git pull`, un conflit survient.",
       "questions": [
         {
           "numero": 1,
@@ -66,7 +67,8 @@
     },
     {
       "numero": 2,
-      "texte": "Mini cours : Les conflits surviennent lorsqu’un même fichier est modifié simultanément par plusieurs contributeurs. Git tente d’automatiser la fusion, mais il faut parfois intervenir manuellement pour choisir quelle version conserver. Pour cela, il faut identifier les zones conflictuelles, modifier le fichier concerné, ajouter les fichiers modifiés, puis finaliser la fusion avec un commit avant de pouvoir pousser.\nSituation : Vous travaillez sur la branche `feature-dashboard` et modifiez le fichier `dashboard.js`. Un collègue a poussé des changements sur ce même fichier. Vous faites un `git pull` et Git vous signale un conflit.",
+      "mini_court": "Les conflits surviennent lorsqu’un même fichier est modifié simultanément par plusieurs contributeurs. Git tente d’automatiser la fusion, mais il faut parfois intervenir manuellement pour choisir quelle version conserver. Pour cela, il faut identifier les zones conflictuelles, modifier le fichier concerné, ajouter les fichiers modifiés, puis finaliser la fusion avec un commit avant de pouvoir pousser.",
+      "situation": "Vous travaillez sur la branche `feature-dashboard` et modifiez le fichier `dashboard.js`. Un collègue a poussé des changements sur ce même fichier. Vous faites un `git pull` et Git vous signale un conflit.",
       "questions": [
         {
           "numero": 1,
@@ -127,7 +129,8 @@
     },
     {
       "numero": 3,
-      "texte": "Mini cours : Un conflit de fusion survient quand Git ne peut pas fusionner automatiquement des modifications concurrentes. Pour régler cela, il faut identifier les fichiers en conflit, ouvrir chaque fichier pour modifier les parties conflictuelles, puis valider ces corrections par un ajout (`git add`) et un commit. Ce processus garantit que l’historique reste cohérent et partageable.\nSituation : Sur la branche `feature-api`, vous avez modifié `api_handler.py`. Un collègue a aussi modifié ce fichier et poussé ses changements. Vous faites un `git pull` et vous obtenez un conflit.",
+      "mini_court": "Un conflit de fusion survient quand Git ne peut pas fusionner automatiquement des modifications concurrentes. Pour régler cela, il faut identifier les fichiers en conflit, ouvrir chaque fichier pour modifier les parties conflictuelles, puis valider ces corrections par un ajout (`git add`) et un commit. Ce processus garantit que l’historique reste cohérent et partageable.",
+      "situation": "Sur la branche `feature-api`, vous avez modifié `api_handler.py`. Un collègue a aussi modifié ce fichier et poussé ses changements. Vous faites un `git pull` et vous obtenez un conflit.",
       "questions": [
         {
           "numero": 1,
@@ -188,7 +191,8 @@
     },
     {
       "numero": 4,
-      "texte": "Mini cours : Lorsqu’un conflit survient, il faut impérativement résoudre toutes les zones conflictuelles avant de poursuivre. Git bloque la fusion tant que des fichiers restent en conflit. Le processus est : pull, modifier les conflits, ajouter les fichiers corrigés, puis committer et pousser. Un commit intermédiaire lors de la résolution assure une traçabilité claire.\nSituation : Vous travaillez sur la branche `feature-payment`. Vous modifiez le fichier `payment_processor.rb`. Après un `git pull`, un conflit survient dans ce fichier.",
+      "mini_court": "Lorsqu’un conflit survient, il faut impérativement résoudre toutes les zones conflictuelles avant de poursuivre. Git bloque la fusion tant que des fichiers restent en conflit. Le processus est : pull, modifier les conflits, ajouter les fichiers corrigés, puis committer et pousser. Un commit intermédiaire lors de la résolution assure une traçabilité claire.",
+      "situation": "Vous travaillez sur la branche `feature-payment`. Vous modifiez le fichier `payment_processor.rb`. Après un `git pull`, un conflit survient dans ce fichier.",
       "questions": [
         {
           "numero": 1,

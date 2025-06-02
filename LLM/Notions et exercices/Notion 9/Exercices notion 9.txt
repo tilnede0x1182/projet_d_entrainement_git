@@ -1,0 +1,225 @@
+---
+
+Exercice 1 — Réécriture d’historique sur branche publique : rebase et amend
+
+---
+
+### Mini cours
+
+La réécriture d’historique Git (avec `git rebase`, `git commit --amend`, ou `git squash`) permet de nettoyer ou modifier les commits avant publication. Cependant, si cette réécriture est effectuée sur une branche déjà poussée sur un dépôt partagé, cela crée une divergence entre l’historique local et celui du dépôt distant. Pour synchroniser, il faut mettre à jour sa copie locale et parfois forcer le push (`git push --force`). Une mauvaise manipulation peut entraîner la perte de commits. Le rebase réécrit les commits en les repositionnant, tandis que `commit --amend` modifie le dernier commit, et le squash fusionne plusieurs commits en un seul. Il est impératif d’être prudent et de bien comprendre ces commandes avant utilisation sur une branche publique.
+
+---
+
+### Situation
+
+Vous avez modifié le dernier commit localement avec `git commit --amend` pour corriger un message. Cependant, ce commit avait déjà été poussé sur la branche `feature/ui-update`. Vous devez synchroniser votre branche locale avec le dépôt distant sans perdre les modifications.
+
+---
+
+### Questions
+
+1. Quelle commande permet de récupérer les modifications du dépôt distant sans fusion automatique, afin de préparer un rebase ?
+
+    A) `git pull origin feature/ui-update`
+    B) `git fetch origin feature/ui-update`  <- Bonne réponse
+    C) `git clone origin feature/ui-update`
+    D) `git push origin feature/ui-update`
+
+2. Quelle commande permet de repositionner votre commit local modifié (amendé) par-dessus la dernière version distante ?
+
+    A) `git merge origin/feature/ui-update`
+    B) `git rebase origin/feature/ui-update`  <- Bonne réponse
+    C) `git reset --hard origin/feature/ui-update`
+    D) `git checkout origin/feature/ui-update`
+
+3. Si lors du rebase vous avez un conflit dans le fichier `ui/button_style.css`, que faites-vous en premier ?
+
+    A) Ignorer le conflit et continuer le rebase
+    B) Modifier `ui/button_style.css` pour résoudre les conflits, puis faire `git add ui/button_style.css`  <- Bonne réponse
+    C) Supprimer le fichier `ui/button_style.css`
+    D) Faire `git reset --hard`
+
+4. Une fois les conflits résolus et ajoutés, quelle commande devez-vous exécuter pour poursuivre le rebase ?
+
+    A) `git rebase --continue`  <- Bonne réponse
+    B) `git commit`
+    C) `git push --force`
+    D) `git merge`
+
+5. Pour mettre à jour la branche distante après la réécriture d’historique, quelle commande est correcte ?
+
+    A) `git push origin feature/ui-update`
+    B) `git push --force origin feature/ui-update`  <- Bonne réponse
+    C) `git pull origin feature/ui-update`
+    D) `git fetch origin feature/ui-update`
+
+---
+
+---
+
+Exercice 2 — Réécriture d’historique sur branche publique : squash de commits
+
+---
+
+### Mini cours
+
+Le squash permet de fusionner plusieurs commits locaux en un seul avant de pousser sur la branche distante. Cela rend l’historique plus clair et propre. Lorsqu’on effectue un squash après avoir déjà poussé les commits séparés, il faut re-synchroniser la branche distante avec un push forcé, car l’historique diverge. La commande principale utilisée est `git rebase -i` (interactive) pour choisir les commits à fusionner. Après le squash, il faut résoudre les conflits éventuels et mettre à jour le dépôt distant correctement.
+
+---
+
+### Situation
+
+Vous avez trois commits locaux sur la branche `feature/api-refactor` que vous souhaitez fusionner en un seul avant de mettre à jour le dépôt distant, car vous avez déjà poussé ces commits séparément.
+
+---
+
+### Questions
+
+1. Quelle commande permet d’ouvrir une interface interactive pour fusionner les trois derniers commits ?
+
+    A) `git merge -i HEAD~3`
+    B) `git rebase -i HEAD~3`  <- Bonne réponse
+    C) `git commit --amend`
+    D) `git reset --soft HEAD~3`
+
+2. Dans l’éditeur qui s’ouvre, quelle action doit-on faire pour fusionner les commits en un seul ?
+
+    A) Remplacer `pick` par `edit` sur tous les commits
+    B) Remplacer `pick` par `squash` ou `s` sur les deux derniers commits  <- Bonne réponse
+    C) Supprimer toutes les lignes sauf la première
+    D) Fermer l’éditeur sans modifier
+
+3. Après avoir sauvegardé le squash, vous obtenez un conflit sur le fichier `src/api/endpoints.js`. Quelle est la première commande à utiliser pour marquer la résolution ?
+
+    A) `git commit`
+    B) `git add src/api/endpoints.js`  <- Bonne réponse
+    C) `git merge --continue`
+    D) `git push --force`
+
+4. Quelle commande permet de continuer le rebase après avoir résolu les conflits ?
+
+    A) `git rebase --continue`  <- Bonne réponse
+    B) `git commit --amend`
+    C) `git reset --hard`
+    D) `git push`
+
+5. Enfin, comment poussez-vous la branche `feature/api-refactor` avec l’historique modifié vers le dépôt distant ?
+
+    A) `git push origin feature/api-refactor`
+    B) `git push --force origin feature/api-refactor`  <- Bonne réponse
+    C) `git pull origin feature/api-refactor`
+    D) `git fetch origin feature/api-refactor`
+
+---
+
+---
+
+Exercice 3 — Réécriture d’historique sur branche publique : correction d’un commit poussé avec amend
+
+---
+
+### Mini cours
+
+Le commit amend (`git commit --amend`) modifie le dernier commit localement. Si ce commit a déjà été poussé sur une branche distante publique, il faut synchroniser la branche en forçant la mise à jour du dépôt distant, car l’historique diverge. La procédure classique consiste à récupérer les changements distants, effectuer un rebase si nécessaire, puis forcer le push. Il faut impérativement résoudre les conflits éventuels avant de pousser.
+
+---
+
+### Situation
+
+Vous avez modifié un fichier `docs/README.md` et corrigé le dernier commit avec `git commit --amend`. Ce commit était déjà poussé sur la branche `feature/docs-update`. Vous devez maintenant synchroniser votre dépôt local avec le dépôt distant.
+
+---
+
+### Questions
+
+1. Quelle commande permet de récupérer les dernières modifications distantes sans fusion automatique ?
+
+    A) `git pull origin feature/docs-update`
+    B) `git fetch origin feature/docs-update`  <- Bonne réponse
+    C) `git clone origin feature/docs-update`
+    D) `git checkout feature/docs-update`
+
+2. Quelle commande permet de rebaser votre commit amendé sur la dernière version distante ?
+
+    A) `git merge origin/feature/docs-update`
+    B) `git rebase origin/feature/docs-update`  <- Bonne réponse
+    C) `git reset --hard origin/feature/docs-update`
+    D) `git push --force origin feature/docs-update`
+
+3. Si un conflit apparaît dans `docs/README.md` lors du rebase, que faut-il faire ?
+
+    A) Modifier `docs/README.md` pour résoudre le conflit, puis `git add docs/README.md`  <- Bonne réponse
+    B) Supprimer `docs/README.md`
+    C) Ignorer le conflit
+    D) Annuler le rebase
+
+4. Après résolution et ajout des fichiers, quelle commande poursuit le rebase ?
+
+    A) `git rebase --continue`  <- Bonne réponse
+    B) `git commit`
+    C) `git push`
+    D) `git reset --hard`
+
+5. Quelle commande permet de mettre à jour la branche distante avec l’historique modifié ?
+
+    A) `git push origin feature/docs-update`
+    B) `git push --force origin feature/docs-update`  <- Bonne réponse
+    C) `git pull origin feature/docs-update`
+    D) `git fetch origin feature/docs-update`
+
+---
+
+---
+
+Exercice 4 — Réécriture d’historique sur branche publique : rebase interactif et résolution de conflits
+
+---
+
+### Mini cours
+
+Le rebase interactif (`git rebase -i`) permet de modifier l’historique local en réorganisant, fusionnant ou modifiant les commits. Lorsqu’il est appliqué sur une branche publique déjà poussée, il faut forcer la mise à jour du dépôt distant avec `git push --force`. Pendant un rebase, des conflits peuvent apparaître et doivent être résolus manuellement avant de poursuivre. Cette méthode est puissante mais doit être utilisée avec précaution pour éviter la perte de données.
+
+---
+
+### Situation
+
+Vous souhaitez réorganiser les 4 derniers commits sur la branche `feature/login-flow` pour améliorer la clarté des messages et fusionner certains commits. La branche a déjà été poussée.
+
+---
+
+### Questions
+
+1. Quelle commande permet d’ouvrir l’éditeur pour réorganiser les 4 derniers commits ?
+
+    A) `git rebase -i HEAD~4`  <- Bonne réponse
+    B) `git merge -i HEAD~4`
+    C) `git commit --amend`
+    D) `git reset --soft HEAD~4`
+
+2. Après modification des commits dans l’éditeur (par exemple en remplaçant `pick` par `squash`), quelle commande relance le rebase ?
+
+    A) `git rebase --continue`
+    B) Sauvegarder et fermer l’éditeur  <- Bonne réponse
+    C) `git commit`
+    D) `git push --force`
+
+3. Si un conflit survient dans le fichier `src/login/auth.js` pendant le rebase, que devez-vous faire ?
+
+    A) Résoudre les conflits dans `src/login/auth.js` puis faire `git add src/login/auth.js`  <- Bonne réponse
+    B) Supprimer le fichier
+    C) Annuler le rebase
+    D) Ignorer le conflit
+
+4. Quelle commande permet de poursuivre le rebase après avoir résolu les conflits ?
+
+    A) `git rebase --continue`  <- Bonne réponse
+    B) `git commit --amend`
+    C) `git push`
+    D) `git reset --hard`
+
+5. Pour mettre à jour la branche distante après le rebase, quelle commande utiliser ?
+
+    A) `git push origin feature/login-flow`
+    B) `git push --force origin feature/login-flow`  <- Bonne réponse
+    C) `git pull origin feature/login-flow`
+    D) `git fetch origin feature/login-flow`

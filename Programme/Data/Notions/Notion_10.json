@@ -5,7 +5,8 @@
   "exercices": [
     {
       "numero": 1,
-      "texte": "Mini cours : Le `push --force` (force push) permet de réécrire l’historique sur une branche distante, en remplaçant ses commits. Cette opération est risquée car elle peut écraser les modifications des autres contributeurs. Lorsqu’un collègue a fait un push forcé, votre copie locale peut être en conflit avec la branche distante. Pour synchroniser votre dépôt sans risquer d’écraser le travail distant, il faut généralement faire un reset dur (`git reset --hard origin/branche`). Cela efface vos commits locaux et place votre branche au même état que la branche distante. Soyez très prudent avec cette commande, elle supprime tout travail local non commité. Apprenez à reconnaître quand l’utiliser et dans quel ordre appliquer les commandes pour une récupération sécurisée.\n\nSituation : Votre collègue a fait un `git push --force` sur la branche `feature/login`, ce qui a réécrit l’historique et rendu votre copie locale incompatible. Vous avez des modifications non commitées dans `auth.js` que vous souhaitez d’abord sauvegarder avant de resynchroniser votre branche locale.",
+      "mini_court": "Le `push --force` (force push) permet de réécrire l’historique sur une branche distante, en remplaçant ses commits. Cette opération est risquée car elle peut écraser les modifications des autres contributeurs. Lorsqu’un collègue a fait un push forcé, votre copie locale peut être en conflit avec la branche distante. Pour synchroniser votre dépôt sans risquer d’écraser le travail distant, il faut généralement faire un reset dur (`git reset --hard origin/branche`). Cela efface vos commits locaux et place votre branche au même état que la branche distante. Soyez très prudent avec cette commande, elle supprime tout travail local non commité. Apprenez à reconnaître quand l’utiliser et dans quel ordre appliquer les commandes pour une récupération sécurisée.",
+      "situation": "Votre collègue a fait un `git push --force` sur la branche `feature/login`, ce qui a réécrit l’historique et rendu votre copie locale incompatible. Vous avez des modifications non commitées dans `auth.js` que vous souhaitez d’abord sauvegarder avant de resynchroniser votre branche locale.",
       "questions": [
         {
           "numero": 1,
@@ -66,7 +67,8 @@
     },
     {
       "numero": 2,
-      "texte": "Mini cours : Un push forcé modifie l’historique partagé et peut rendre votre branche locale obsolète ou incohérente. Dans ce cas, la meilleure pratique est souvent de remplacer totalement votre historique local par celui du dépôt distant. Cette opération s’effectue via un `git fetch` suivi d’un `git reset --hard`, qui écrase tout travail local. Avant de faire cela, il faut s’assurer que toutes modifications locales non sauvegardées sont soit commit, soit stashed. Cette méthode garantit la synchronisation complète avec la branche distante après un push force.\n\nSituation : Après un push forcé de votre collègue sur la branche `feature/payment`, votre historique local est devenu incompatible. Vous avez déjà commité des modifications dans `payment.js` mais vous voulez repartir proprement de l’état distant sans perdre votre travail.",
+      "mini_court": "Un push forcé modifie l’historique partagé et peut rendre votre branche locale obsolète ou incohérente. Dans ce cas, la meilleure pratique est souvent de remplacer totalement votre historique local par celui du dépôt distant. Cette opération s’effectue via un `git fetch` suivi d’un `git reset --hard`, qui écrase tout travail local. Avant de faire cela, il faut s’assurer que toutes modifications locales non sauvegardées sont soit commit, soit stashed. Cette méthode garantit la synchronisation complète avec la branche distante après un push force.",
+      "situation": "Après un push forcé de votre collègue sur la branche `feature/payment`, votre historique local est devenu incompatible. Vous avez déjà commité des modifications dans `payment.js` mais vous voulez repartir proprement de l’état distant sans perdre votre travail.",
       "questions": [
         {
           "numero": 1,
@@ -127,7 +129,8 @@
     },
     {
       "numero": 3,
-      "texte": "Mini cours : Lorsqu’un collègue fait un `push --force`, votre branche locale peut diverger et contenir des fichiers modifiés non committés. La commande `git reset --hard` réinitialise la branche locale mais supprime ces modifications non sauvegardées. Pour éviter cette perte, il faut d’abord sauvegarder ces changements via `git stash`. Après avoir fait un reset dur pour synchroniser avec la branche distante, vous pourrez réappliquer les modifications sauvegardées. Cette méthode protège le travail en cours tout en garantissant une branche propre.\n\nSituation : Votre collègue a fait un push forcé sur la branche `feature/api`. Vous avez des changements non committés dans `api_handler.js` que vous ne voulez pas perdre. Vous devez synchroniser votre branche locale sans écraser ces modifications.",
+      "mini_court": "Lorsqu’un collègue fait un `push --force`, votre branche locale peut diverger et contenir des fichiers modifiés non committés. La commande `git reset --hard` réinitialise la branche locale mais supprime ces modifications non sauvegardées. Pour éviter cette perte, il faut d’abord sauvegarder ces changements via `git stash`. Après avoir fait un reset dur pour synchroniser avec la branche distante, vous pourrez réappliquer les modifications sauvegardées. Cette méthode protège le travail en cours tout en garantissant une branche propre.",
+      "situation": "Votre collègue a fait un push forcé sur la branche `feature/api`. Vous avez des changements non committés dans `api_handler.js` que vous ne voulez pas perdre. Vous devez synchroniser votre branche locale sans écraser ces modifications.",
       "questions": [
         {
           "numero": 1,
@@ -188,7 +191,8 @@
     },
     {
       "numero": 4,
-      "texte": "Mini cours : Un push forcé peut provoquer des conflits si vous avez des commits locaux non synchronisés. Pour résoudre ce problème, il faut d’abord sauvegarder vos changements locaux non poussés. Ensuite, récupérer l’état distant, forcer la remise à jour locale, puis réintégrer vos changements. Enfin, il faut s’assurer que le push final n’écrase pas les contributions d’autres développeurs. La maîtrise de cette procédure garantit une collaboration fluide malgré un push forcé.\n\nSituation : Votre collègue a forcé un push sur la branche `feature/ui`. Vous avez des commits locaux dans `ui_component.jsx` que vous n’avez pas encore poussés. Vous devez synchroniser proprement sans perdre vos commits.",
+      "mini_court": "Un push forcé peut provoquer des conflits si vous avez des commits locaux non synchronisés. Pour résoudre ce problème, il faut d’abord sauvegarder vos changements locaux non poussés. Ensuite, récupérer l’état distant, forcer la remise à jour locale, puis réintégrer vos changements. Enfin, il faut s’assurer que le push final n’écrase pas les contributions d’autres développeurs. La maîtrise de cette procédure garantit une collaboration fluide malgré un push forcé.",
+      "situation": "Votre collègue a forcé un push sur la branche `feature/ui`. Vous avez des commits locaux dans `ui_component.jsx` que vous n’avez pas encore poussés. Vous devez synchroniser proprement sans perdre vos commits.",
       "questions": [
         {
           "numero": 1,

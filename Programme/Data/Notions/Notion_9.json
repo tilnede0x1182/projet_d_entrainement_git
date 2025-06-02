@@ -5,7 +5,8 @@
   "exercices": [
     {
       "numero": 1,
-      "texte": "Mini cours : La réécriture d’historique Git (avec `git rebase`, `git commit --amend`, ou `git squash`) permet de nettoyer ou modifier les commits avant publication. Cependant, si cette réécriture est effectuée sur une branche déjà poussée sur un dépôt partagé, cela crée une divergence entre l’historique local et celui du dépôt distant. Pour synchroniser, il faut mettre à jour sa copie locale et parfois forcer le push (`git push --force`). Une mauvaise manipulation peut entraîner la perte de commits. Le rebase réécrit les commits en les repositionnant, tandis que `commit --amend` modifie le dernier commit, et le squash fusionne plusieurs commits en un seul. Il est impératif d’être prudent et de bien comprendre ces commandes avant utilisation sur une branche publique.\n\nSituation : Vous avez modifié le dernier commit localement avec `git commit --amend` pour corriger un message. Cependant, ce commit avait déjà été poussé sur la branche `feature/ui-update`. Vous devez synchroniser votre branche locale avec le dépôt distant sans perdre les modifications.",
+      "mini_court": "La réécriture d’historique Git (avec `git rebase`, `git commit --amend`, ou `git squash`) permet de nettoyer ou modifier les commits avant publication. Cependant, si cette réécriture est effectuée sur une branche déjà poussée sur un dépôt partagé, cela crée une divergence entre l’historique local et celui du dépôt distant. Pour synchroniser, il faut mettre à jour sa copie locale et parfois forcer le push (`git push --force`). Une mauvaise manipulation peut entraîner la perte de commits. Le rebase réécrit les commits en les repositionnant, tandis que `commit --amend` modifie le dernier commit, et le squash fusionne plusieurs commits en un seul. Il est impératif d’être prudent et de bien comprendre ces commandes avant utilisation sur une branche publique.",
+      "situation": "Vous avez modifié le dernier commit localement avec `git commit --amend` pour corriger un message. Cependant, ce commit avait déjà été poussé sur la branche `feature/ui-update`. Vous devez synchroniser votre branche locale avec le dépôt distant sans perdre les modifications.",
       "questions": [
         {
           "numero": 1,
@@ -66,7 +67,8 @@
     },
     {
       "numero": 2,
-      "texte": "Mini cours : Le squash permet de fusionner plusieurs commits locaux en un seul avant de pousser sur la branche distante. Cela rend l’historique plus clair et propre. Lorsqu’on effectue un squash après avoir déjà poussé les commits séparés, il faut re-synchroniser la branche distante avec un push forcé, car l’historique diverge. La commande principale utilisée est `git rebase -i` (interactive) pour choisir les commits à fusionner. Après le squash, il faut résoudre les conflits éventuels et mettre à jour le dépôt distant correctement.\n\nSituation : Vous avez trois commits locaux sur la branche `feature/api-refactor` que vous souhaitez fusionner en un seul avant de mettre à jour le dépôt distant, car vous avez déjà poussé ces commits séparément.",
+      "mini_court": "Le squash permet de fusionner plusieurs commits locaux en un seul avant de pousser sur la branche distante. Cela rend l’historique plus clair et propre. Lorsqu’on effectue un squash après avoir déjà poussé les commits séparés, il faut re-synchroniser la branche distante avec un push forcé, car l’historique diverge. La commande principale utilisée est `git rebase -i` (interactive) pour choisir les commits à fusionner. Après le squash, il faut résoudre les conflits éventuels et mettre à jour le dépôt distant correctement.",
+      "situation": "Vous avez trois commits locaux sur la branche `feature/api-refactor` que vous souhaitez fusionner en un seul avant de mettre à jour le dépôt distant, car vous avez déjà poussé ces commits séparément.",
       "questions": [
         {
           "numero": 1,
@@ -127,7 +129,8 @@
     },
     {
       "numero": 3,
-      "texte": "Mini cours : Le commit amend (`git commit --amend`) modifie le dernier commit localement. Si ce commit a déjà été poussé sur une branche distante publique, il faut synchroniser la branche en forçant la mise à jour du dépôt distant, car l’historique diverge. La procédure classique consiste à récupérer les changements distants, effectuer un rebase si nécessaire, puis forcer le push. Il faut impérativement résoudre les conflits éventuels avant de pousser.\n\nSituation : Vous avez modifié un fichier `docs/README.md` et corrigé le dernier commit avec `git commit --amend`. Ce commit était déjà poussé sur la branche `feature/docs-update`. Vous devez maintenant synchroniser votre dépôt local avec le dépôt distant.",
+      "mini_court": "Le commit amend (`git commit --amend`) modifie le dernier commit localement. Si ce commit a déjà été poussé sur une branche distante publique, il faut synchroniser la branche en forçant la mise à jour du dépôt distant, car l’historique diverge. La procédure classique consiste à récupérer les changements distants, effectuer un rebase si nécessaire, puis forcer le push. Il faut impérativement résoudre les conflits éventuels avant de pousser.",
+      "situation": "Vous avez modifié un fichier `docs/README.md` et corrigé le dernier commit avec `git commit --amend`. Ce commit était déjà poussé sur la branche `feature/docs-update`. Vous devez maintenant synchroniser votre dépôt local avec le dépôt distant.",
       "questions": [
         {
           "numero": 1,
@@ -188,7 +191,8 @@
     },
     {
       "numero": 4,
-      "texte": "Mini cours : Le rebase interactif (`git rebase -i`) permet de modifier l’historique local en réorganisant, fusionnant ou modifiant les commits. Lorsqu’il est appliqué sur une branche publique déjà poussée, il faut forcer la mise à jour du dépôt distant avec `git push --force`. Pendant un rebase, des conflits peuvent apparaître et doivent être résolus manuellement avant de poursuivre. Cette méthode est puissante mais doit être utilisée avec précaution pour éviter la perte de données.\n\nSituation : Vous souhaitez réorganiser les 4 derniers commits sur la branche `feature/login-flow` pour améliorer la clarté des messages et fusionner certains commits. La branche a déjà été poussée.",
+      "mini_court": "Le rebase interactif (`git rebase -i`) permet de modifier l’historique local en réorganisant, fusionnant ou modifiant les commits. Lorsqu’il est appliqué sur une branche publique déjà poussée, il faut forcer la mise à jour du dépôt distant avec `git push --force`. Pendant un rebase, des conflits peuvent apparaître et doivent être résolus manuellement avant de poursuivre. Cette méthode est puissante mais doit être utilisée avec précaution pour éviter la perte de données.",
+      "situation": "Vous souhaitez réorganiser les 4 derniers commits sur la branche `feature/login-flow` pour améliorer la clarté des messages et fusionner certains commits. La branche a déjà été poussée.",
       "questions": [
         {
           "numero": 1,

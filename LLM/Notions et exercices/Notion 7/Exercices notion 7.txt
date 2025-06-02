@@ -1,0 +1,281 @@
+# Exercice 1 - Notion : Renommage concurrent
+
+---
+
+## Cours : Renommage concurrent et conflits Git
+
+Le renommage concurrent survient lorsque deux développeurs modifient le nom d’un même fichier différemment ou qu’un modifie un fichier que l’autre renomme. Git peut alors générer un conflit, car il ne sait pas quelle version garder. Ce type de conflit nécessite souvent une intervention manuelle pour choisir ou fusionner les noms et contenus. La résolution passe par un pull, une identification des conflits, une correction manuelle puis un commit avant le push final. Maîtriser cette notion est clé pour éviter la perte de données et maintenir un historique propre.
+
+---
+
+## Situation
+
+Alice a renommé le fichier `rapport.txt` en `rapport_final.txt` et a pushé sur la branche principale. Bob, qui avait modifié le contenu de `rapport.txt` sans le renommer, tente maintenant de synchroniser sa branche locale.
+
+---
+
+### Question 1
+
+Bob souhaite d’abord récupérer les dernières modifications de la branche principale. Quelle commande doit-il utiliser ?
+
+ A) `git push origin main`
+ B) `git fetch origin main`
+ C) `git pull origin main` <- Bonne réponse
+ D) `git merge origin/main`
+
+---
+
+### Question 2
+
+Après le pull, Git signale un conflit sur les fichiers `rapport.txt` et `rapport_final.txt`. Quelle commande Bob doit-il utiliser pour voir les fichiers en conflit ?
+
+ A) `git status` <- Bonne réponse
+ B) `git diff`
+ C) `git log`
+ D) `git branch`
+
+---
+
+### Question 3
+
+Bob édite les fichiers en conflit pour choisir la version finale. Une fois cela fait, quelle commande doit-il utiliser pour indiquer que le conflit est résolu ?
+
+ A) `git add rapport_final.txt` <- Bonne réponse
+ B) `git commit -m "fix conflict"`
+ C) `git reset rapport_final.txt`
+ D) `git checkout -- rapport_final.txt`
+
+---
+
+### Question 4
+
+Pour enregistrer définitivement la résolution du conflit, quelle commande doit être utilisée ensuite ?
+
+ A) `git commit -m "Résolution conflit renommage rapport"` <- Bonne réponse
+ B) `git push origin main`
+ C) `git merge --continue`
+ D) `git rebase --continue`
+
+---
+
+### Question 5
+
+Enfin, Bob veut envoyer ses modifications résolues sur le dépôt distant. Quelle est la commande correcte ?
+
+ A) `git push origin main` <- Bonne réponse
+ B) `git pull origin main`
+ C) `git fetch origin main`
+ D) `git merge origin/main`
+
+---
+
+# Exercice 2 - Notion : Renommage concurrent
+
+---
+
+## Cours : Résolution des conflits de renommage Git
+
+Lorsqu’un fichier est renommé par un développeur et modifié ou renommé différemment par un autre, Git génère un conflit car il ne peut pas fusionner automatiquement les changements sur les chemins. La résolution demande de comparer les versions, choisir la bonne arborescence et confirmer manuellement les choix via `git add` et `git commit`. Bien comprendre la gestion des conflits de chemins est indispensable pour collaborer efficacement.
+
+---
+
+## Situation
+
+Claire a renommé le fichier `presentation.ppt` en `final_presentation.ppt` et poussé sur la branche principale. David a renommé ce même fichier en `presentation_v2.ppt` et a modifié son contenu localement.
+
+---
+
+### Question 1
+
+David veut récupérer les dernières modifications de la branche principale pour commencer la résolution. Quelle commande doit-il utiliser ?
+
+ A) `git pull origin main` <- Bonne réponse
+ B) `git fetch origin main`
+ C) `git checkout main`
+ D) `git clone <url>`
+
+---
+
+### Question 2
+
+Git indique un conflit sur le fichier renommé. Quelle commande permet à David d’afficher la liste des fichiers en conflit ?
+
+ A) `git diff --name-only --diff-filter=U` <- Bonne réponse
+ B) `git status`
+ C) `git log --conflicts`
+ D) `git show`
+
+---
+
+### Question 3
+
+David décide de garder la version de Claire (`final_presentation.ppt`) et supprimer la sienne. Quelle commande doit-il exécuter pour valider ce choix ?
+
+ A) `git rm presentation_v2.ppt` <- Bonne réponse
+ B) `git add final_presentation.ppt`
+ C) `git checkout -- final_presentation.ppt`
+ D) `git reset presentation_v2.ppt`
+
+---
+
+### Question 4
+
+Après avoir résolu le conflit, David doit enregistrer ses modifications dans l’index. Quelle commande réalise cette étape ?
+
+ A) `git add final_presentation.ppt` <- Bonne réponse
+ B) `git commit -m "fix conflit renommage"`
+ C) `git merge --continue`
+ D) `git reset HEAD`
+
+---
+
+### Question 5
+
+Enfin, quelle commande David doit-il utiliser pour envoyer ses corrections vers le dépôt distant ?
+
+ A) `git push origin main` <- Bonne réponse
+ B) `git pull origin main`
+ C) `git fetch origin main`
+ D) `git merge origin/main`
+
+---
+
+# Exercice 3 - Notion : Renommage concurrent
+
+---
+
+## Cours : Gestion avancée des conflits de renommage Git
+
+Les conflits de renommage peuvent aussi se compliquer si les deux contributeurs ont modifié simultanément le contenu des fichiers renommés. Dans ce cas, après avoir choisi quel fichier garder ou fusionner, il est souvent nécessaire d’éditer le contenu pour intégrer les changements. La résolution combine donc gestion des chemins et résolution classique de conflits dans le contenu.
+
+---
+
+## Situation
+
+Émilie a renommé le fichier `guide_utilisateur.md` en `guide_final.md` et a poussé ses changements. François a modifié `guide_utilisateur.md` localement sans le renommer.
+
+---
+
+### Question 1
+
+François commence par récupérer les dernières modifications de la branche principale. Quelle commande doit-il taper ?
+
+ A) `git fetch origin main`
+ B) `git pull origin main` <- Bonne réponse
+ C) `git merge origin/main`
+ D) `git rebase origin/main`
+
+---
+
+### Question 2
+
+Git signale un conflit de renommage et contenu sur le fichier. Quelle commande permet de visualiser précisément les conflits dans le contenu ?
+
+ A) `git status`
+ B) `git diff` <- Bonne réponse
+ C) `git log`
+ D) `git branch`
+
+---
+
+### Question 3
+
+François ouvre `guide_final.md`, résout les conflits manuellement dans le contenu. Quelle commande doit-il utiliser ensuite pour indiquer que le fichier est prêt ?
+
+ A) `git reset guide_final.md`
+ B) `git add guide_final.md` <- Bonne réponse
+ C) `git commit -m "résolution"`
+ D) `git checkout -- guide_final.md`
+
+---
+
+### Question 4
+
+Après avoir ajouté le fichier, quelle commande permet de valider la résolution des conflits dans l’historique local ?
+
+ A) `git commit -m "Résolution conflit renommage et contenu guide"` <- Bonne réponse
+ B) `git push origin main`
+ C) `git merge --continue`
+ D) `git rebase --continue`
+
+---
+
+### Question 5
+
+Enfin, François veut synchroniser son travail avec le dépôt distant. Quelle commande doit-il utiliser ?
+
+ A) `git fetch origin main`
+ B) `git push origin main` <- Bonne réponse
+ C) `git pull origin main`
+ D) `git merge origin/main`
+
+---
+
+# Exercice 4 - Notion : Renommage concurrent
+
+---
+
+## Cours : Résolution des conflits complexes de renommage avec suppression
+
+Lorsqu’un fichier est renommé par un contributeur et supprimé par un autre, Git rencontre un conflit difficile à résoudre automatiquement. Il faut choisir soit de conserver la suppression, soit d’accepter le renommage et les modifications. Cette situation demande une analyse précise des intentions et un usage rigoureux des commandes `git rm`, `git add` et `git commit` pour finaliser la résolution.
+
+---
+
+## Situation
+
+Sophie a renommé le fichier `rapport_financier.csv` en `rapport_2025.csv` et a poussé. Thomas a supprimé ce fichier localement sans le renommer.
+
+---
+
+### Question 1
+
+Thomas veut récupérer les dernières modifications. Quelle commande doit-il utiliser ?
+
+ A) `git pull origin main` <- Bonne réponse
+ B) `git fetch origin main`
+ C) `git merge origin/main`
+ D) `git reset --hard origin/main`
+
+---
+
+### Question 2
+
+Git signale un conflit sur `rapport_financier.csv` et `rapport_2025.csv`. Quelle commande permet de voir les fichiers en conflit ?
+
+ A) `git status` <- Bonne réponse
+ B) `git diff`
+ C) `git log`
+ D) `git branch`
+
+---
+
+### Question 3
+
+Thomas choisit de conserver la suppression (donc garder le fichier supprimé). Quelle commande doit-il utiliser pour valider ce choix ?
+
+ A) `git rm rapport_2025.csv` <- Bonne réponse
+ B) `git add rapport_2025.csv`
+ C) `git checkout -- rapport_2025.csv`
+ D) `git reset rapport_2025.csv`
+
+---
+
+### Question 4
+
+Pour enregistrer la résolution, quelle commande doit être utilisée ensuite ?
+
+ A) `git commit -m "Résolution conflit : suppression conservée"` <- Bonne réponse
+ B) `git push origin main`
+ C) `git merge --continue`
+ D) `git rebase --continue`
+
+---
+
+### Question 5
+
+Pour envoyer les modifications vers le dépôt distant, quelle commande Thomas doit-il exécuter ?
+
+ A) `git push origin main` <- Bonne réponse
+ B) `git pull origin main`
+ C) `git fetch origin main`
+ D) `git merge origin/main`

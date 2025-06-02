@@ -1,0 +1,180 @@
+Excellent, maintenant, il faut un programme ruby qui fait la chose suivant :
+
+il va afficher un menu principal qui dit :
+
+### Menu principal :
+1 : Jouer
+2 : Quitter
+? =
+
+il attendra un réponse qui doit etre un entier entre 1 et 2 et sinon, remontrera le menu à l'infini, avec le message, veuillez entre un entier entre 1 et 2
+créer une fonction séparée pour entrer un entier en a et b, "? = " sera toujours utilisé pour les menu
+
+le programma va aller dans ../Data/Notions, à partir de son path à lui (au fichier ruby contenant le programme)
+ et va choisir la notions 1 à 10, selon la volonté de l'utilisateur
+
+-> lorsque l'utilisateur va aller dans "Jouer" un 2 menu va s'afficher  :
+
+# Menu Notions :
+1 : Branches divergentes (merge avec h.... (les 3 petit points ne doivent pas etre affiche l'eintitulé complet doit etre affiche sans "...")
+2 : Intiulé 2
+3 : Intitulé 3
+... (tous les intitulés doivent etre affichés)
+? =
+
+Ce menu va lister les notions avec leur intitulé et le nombre d'exrcices -> le nombre de botions sera déterminé par une recherche des fichiers Notion_x.json dans le dossier ../Data/Notions et les itotulé seront lus dans chacun des fichier "notion": "....."
+
+si l'utilisateur clique sur la notion :
+=> entre un cjhiffre entre 1 et 10 (merme princpaue que pour le menu principal en as d'entrée incorrecte et aussi poru tous les autres menu du programme -> utilisation de la meme fonctions aussi (DRY))
+
+ensuite le programme va crer dans ../Data/Parties un fichier Partie_timestamp.txt qui conservera les informations sur la partie -> notions choisies, réponses choise pour cahque question, score pour chaque notion à la fin de la partie
+
+une fonction calcule score s'activera dès que la partie sera terminée :
+
+donc, pour résumé, dès que le joueur choisie une des notions dans le menu notions, le programme va lire le json associé, et va poser les questions, avecle mini cours au début, puis, pour chaque question son intitulé, et listera les proposition de a à d, avec un ? = à la fin pour que le joueur puisse répondre, à chaque répnpse du joueur, le fichier de sauvegarde est acutlaisé avec la réponse donnée par le jouer (pour que les donnée ne soient jamais perdure), ajoutons un menu "Jeu" :
+
+## Menu Jeu :
+1 : Nouvelle partie
+2 : Parties sauvagrdée
+? =
+
+si le jouer va dans "partie sauvagrdées", il va avoir une liste des parties avec le timastamp, classé de la plus neuve à la pls vielle sous forme de menu avec des chiffre toujours :
+
+1 : Partie timstemamp
+2 : Partie timstemamp
+...
+? =
+
+et l prtie reprendra à l'dnroit ou elle s'est arrtéte
+
+si la partie était finie, elle n'apparait pas dans le menu partie sauvagrdées"
+
+par contre, dans menu principal, on va ajouter "Scores" et si l'utilsiateur va dans socre
+
+le programma lire les parties terminé et son score, et va afficher la liste des parties avec leur score, comme ceci :
+
+partie timesatmp : <score>
+partie timesatmp : <score>
+partie timesatmp : <score>
+
+avec à la fin :
+
+Pour revenir au menu pricnipal, taper 1 :
+
+? =  le jour devrai entrer 1 et valider pour revenir au menu prcinipale, pas de détéection de touches du claver, just un bon vieu input
+
+à la fin d'un jeu, lorsque le joueur a répondu à tout les question, le programme lui indquera son score et les réppnoses à chaque question, en répétant la question et la propositoij bonne
+
+Question 3 : blablalbalbala
+D : blablablablabl
+
+ou
+Question 2 : blablalbalbala
+C : blablablablabl
+
+de cette maniere.
+
+Voilà, jhe crois que c'est tout
+____
+
+Résumé :
+
+### Spécification condensée (sans rien omettre)
+
+#### 1. Contexte & chemins
+
+* **Script Ruby console unique.**
+* Travaille **toujours en chemins relatifs** :
+  `../Data/Notions` et `../Data/Parties` sont résolus **depuis le répertoire du fichier Ruby** (`__dir__`).
+
+#### 2. Fonction utilitaire indispensable
+
+```ruby
+def ask_int(min, max, prompt='? = ')
+  loop do
+    print prompt
+    i = Integer(gets) rescue nil
+    return i if i && i.between?(min, max)
+    puts "Veuillez entrer un entier entre #{min} et #{max}"
+  end
+end
+```
+
+> Utilisée **partout** pour éviter la répétition (DRY).
+
+#### 3. Menu Principal
+
+```
+### Menu principal :
+1 : Jouer
+2 : Scores
+3 : Quitter
+? =
+```
+
+* Boucle jusqu’à saisie 1-3.
+
+#### 4. Arborescence « Jouer »
+
+```
+## Menu Jeu :
+1 : Nouvelle partie
+2 : Parties sauvegardées
+? =
+```
+
+##### 4.1 Nouvelle partie
+
+1. Scanne `Notions/Notion_*.json`.
+2. Construit le **Menu Notions** (ordre numérique, intitulés complets, nombre d’exercices) ; ex. :
+
+   ```
+   # Menu Notions :
+   1 : Branches divergentes (merge avec historique) – 12 ex.
+   2 : ...
+   ? =
+   ```
+3. Après choix :
+
+   * Affiche mini-cours (clé `"cours"` si présente).
+   * Pour chaque question : intitulé + choix A-D → `ask_int(1,4)`.
+   * **Sauvegarde immédiate** dans `Partie_<timestamp>.txt` (réponses, notion, état courant).
+4. Fin de partie : calcule score, marque la partie « terminée », montre le récap :
+
+```
+Question 3 : …            D : bonne réponse
+Question 2 : …            C : bonne réponse
+Score : 7 / 10
+```
+
+##### 4.2 Parties sauvegardées
+
+* Liste **seulement** les fichiers non terminés, du plus récent au plus ancien :
+
+  ```
+  1 : Partie 2025-06-02_12-30-45
+  2 : …
+  ? =
+  ```
+* Reprend la partie à l’endroit exact.
+
+#### 5. Écran Scores
+
+* Parcourt les parties **terminées**, affiche :
+
+  ```
+  partie 2025-06-01_10-00-00 : 7/10
+  partie …
+  ```
+* Puis :
+
+  ```
+  Pour revenir au menu principal, taper 1 :
+  ? =
+  ```
+
+#### 6. Règles générales
+
+* Prompt unique `? =` ; **pas** de détection clavier, uniquement `gets`.
+* Tous les menus rebouclent tant qu’une entrée valide n’est pas reçue.
+* Aucune donnée perdue : écriture après **chaque** réponse.

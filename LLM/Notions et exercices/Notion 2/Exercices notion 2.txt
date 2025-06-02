@@ -1,0 +1,248 @@
+Voici le fichier complet avec les bonnes réponses indiquées par une flèche "<- Bonne réponse" sur la même ligne, pour chaque question :
+
+---
+
+Exercice 1 - Notion : Push simultané sur la même branche (rejet push, pull obligatoire)
+
+---
+
+# Mini cours :
+
+Lorsque plusieurs développeurs modifient la même branche en parallèle, il est possible qu’un push soit rejeté car la branche distante a évolué depuis le dernier pull local. Dans ce cas, il faut impérativement récupérer les modifications distantes avec `git pull`, résoudre les conflits éventuels, puis refaire un push. Cette séquence garantit la cohérence de l’historique et évite d’écraser le travail des autres. Le rejet de push est indiqué par un message `non fast-forward`.
+
+---
+
+# Situation :
+
+Vous travaillez sur la branche `main` du projet. Votre collègue vient de pousser des modifications sur le fichier `config/settings.yml`. Vous avez aussi modifié ce fichier localement et vous essayez de pousser, mais votre push est rejeté.
+
+---
+
+### Question 1 : Quelle commande utilisez-vous d’abord pour synchroniser votre branche locale avec la branche distante ?
+
+A) `git push origin main`
+B) `git pull origin main` <- Bonne réponse
+C) `git fetch origin main`
+D) `git merge origin/main`
+
+---
+
+### Question 2 : Après la commande précédente, vous constatez un conflit dans `config/settings.yml`. Que faites-vous ?
+
+A) Ignorer le conflit et refaire un push
+B) Ouvrir `config/settings.yml` et résoudre manuellement les conflits (<<<<< >>>>>) <- Bonne réponse
+C) Supprimer le fichier local
+D) Faire un `git reset --hard origin/main`
+
+---
+
+### Question 3 : Après avoir résolu les conflits dans `config/settings.yml`, quelle commande devez-vous taper ?
+
+A) `git commit -m "résolution conflit settings.yml"`
+B) `git add config/settings.yml` <- Bonne réponse
+C) `git status`
+D) `git reset config/settings.yml`
+
+---
+
+### Question 4 : Quelle est la prochaine commande pour enregistrer la résolution du conflit ?
+
+A) `git commit -m "résolution conflit settings.yml"` <- Bonne réponse
+B) `git add config/settings.yml`
+C) `git push origin main`
+D) `git merge origin/main`
+
+---
+
+### Question 5 : Après avoir commité la résolution, quelle commande finale permet d’envoyer vos modifications sur le dépôt distant ?
+
+A) `git push origin main` <- Bonne réponse
+B) `git pull origin main`
+C) `git fetch origin`
+D) `git merge origin/main`
+
+---
+
+Exercice 2 - Notion : Push simultané sur la même branche (rejet push, pull obligatoire)
+Situation avec modifications sur un fichier source
+
+---
+
+# Mini cours :
+
+Quand plusieurs développeurs modifient un même fichier source sur la même branche, un push peut être refusé si le dépôt distant a changé entretemps. Pour éviter de perdre du travail, il faut toujours récupérer les dernières modifications avec `git pull`, résoudre les conflits s’il y en a, puis pousser à nouveau. Cette méthode assure un historique propre et partagé.
+
+---
+
+# Situation :
+
+Vous travaillez sur la branche `feature/api` et avez modifié `src/api/user_controller.rb`. Votre collègue a déjà poussé des changements sur ce même fichier. Votre push est rejeté.
+
+---
+
+### Question 1 : Quelle commande devez-vous exécuter en premier ?
+
+A) `git pull origin feature/api` <- Bonne réponse
+B) `git push origin feature/api`
+C) `git merge origin/feature/api`
+D) `git fetch origin feature/api`
+
+---
+
+### Question 2 : Après le pull, git détecte un conflit dans `src/api/user_controller.rb`. Quelle est la bonne démarche ?
+
+A) Ouvrir `src/api/user_controller.rb` et corriger les sections en conflit (<<<<< >>>>>) <- Bonne réponse
+B) Supprimer le fichier local
+C) Ignorer le conflit et refaire un push
+D) Faire `git reset --hard origin/feature/api`
+
+---
+
+### Question 3 : Après correction manuelle, quelle commande marque la résolution du conflit ?
+
+A) `git add src/api/user_controller.rb` <- Bonne réponse
+B) `git commit -m "fix conflit user_controller.rb"`
+C) `git status`
+D) `git push origin feature/api`
+
+---
+
+### Question 4 : Quelle commande permet de créer le commit de résolution ?
+
+A) `git commit -m "fix conflit user_controller.rb"` <- Bonne réponse
+B) `git add src/api/user_controller.rb`
+C) `git push origin feature/api`
+D) `git merge origin/feature/api`
+
+---
+
+### Question 5 : Quelle est la dernière commande à taper pour pousser vos changements ?
+
+A) `git push origin feature/api` <- Bonne réponse
+B) `git pull origin feature/api`
+C) `git fetch origin`
+D) `git reset --hard origin/feature/api`
+
+---
+
+Exercice 3 - Notion : Push simultané sur la même branche (rejet push, pull obligatoire)
+Situation avec plusieurs fichiers modifiés
+
+---
+
+# Mini cours :
+
+Lorsqu’une branche évolue sur plusieurs fichiers en parallèle, un push peut être rejeté si le dépôt distant a été mis à jour avant votre push. Pour résoudre ce problème, il faut impérativement faire un `git pull` pour récupérer toutes les modifications, résoudre tous les conflits sur les fichiers concernés, puis faire un commit de résolution avant de pouvoir pousser à nouveau. Cette procédure garantit la cohérence de l’historique et évite la perte de données.
+
+---
+
+# Situation :
+
+Vous travaillez sur la branche `develop` et avez modifié les fichiers `app/models/user.rb` et `app/views/user/show.html.erb`. Votre collègue a déjà poussé des modifications sur ces deux fichiers. Votre push est rejeté.
+
+---
+
+### Question 1 : Quelle commande doit-on taper en premier pour synchroniser sa branche locale ?
+
+A) `git fetch origin develop`
+B) `git pull origin develop` <- Bonne réponse
+C) `git push origin develop`
+D) `git merge origin/develop`
+
+---
+
+### Question 2 : Git détecte des conflits dans `app/models/user.rb` et `app/views/user/show.html.erb`. Quelle est la bonne action ?
+
+A) Ouvrir chaque fichier et résoudre manuellement les conflits (<<<<< >>>>>) <- Bonne réponse
+B) Supprimer un des fichiers en conflit
+C) Ignorer les conflits et refaire un push
+D) Faire un `git reset --hard origin/develop`
+
+---
+
+### Question 3 : Après avoir corrigé tous les conflits, quelle commande faut-il utiliser pour préparer la validation ?
+
+A) `git add app/models/user.rb app/views/user/show.html.erb` <- Bonne réponse
+B) `git commit -m "résolution conflits"`
+C) `git push origin develop`
+D) `git status`
+
+---
+
+### Question 4 : Quelle commande permet de valider la résolution des conflits ?
+
+A) `git commit -m "résolution conflits"` <- Bonne réponse
+B) `git add app/models/user.rb app/views/user/show.html.erb`
+C) `git push origin develop`
+D) `git merge origin/develop`
+
+---
+
+### Question 5 : Quelle commande finalise la mise à jour sur le dépôt distant ?
+
+A) `git push origin develop` <- Bonne réponse
+B) `git pull origin develop`
+C) `git fetch origin`
+D) `git reset --hard origin/develop`
+
+---
+
+Exercice 4 - Notion : Push simultané sur la même branche (rejet push, pull obligatoire)
+Situation avec conflit sur un fichier de configuration JSON
+
+---
+
+# Mini cours :
+
+Les fichiers de configuration sont souvent modifiés par plusieurs développeurs. Un push peut être rejeté si la branche distante a changé entre temps. La bonne pratique est de faire un `git pull` pour récupérer les changements, résoudre les conflits dans le fichier concerné, puis valider et pousser vos modifications. Cela évite d’écraser le travail des autres et maintient la cohérence du projet.
+
+---
+
+# Situation :
+
+Vous travaillez sur la branche `release` et avez modifié le fichier `config/app_config.json`. Un collègue a déjà poussé une version différente de ce fichier. Votre push est refusé.
+
+---
+
+### Question 1 : Quelle commande permet de récupérer les dernières modifications distantes ?
+
+A) `git push origin release`
+B) `git pull origin release` <- Bonne réponse
+C) `git fetch origin release`
+D) `git merge origin/release`
+
+---
+
+### Question 2 : Vous détectez un conflit dans `config/app_config.json`. Que devez-vous faire ?
+
+A) Ouvrir `config/app_config.json` et résoudre manuellement le conflit (<<<<< >>>>>) <- Bonne réponse
+B) Supprimer `config/app_config.json` localement
+C) Faire un `git reset --hard origin/release`
+D) Ignorer le conflit et refaire un push
+
+---
+
+### Question 3 : Après résolution manuelle, quelle commande sert à indiquer que le conflit est résolu ?
+
+A) `git add config/app_config.json` <- Bonne réponse
+B) `git commit -m "résolution conflit app_config.json"`
+C) `git push origin release`
+D) `git status`
+
+---
+
+### Question 4 : Quelle commande crée le commit de résolution du conflit ?
+
+A) `git commit -m "résolution conflit app_config.json"` <- Bonne réponse
+B) `git add config/app_config.json`
+C) `git push origin release`
+D) `git merge origin/release`
+
+---
+
+### Question 5 : Quelle commande finalise la synchronisation avec le dépôt distant ?
+
+A) `git push origin release` <- Bonne réponse
+B) `git pull origin release`
+C) `git fetch origin`
+D) `git reset --hard origin/release`

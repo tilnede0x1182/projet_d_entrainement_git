@@ -5,7 +5,8 @@
   "exercices": [
     {
       "numero": 1,
-      "texte": "Cours : Lorsqu’on travaille en équipe sur une même branche, il arrive que deux développeurs fassent des commits différents sans synchroniser leurs dépôts. Cela crée des branches divergentes avec des historiques différents. Pour intégrer ces modifications, Git exige un merge ou un rebase qui peut générer des conflits. La bonne pratique est de toujours puller avant de push pour éviter ce cas. La résolution passe par un pull suivi d’une fusion manuelle des conflits, puis un commit final.\n\nSituation : Vous travaillez sur la branche `feature-auth`. Vous avez fait des commits locaux sur le fichier `auth_service.py`. Entre-temps, votre collègue a poussé des commits sur la même branche qui modifient aussi ce fichier. Vous tentez de push, mais Git rejette car vos branches ont divergé.",
+      "mini_court": "Cours : Lorsqu’on travaille en équipe sur une même branche, il arrive que deux développeurs fassent des commits différents sans synchroniser leurs dépôts. Cela crée des branches divergentes avec des historiques différents. Pour intégrer ces modifications, Git exige un merge ou un rebase qui peut générer des conflits. La bonne pratique est de toujours puller avant de push pour éviter ce cas. La résolution passe par un pull suivi d’une fusion manuelle des conflits, puis un commit final.",
+      "situation": "Vous travaillez sur la branche `feature-auth`. Vous avez fait des commits locaux sur le fichier `auth_service.py`. Entre-temps, votre collègue a poussé des commits sur la même branche qui modifient aussi ce fichier. Vous tentez de push, mais Git rejette car vos branches ont divergé.",
       "questions": [
         {
           "numero": 1,
@@ -66,7 +67,8 @@
     },
     {
       "numero": 2,
-      "texte": "Cours : Quand deux développeurs modifient la même branche sans synchronisation, leurs historiques divergent. Git bloque le push pour éviter d’écraser les changements distants. La résolution passe par un pull suivi d’une fusion manuelle, en traitant les conflits dans les fichiers concernés. Il est important de bien valider chaque étape : récupérer, résoudre, ajouter, committer, et enfin pousser.\n\nSituation : Vous travaillez sur la branche `feature-api`. Vous avez modifié le fichier `api_routes.js` et fait plusieurs commits locaux. Votre collègue a poussé des modifications sur cette même branche, aussi dans `api_routes.js`. Votre push est refusé.",
+      "mini_court": "Cours : Quand deux développeurs modifient la même branche sans synchronisation, leurs historiques divergent. Git bloque le push pour éviter d’écraser les changements distants. La résolution passe par un pull suivi d’une fusion manuelle, en traitant les conflits dans les fichiers concernés. Il est important de bien valider chaque étape : récupérer, résoudre, ajouter, committer, et enfin pousser.",
+      "situation": "Vous travaillez sur la branche `feature-api`. Vous avez modifié le fichier `api_routes.js` et fait plusieurs commits locaux. Votre collègue a poussé des modifications sur cette même branche, aussi dans `api_routes.js`. Votre push est refusé.",
       "questions": [
         {
           "numero": 1,
@@ -127,7 +129,8 @@
     },
     {
       "numero": 3,
-      "texte": "Cours : Lors d’une divergence de branches, il est crucial de bien comprendre les étapes de synchronisation : pull, résolution des conflits, ajout des fichiers, commit et push. Chaque étape permet à Git de suivre précisément les modifications et d’intégrer correctement l’historique de chacun. La patience et la rigueur dans la résolution des conflits évitent la perte de données.\n\nSituation : Vous travaillez sur la branche `feature-ui`. Vous avez modifié le fichier `dashboard.html` et effectué plusieurs commits. Entretemps, votre collègue a poussé des modifications sur la même branche, touchant aussi `dashboard.html`. Votre push est rejeté.",
+      "mini_court": "Cours : Lors d’une divergence de branches, il est crucial de bien comprendre les étapes de synchronisation : pull, résolution des conflits, ajout des fichiers, commit et push. Chaque étape permet à Git de suivre précisément les modifications et d’intégrer correctement l’historique de chacun. La patience et la rigueur dans la résolution des conflits évitent la perte de données.",
+      "situation": "Vous travaillez sur la branche `feature-ui`. Vous avez modifié le fichier `dashboard.html` et effectué plusieurs commits. Entretemps, votre collègue a poussé des modifications sur la même branche, touchant aussi `dashboard.html`. Votre push est rejeté.",
       "questions": [
         {
           "numero": 1,
@@ -188,7 +191,8 @@
     },
     {
       "numero": 4,
-      "texte": "Cours : Lorsque les branches locales et distantes divergent, Git bloque le push pour éviter d’écraser les modifications. La résolution passe par un pull, souvent générant des conflits à résoudre manuellement. Il faut alors corriger les fichiers concernés, marquer leur résolution, committer la fusion, puis pousser les modifications. Cette procédure garantit la cohérence de l’historique partagé.\n\nSituation : Vous travaillez sur la branche `feature-payment`. Vous avez modifié `payment_processor.rb` et fait plusieurs commits. Votre collègue a poussé des modifications sur la même branche, également dans `payment_processor.rb`. Votre tentative de push est rejetée.",
+      "mini_court": "Cours : Lorsque les branches locales et distantes divergent, Git bloque le push pour éviter d’écraser les modifications. La résolution passe par un pull, souvent générant des conflits à résoudre manuellement. Il faut alors corriger les fichiers concernés, marquer leur résolution, committer la fusion, puis pousser les modifications. Cette procédure garantit la cohérence de l’historique partagé.",
+      "situation": "Vous travaillez sur la branche `feature-payment`. Vous avez modifié `payment_processor.rb` et fait plusieurs commits. Votre collègue a poussé des modifications sur la même branche, également dans `payment_processor.rb`. Votre tentative de push est rejetée.",
       "questions": [
         {
           "numero": 1,
