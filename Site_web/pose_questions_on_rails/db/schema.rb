@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_06_02_084129) do
+ActiveRecord::Schema[7.1].define(version: 2025_06_02_090617) do
   create_table "exercices", force: :cascade do |t|
     t.integer "numero"
     t.text "mini_court"
@@ -27,6 +27,16 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_02_084129) do
     t.integer "niveau"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "parties", force: :cascade do |t|
+    t.string "timestamp"
+    t.string "score"
+    t.boolean "finished"
+    t.integer "notion_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["notion_id"], name: "index_parties_on_notion_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -51,6 +61,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_02_084129) do
   end
 
   add_foreign_key "exercices", "notions"
+  add_foreign_key "parties", "notions"
   add_foreign_key "questions", "exercices"
-  add_foreign_key "reponses", "parties", column: "partie_id"
+  add_foreign_key "reponses", "parties"
 end

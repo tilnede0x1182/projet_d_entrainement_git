@@ -1,0 +1,639 @@
+
+# ARBORESCENCE
+#
+/home/tilnede0x1182/code/tilnede0x1182/Personnel/2025/Entrainement/Git/Entrainement_1/projet_d_entrainement_git/Site_web/pose_questions_on_rails
+├── app
+│   ├── assets
+│   │   ├── config
+│   │   │   └── manifest.js
+│   │   ├── images
+│   │   └── stylesheets
+│   │       └── application.css
+│   ├── controllers
+│   │   ├── application_controller.rb
+│   │   └── concerns
+│   ├── helpers
+│   │   └── application_helper.rb
+│   ├── jobs
+│   │   └── application_job.rb
+│   ├── models
+│   │   ├── application_record.rb
+│   │   ├── concerns
+│   │   ├── exercice.rb
+│   │   ├── notion.rb
+│   │   ├── question.rb
+│   │   └── reponse.rb
+│   └── views
+│       └── layouts
+│           └── application.html.erb
+├── bin
+│   ├── bundle
+│   ├── docker-entrypoint
+│   ├── rails
+│   ├── rake
+│   └── setup
+├── config
+│   ├── application.rb
+│   ├── boot.rb
+│   ├── credentials.yml.enc
+│   ├── database.yml
+│   ├── environment.rb
+│   ├── environments
+│   │   ├── development.rb
+│   │   ├── production.rb
+│   │   └── test.rb
+│   ├── initializers
+│   │   ├── assets.rb
+│   │   ├── content_security_policy.rb
+│   │   ├── filter_parameter_logging.rb
+│   │   ├── inflections.rb
+│   │   └── permissions_policy.rb
+│   ├── locales
+│   │   └── en.yml
+│   ├── master.key
+│   ├── puma.rb
+│   └── routes.rb
+├── config.ru
+├── db
+│   ├── migrate
+│   │   ├── 20250602084126_create_notions.rb
+│   │   ├── 20250602084127_create_exercices.rb
+│   │   ├── 20250602084128_create_questions.rb
+│   │   └── 20250602084129_create_reponses.rb
+│   ├── schema.rb
+│   └── seeds.rb
+├── Gemfile
+├── Gemfile.lock
+├── lib
+│   ├── assets
+│   └── tasks
+├── projet.txt
+├── public
+│   ├── 404.html
+│   ├── 422.html
+│   ├── 500.html
+│   ├── apple-touch-icon.png
+│   ├── apple-touch-icon-precomposed.png
+│   ├── favicon.ico
+│   └── robots.txt
+├── Rakefile
+└── README.md
+
+25 directories, 52 files
+
+# CONFIG
+#
+## Gemfile
+
+source "https://rubygems.org"
+
+ruby "3.3.5"
+
+# ------------------------------------------
+# Core Rails & Utilities
+# ------------------------------------------
+gem "rails", "~> 7.1.5", ">= 7.1.5.1"     # Framework principal Rails 7
+gem "puma", ">= 5.0"                       # Serveur web performant pour Rails
+gem "bootsnap", require: false             # Cache pour accélérer le démarrage de Rails
+
+# ------------------------------------------
+# Base de données
+# ------------------------------------------
+gem "sqlite3", ">= 1.4"                    # Base de données légère SQLite3 pour dev/test
+
+# ------------------------------------------
+# Assets & APIs
+# ------------------------------------------
+gem "sprockets-rails"                      # Pipeline d’assets Rails classique
+gem "jbuilder"                             # Génération de JSON pour APIs
+
+# ------------------------------------------
+# Compatibilité et OS spécifiques
+# ------------------------------------------
+gem "tzinfo-data", platforms: %i[ windows jruby ] # Fichiers de fuseaux horaires pour Windows/JRuby
+
+# ------------------------------------------
+# Dépendances Ruby standard
+# ------------------------------------------
+gem "ostruct"                              # Support OpenStruct requis pour Ruby >= 3.3
+
+# ------------------------------------------
+# Groupe développement & test
+# ------------------------------------------
+group :development, :test do
+  gem "debug", platforms: %i[ mri windows ] # Débogage interactif
+end
+
+group :development do
+  gem "web-console"                        # Console interactive dans le navigateur
+end
+
+
+## Gemfile.lock
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    actioncable (7.1.5.1)
+      actionpack (= 7.1.5.1)
+      activesupport (= 7.1.5.1)
+      nio4r (~> 2.0)
+      websocket-driver (>= 0.6.1)
+      zeitwerk (~> 2.6)
+    actionmailbox (7.1.5.1)
+      actionpack (= 7.1.5.1)
+      activejob (= 7.1.5.1)
+      activerecord (= 7.1.5.1)
+      activestorage (= 7.1.5.1)
+      activesupport (= 7.1.5.1)
+      mail (>= 2.7.1)
+      net-imap
+      net-pop
+      net-smtp
+    actionmailer (7.1.5.1)
+      actionpack (= 7.1.5.1)
+      actionview (= 7.1.5.1)
+      activejob (= 7.1.5.1)
+      activesupport (= 7.1.5.1)
+      mail (~> 2.5, >= 2.5.4)
+      net-imap
+      net-pop
+      net-smtp
+      rails-dom-testing (~> 2.2)
+    actionpack (7.1.5.1)
+      actionview (= 7.1.5.1)
+      activesupport (= 7.1.5.1)
+      nokogiri (>= 1.8.5)
+      racc
+      rack (>= 2.2.4)
+      rack-session (>= 1.0.1)
+      rack-test (>= 0.6.3)
+      rails-dom-testing (~> 2.2)
+      rails-html-sanitizer (~> 1.6)
+    actiontext (7.1.5.1)
+      actionpack (= 7.1.5.1)
+      activerecord (= 7.1.5.1)
+      activestorage (= 7.1.5.1)
+      activesupport (= 7.1.5.1)
+      globalid (>= 0.6.0)
+      nokogiri (>= 1.8.5)
+    actionview (7.1.5.1)
+      activesupport (= 7.1.5.1)
+      builder (~> 3.1)
+      erubi (~> 1.11)
+      rails-dom-testing (~> 2.2)
+      rails-html-sanitizer (~> 1.6)
+    activejob (7.1.5.1)
+      activesupport (= 7.1.5.1)
+      globalid (>= 0.3.6)
+    activemodel (7.1.5.1)
+      activesupport (= 7.1.5.1)
+    activerecord (7.1.5.1)
+      activemodel (= 7.1.5.1)
+      activesupport (= 7.1.5.1)
+      timeout (>= 0.4.0)
+    activestorage (7.1.5.1)
+      actionpack (= 7.1.5.1)
+      activejob (= 7.1.5.1)
+      activerecord (= 7.1.5.1)
+      activesupport (= 7.1.5.1)
+      marcel (~> 1.0)
+    activesupport (7.1.5.1)
+      base64
+      benchmark (>= 0.3)
+      bigdecimal
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      connection_pool (>= 2.2.5)
+      drb
+      i18n (>= 1.6, < 2)
+      logger (>= 1.4.2)
+      minitest (>= 5.1)
+      mutex_m
+      securerandom (>= 0.3)
+      tzinfo (~> 2.0)
+    base64 (0.3.0)
+    benchmark (0.4.1)
+    bigdecimal (3.2.1)
+    bindex (0.8.1)
+    bootsnap (1.18.6)
+      msgpack (~> 1.2)
+    builder (3.3.0)
+    concurrent-ruby (1.3.5)
+    connection_pool (2.5.3)
+    crass (1.0.6)
+    date (3.4.1)
+    debug (1.10.0)
+      irb (~> 1.10)
+      reline (>= 0.3.8)
+    drb (2.2.3)
+    erb (5.0.1)
+    erubi (1.13.1)
+    globalid (1.2.1)
+      activesupport (>= 6.1)
+    i18n (1.14.7)
+      concurrent-ruby (~> 1.0)
+    io-console (0.8.0)
+    irb (1.15.2)
+      pp (>= 0.6.0)
+      rdoc (>= 4.0.0)
+      reline (>= 0.4.2)
+    jbuilder (2.13.0)
+      actionview (>= 5.0.0)
+      activesupport (>= 5.0.0)
+    logger (1.7.0)
+    loofah (2.24.1)
+      crass (~> 1.0.2)
+      nokogiri (>= 1.12.0)
+    mail (2.8.1)
+      mini_mime (>= 0.1.1)
+      net-imap
+      net-pop
+      net-smtp
+    marcel (1.0.4)
+    mini_mime (1.1.5)
+    minitest (5.25.5)
+    msgpack (1.8.0)
+    mutex_m (0.3.0)
+    net-imap (0.5.8)
+      date
+      net-protocol
+    net-pop (0.1.2)
+      net-protocol
+    net-protocol (0.2.2)
+      timeout
+    net-smtp (0.5.1)
+      net-protocol
+    nio4r (2.7.4)
+    nokogiri (1.18.8-aarch64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.8-aarch64-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.18.8-arm-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.8-arm-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.18.8-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.18.8-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.18.8-x86_64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.8-x86_64-linux-musl)
+      racc (~> 1.4)
+    ostruct (0.6.1)
+    pp (0.6.2)
+      prettyprint
+    prettyprint (0.2.0)
+    psych (5.2.6)
+      date
+      stringio
+    puma (6.6.0)
+      nio4r (~> 2.0)
+    racc (1.8.1)
+    rack (3.1.15)
+    rack-session (2.1.1)
+      base64 (>= 0.1.0)
+      rack (>= 3.0.0)
+    rack-test (2.2.0)
+      rack (>= 1.3)
+    rackup (2.2.1)
+      rack (>= 3)
+    rails (7.1.5.1)
+      actioncable (= 7.1.5.1)
+      actionmailbox (= 7.1.5.1)
+      actionmailer (= 7.1.5.1)
+      actionpack (= 7.1.5.1)
+      actiontext (= 7.1.5.1)
+      actionview (= 7.1.5.1)
+      activejob (= 7.1.5.1)
+      activemodel (= 7.1.5.1)
+      activerecord (= 7.1.5.1)
+      activestorage (= 7.1.5.1)
+      activesupport (= 7.1.5.1)
+      bundler (>= 1.15.0)
+      railties (= 7.1.5.1)
+    rails-dom-testing (2.3.0)
+      activesupport (>= 5.0.0)
+      minitest
+      nokogiri (>= 1.6)
+    rails-html-sanitizer (1.6.2)
+      loofah (~> 2.21)
+      nokogiri (>= 1.15.7, != 1.16.7, != 1.16.6, != 1.16.5, != 1.16.4, != 1.16.3, != 1.16.2, != 1.16.1, != 1.16.0.rc1, != 1.16.0)
+    railties (7.1.5.1)
+      actionpack (= 7.1.5.1)
+      activesupport (= 7.1.5.1)
+      irb
+      rackup (>= 1.0.0)
+      rake (>= 12.2)
+      thor (~> 1.0, >= 1.2.2)
+      zeitwerk (~> 2.6)
+    rake (13.3.0)
+    rdoc (6.14.0)
+      erb
+      psych (>= 4.0.0)
+    reline (0.6.1)
+      io-console (~> 0.5)
+    securerandom (0.4.1)
+    sprockets (4.2.2)
+      concurrent-ruby (~> 1.0)
+      logger
+      rack (>= 2.2.4, < 4)
+    sprockets-rails (3.5.2)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      sprockets (>= 3.0.0)
+    sqlite3 (2.6.0-aarch64-linux-gnu)
+    sqlite3 (2.6.0-aarch64-linux-musl)
+    sqlite3 (2.6.0-arm-linux-gnu)
+    sqlite3 (2.6.0-arm-linux-musl)
+    sqlite3 (2.6.0-arm64-darwin)
+    sqlite3 (2.6.0-x86_64-darwin)
+    sqlite3 (2.6.0-x86_64-linux-gnu)
+    sqlite3 (2.6.0-x86_64-linux-musl)
+    stringio (3.1.7)
+    thor (1.3.2)
+    timeout (0.4.3)
+    tzinfo (2.0.6)
+      concurrent-ruby (~> 1.0)
+    web-console (4.2.1)
+      actionview (>= 6.0.0)
+      activemodel (>= 6.0.0)
+      bindex (>= 0.4.0)
+      railties (>= 6.0.0)
+    websocket-driver (0.8.0)
+      base64
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.5)
+    zeitwerk (2.7.3)
+
+PLATFORMS
+  aarch64-linux-gnu
+  aarch64-linux-musl
+  arm-linux-gnu
+  arm-linux-musl
+  arm64-darwin
+  x86_64-darwin
+  x86_64-linux
+  x86_64-linux-gnu
+  x86_64-linux-musl
+
+DEPENDENCIES
+  bootsnap
+  debug
+  jbuilder
+  ostruct
+  puma (>= 5.0)
+  rails (~> 7.1.5, >= 7.1.5.1)
+  sprockets-rails
+  sqlite3 (>= 1.4)
+  tzinfo-data
+  web-console
+
+RUBY VERSION
+   ruby 3.3.5p100
+
+BUNDLED WITH
+   2.6.7
+
+
+## config/database.yml
+
+# SQLite. Versions 3.8.0 and up are supported.
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem "sqlite3"
+#
+default: &default
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: storage/development.sqlite3
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: storage/test.sqlite3
+
+production:
+  <<: *default
+  database: storage/production.sqlite3
+
+
+## config/routes.rb
+
+Rails.application.routes.draw do
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
+  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  get "up" => "rails/health#show", as: :rails_health_check
+
+  # Defines the root path route ("/")
+  # root "posts#index"
+end
+
+
+
+# CONTROLEURS
+#
+## app/controllers/application_controller.rb
+
+class ApplicationController < ActionController::Base
+end
+
+
+
+# MODELES
+#
+## app/models/notion.rb
+
+class Notion < ApplicationRecord
+	has_many :exercices, class_name: 'Exercice'
+end
+
+
+## app/models/exercice.rb
+
+class Exercice < ApplicationRecord
+	belongs_to :notion
+	has_many :questions
+end
+
+
+## app/models/reponse.rb
+
+class Reponse < ApplicationRecord
+  belongs_to :partie
+end
+
+
+## app/models/application_record.rb
+
+class ApplicationRecord < ActiveRecord::Base
+  primary_abstract_class
+end
+
+
+## app/models/question.rb
+
+class Question < ApplicationRecord
+	belongs_to :exercice
+end
+
+
+
+# VUES
+#
+## app/views/layouts/application.html.erb
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PoseQuestionsOnRails</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application" %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
+
+
+
+# ROUTES
+#
+## config/routes.rb
+
+Rails.application.routes.draw do
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
+  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  get "up" => "rails/health#show", as: :rails_health_check
+
+  # Defines the root path route ("/")
+  # root "posts#index"
+end
+
+
+
+# MIGRATIONS
+#
+## db/migrate/20250602084126_create_notions.rb
+
+class CreateNotions < ActiveRecord::Migration[7.1]
+  def change
+    create_table :notions do |t|
+      t.integer :numero
+      t.string :notion
+      t.integer :niveau
+
+      t.timestamps
+    end
+  end
+end
+
+
+## db/migrate/20250602084129_create_reponses.rb
+
+class CreateReponses < ActiveRecord::Migration[7.1]
+  def change
+    create_table :reponses do |t|
+      t.integer :ex_num
+      t.integer :q_num
+      t.string :rep
+      t.references :partie, null: false, foreign_key: true
+
+      t.timestamps
+    end
+  end
+end
+
+
+## db/migrate/20250602084128_create_questions.rb
+
+class CreateQuestions < ActiveRecord::Migration[7.1]
+  def change
+    create_table :questions do |t|
+      t.integer :numero
+      t.string :intitule
+      t.json :choix
+      t.string :reponse
+      t.references :exercice, null: false, foreign_key: true
+
+      t.timestamps
+    end
+  end
+end
+
+
+## db/migrate/20250602084127_create_exercices.rb
+
+class CreateExercices < ActiveRecord::Migration[7.1]
+  def change
+    create_table :exercices do |t|
+      t.integer :numero
+      t.text :mini_court
+      t.text :situation
+      t.references :notion, null: false, foreign_key: true
+
+      t.timestamps
+    end
+  end
+end
+
+
+
+# JOBS
+#
+## app/jobs/application_job.rb
+
+class ApplicationJob < ActiveJob::Base
+  # Automatically retry jobs that encountered a deadlock
+  # retry_on ActiveRecord::Deadlocked
+
+  # Most jobs are safe to ignore if the underlying records are no longer available
+  # discard_on ActiveJob::DeserializationError
+end
+
+
+
+# CSS_MAISON
+#
+## app/assets/stylesheets/application.css
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+
+# STATISTIQUES
+#
+      9 ## app
+      3 ## config
+      4 ## db
+      1 ## Gemfile
+      1 ## Gemfile.lock
