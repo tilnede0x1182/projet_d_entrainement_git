@@ -9,6 +9,7 @@ gem "rails", "~> 7.1.5", ">= 7.1.5.1"     # Framework principal Rails 7
 gem "puma", ">= 5.0"                      # Serveur web performant pour Rails
 gem "bootsnap", require: false            # Cache pour accélérer le démarrage de Rails
 gem "turbo-rails"													# Hotwire/Turbo : navigation instantanée et formulaires accélérés
+gem "rack", ">= 3.1.16"										# Interface serveur web minimaliste
 
 # ------------------------------------------
 # Base de données
